@@ -32,7 +32,7 @@ export default function SEOStrategiesPage() {
 
           <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
             <Image
-              src="/placeholder.svg?height=400&width=800&text=SEO+Strategies"
+              src="/seo-strategies.png?height=400&width=800&text=SEO+Strategies"
               alt="SEO Strategies for 2024"
               fill
               className="object-cover"
