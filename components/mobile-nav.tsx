@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
 
 export function MobileNav() {
@@ -65,9 +64,6 @@ export function MobileNav() {
           >
             Tech Stack
           </Link>
-          <div className="mt-4">
-            <ThemeToggle />
-          </div>
         </nav>
       </SheetContent>
     </Sheet>

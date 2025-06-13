@@ -70,7 +70,7 @@ export default function Home() {
 
         {/* Experience Section */}
         <section id="experience" className="section">
-          <div className="section-header">
+          <div className="section-header items-start">
             <h2 className="section-title">Experience</h2>
             <Link href="/experience" className="view-all">
               View All <ArrowRight className="h-3 w-3" />
