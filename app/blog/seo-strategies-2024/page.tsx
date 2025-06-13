@@ -31,12 +31,7 @@ export default function SEOStrategiesPage() {
           </div>
 
           <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
-            <Image
-              src="/seo-strategies.png?height=400&width=800&text=SEO+Strategies"
-              alt="SEO Strategies for 2024"
-              fill
-              className="object-cover"
-            />
+            <Image src="/images/seo-strategies.png" alt="SEO Strategies for 2024" fill className="object-cover" />
           </div>
 
           <div className="prose prose-lg dark:prose-invert max-w-none">

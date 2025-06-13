@@ -32,8 +32,8 @@ export default function WordPressSpeedOptimizationPage() {
 
           <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
             <Image
-              src="/placeholder.svg?height=400&width=800&text=WordPress+Speed+Optimization"
-              alt="WordPress Speed Optimization"
+              src="/images/10-ways-to-speed-up-wordpress-website.png"
+              alt="10 Ways to Speed Up Your WordPress Website"
               fill
               className="object-cover"
             />

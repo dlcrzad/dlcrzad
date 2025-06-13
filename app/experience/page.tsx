@@ -23,14 +23,14 @@ export default function ExperiencePage() {
             <h2 className="text-lg font-medium mb-6">Work Experience</h2>
             <div className="space-y-8">
               {/* Experience Item 1 */}
-              <div className="flex gap-4">
+              <div className="flex gap-8">
                 <div className="w-24 flex-shrink-0 text-right">
                   <span className="text-sm text-muted-foreground">2023-2024</span>
                 </div>
                 <div>
                   <h3 className="font-medium">Web Designer - Tech VA</h3>
                   <p className="text-sm text-muted-foreground mb-2">Prairie Giraffe</p>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <ul className="list-inside text-sm text-muted-foreground space-y-1">
                     <li>Crafted 10+ visually appealing WordPress websites with user-friendly design</li>
                     <li>Proven track record in translating client visions into creative web solutions</li>
                     <li>Optimized productivity through streamlined email management</li>
@@ -41,14 +41,14 @@ export default function ExperiencePage() {
               </div>
 
               {/* Experience Item 2 */}
-              <div className="flex gap-4">
+              <div className="flex gap-8">
                 <div className="w-24 flex-shrink-0 text-right">
                   <span className="text-sm text-muted-foreground">2024</span>
                 </div>
                 <div>
                   <h3 className="font-medium">Junior Operations Manager</h3>
                   <p className="text-sm text-muted-foreground mb-2">Prairie Giraffe</p>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <ul className="list-inside text-sm text-muted-foreground space-y-1">
                     <li>Key role in day-to-day business management, overseeing projects</li>
                     <li>Ensured stakeholder communication and managed client satisfaction</li>
                     <li>Contributed to web design, SEO, and Google Ads campaigns</li>
@@ -59,14 +59,14 @@ export default function ExperiencePage() {
               </div>
 
               {/* Experience Item 3 */}
-              <div className="flex gap-4">
+              <div className="flex gap-8">
                 <div className="w-24 flex-shrink-0 text-right">
                   <span className="text-sm text-muted-foreground">2019-2020</span>
                 </div>
                 <div>
                   <h3 className="font-medium">Admin Assistant - Engineering Office</h3>
                   <p className="text-sm text-muted-foreground mb-2">Municipality of Angadanan</p>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <ul className="list-inside text-sm text-muted-foreground space-y-1">
                     <li>Tech-savvy in Microsoft Office, Google Suite, and diverse software</li>
                     <li>Ensured accurate data entry and improved workflow efficiency</li>
                     <li>Provided essential administrative support in documentation and organization</li>
@@ -78,7 +78,7 @@ export default function ExperiencePage() {
 
           <section>
             <h2 className="text-lg font-medium mb-6">Education</h2>
-            <div className="flex gap-4">
+            <div className="flex gap-8">
               <div className="w-24 flex-shrink-0 text-right">
                 <span className="text-sm text-muted-foreground">2020-2024</span>
               </div>
@@ -95,40 +95,69 @@ export default function ExperiencePage() {
 
           <section>
             <h2 className="text-lg font-medium mb-6">Skills</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Web Development Skills */}
               <div>
-                <h3 className="text-base font-medium mb-3">Web Development</h3>
-                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                  <li>WordPress CMS</li>
-                  <li>BricksBuilder</li>
-                  <li>Automatic CSS</li>
-                  <li>Divi Theme</li>
-                  <li>Elementor</li>
-                  <li>Webflow</li>
-                  <li>HTML/CSS</li>
-                  <li>Basic JavaScript</li>
-                </ul>
+                <h3 className="text-base font-medium mb-4">Web Development</h3>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "WordPress CMS",
+                    "BricksBuilder",
+                    "Automatic CSS",
+                    "Divi Theme",
+                    "Elementor",
+                    "Webflow",
+                    "HTML/CSS",
+                    "Basic JavaScript",
+                  ].map((skill) => (
+                    <span key={skill} className="border rounded-md px-3 py-1.5 text-sm text-muted-foreground">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
+
+              {/* Digital Marketing Skills */}
               <div>
-                <h3 className="text-base font-medium mb-3">Digital Marketing</h3>
-                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                  <li>Search Engine Optimization (SEO)</li>
-                  <li>Google Ads</li>
-                  <li>Google Search Console</li>
-                  <li>Content Writing</li>
-                  <li>Social Media Marketing</li>
-                  <li>Email Marketing</li>
-                  <li>Analytics and Reporting</li>
-                </ul>
+                <h3 className="text-base font-medium mb-4">Digital Marketing</h3>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "SEO",
+                    "Google Ads",
+                    "Search Console",
+                    "Content Writing",
+                    "Social Media",
+                    "Email Marketing",
+                    "Analytics",
+                  ].map((skill) => (
+                    <span key={skill} className="border rounded-md px-3 py-1.5 text-sm text-muted-foreground">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Soft Skills */}
+              <div>
+                <h3 className="text-base font-medium mb-4">Soft Skills</h3>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Communication",
+                    "Time Management",
+                    "Problem Solving",
+                    "Attention to Detail",
+                    "Teamwork",
+                    "Adaptability",
+                    "Client Relations",
+                  ].map((skill) => (
+                    <span key={skill} className="border rounded-md px-3 py-1.5 text-sm text-muted-foreground">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
-
-          <div className="flex justify-center">
-            <Link href="/certifications">
-              <Button variant="outline">View Licenses & Certifications</Button>
-            </Link>
-          </div>
         </div>
       </main>
 

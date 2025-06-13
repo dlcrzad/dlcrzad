@@ -31,6 +31,13 @@ export function MobileNav() {
             Experience
           </Link>
           <Link
+            href="/certifications"
+            className="text-muted-foreground hover:text-foreground py-2"
+            onClick={() => setOpen(false)}
+          >
+            Certifications
+          </Link>
+          <Link
             href="/projects"
             className="text-muted-foreground hover:text-foreground py-2"
             onClick={() => setOpen(false)}

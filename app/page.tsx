@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { MapPin, Send, ArrowRight, ExternalLink, Calendar } from "lucide-react"
+import { MapPin, Send, ArrowRight, ExternalLink, Calendar, Award } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -121,6 +121,52 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Certifications Section */}
+        <section id="certifications" className="section">
+          <div className="section-header">
+            <h2 className="section-title">Licenses & Certifications</h2>
+            <Link href="/certifications" className="view-all">
+              View All <ArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
+
+          <div className="space-y-6">
+            {/* Certification 1 */}
+            <div className="flex gap-8">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Award className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-medium mb-1">Google Analytics Certification</h3>
+                <p className="text-sm text-muted-foreground mb-2">Google</p>
+                <div className="flex items-center text-xs text-muted-foreground mb-2">
+                  <Calendar className="h-3 w-3 mr-1" />
+                  <span>Issued Jan 2024</span>
+                  <span className="mx-2">•</span>
+                  <span>No Expiration</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Certification 2 */}
+            <div className="flex gap-8">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Award className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-medium mb-1">SEO Specialist Certification</h3>
+                <p className="text-sm text-muted-foreground mb-2">HubSpot Academy</p>
+                <div className="flex items-center text-xs text-muted-foreground mb-2">
+                  <Calendar className="h-3 w-3 mr-1" />
+                  <span>Issued Sep 2023</span>
+                  <span className="mx-2">•</span>
+                  <span>Expires Sep 2025</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Projects Section */}
         <section id="projects" className="section">
           <div className="section-header">
@@ -217,12 +263,7 @@ export default function Home() {
             {/* Blog Post 1 */}
             <div className="border rounded-lg overflow-hidden">
               <div className="h-48 bg-card relative">
-                <Image
-                  src="/placeholder.svg?height=200&width=400&text=SEO+Strategies"
-                  alt="SEO Strategies for 2024"
-                  fill
-                  className="object-cover"
-                />
+                <Image src="/images/seo-strategies.png" alt="SEO Strategies for 2024" fill className="object-cover" />
               </div>
               <div className="p-4">
                 <Link href="/blog/seo-strategies-2024">
@@ -253,7 +294,7 @@ export default function Home() {
             <div className="border rounded-lg overflow-hidden">
               <div className="h-48 bg-card relative">
                 <Image
-                  src="/placeholder.svg?height=200&width=400&text=WordPress+Performance"
+                  src="/images/10-ways-to-speed-up-wordpress-website.png"
                   alt="WordPress Performance Tips"
                   fill
                   className="object-cover"
