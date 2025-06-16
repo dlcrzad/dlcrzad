@@ -22,6 +22,37 @@ export default function CertificationsPage() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Add this as the first certification */}
+          <div className="border rounded-lg p-6">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <Award className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-medium mb-1">Facebook Marketing and Advertising</h3>
+                <p className="text-sm text-muted-foreground">Simplilearn</p>
+              </div>
+            </div>
+            <div className="flex items-center text-sm text-muted-foreground mb-4">
+              <Calendar className="h-4 w-4 mr-1" />
+              <span>Issued 2024</span>
+              <span className="mx-2">•</span>
+              <span>No Expiration</span>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              Comprehensive certification covering Facebook advertising strategies, campaign optimization, audience
+              targeting, and social media marketing best practices.
+            </p>
+            <a
+              href="#"
+              className="text-sm text-primary hover:underline inline-flex items-center"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Credential <ExternalLink className="h-3 w-3 ml-1" />
+            </a>
+          </div>
+
           {/* Certification 1 */}
           <div className="border rounded-lg p-6">
             <div className="flex items-start gap-4 mb-4">

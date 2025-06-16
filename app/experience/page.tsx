@@ -25,17 +25,23 @@ export default function ExperiencePage() {
               {/* Experience Item 1 */}
               <div className="flex gap-8">
                 <div className="w-24 flex-shrink-0 text-right">
-                  <span className="text-sm text-muted-foreground">2023-2024</span>
+                  <span className="text-sm text-muted-foreground">2024</span>
                 </div>
                 <div>
-                  <h3 className="font-medium">Web Designer - Tech VA</h3>
-                  <p className="text-sm text-muted-foreground mb-2">Prairie Giraffe</p>
+                  <h3 className="font-medium">WordPress & SEO Specialist</h3>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Freelance Projects (Capucelli, Golden Biotechnologies, Socal Biosys, Avos Inc.)
+                  </p>
                   <ul className="list-inside text-sm text-muted-foreground space-y-1">
-                    <li>Crafted 10+ visually appealing WordPress websites with user-friendly design</li>
-                    <li>Proven track record in translating client visions into creative web solutions</li>
-                    <li>Optimized productivity through streamlined email management</li>
-                    <li>Implemented responsive designs and interactive features to enhance user experiences</li>
-                    <li>Monitored SEO rankings and revised website content to improve search engine performance</li>
+                    <li>Maintained and managed websites on WordPress, ensuring seamless performance and uptime</li>
+                    <li>
+                      Monitored and addressed technical issues, including fixing non-indexed URLs and optimizing backend
+                      operations
+                    </li>
+                    <li>Managed SEO to boost organic traffic and improve search engine rankings for client websites</li>
+                    <li>Handled Google Ads campaigns for e-commerce platforms, optimizing for conversions and ROI</li>
+                    <li>Transferred domains, configured hosting, and ensured smooth website migrations</li>
+                    <li>Provided ongoing updates and content management to keep websites accurate and user-friendly</li>
                   </ul>
                 </div>
               </div>
@@ -43,33 +49,23 @@ export default function ExperiencePage() {
               {/* Experience Item 2 */}
               <div className="flex gap-8">
                 <div className="w-24 flex-shrink-0 text-right">
-                  <span className="text-sm text-muted-foreground">2024</span>
+                  <span className="text-sm text-muted-foreground">2022-2024</span>
                 </div>
                 <div>
-                  <h3 className="font-medium">Junior Operations Manager</h3>
-                  <p className="text-sm text-muted-foreground mb-2">Prairie Giraffe</p>
+                  <h3 className="font-medium">Web Designer</h3>
+                  <p className="text-sm text-muted-foreground mb-2">Prairie Giraffe, Wyoming, United States</p>
                   <ul className="list-inside text-sm text-muted-foreground space-y-1">
-                    <li>Key role in day-to-day business management, overseeing projects</li>
-                    <li>Ensured stakeholder communication and managed client satisfaction</li>
-                    <li>Contributed to web design, SEO, and Google Ads campaigns</li>
-                    <li>Implemented efficient processes with AI tools</li>
-                    <li>Maintained accountability for high-priority tasks</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Experience Item 3 */}
-              <div className="flex gap-8">
-                <div className="w-24 flex-shrink-0 text-right">
-                  <span className="text-sm text-muted-foreground">2019-2020</span>
-                </div>
-                <div>
-                  <h3 className="font-medium">Admin Assistant - Engineering Office</h3>
-                  <p className="text-sm text-muted-foreground mb-2">Municipality of Angadanan</p>
-                  <ul className="list-inside text-sm text-muted-foreground space-y-1">
-                    <li>Tech-savvy in Microsoft Office, Google Suite, and diverse software</li>
-                    <li>Ensured accurate data entry and improved workflow efficiency</li>
-                    <li>Provided essential administrative support in documentation and organization</li>
+                    <li>Tailored WordPress themes and plugins to create visually striking, user-centric websites</li>
+                    <li>Designed and developed 10+ appealing websites using WordPress, Bricks, CSS, and Frames</li>
+                    <li>Implemented responsive designs and interactive features to enhance user experiences</li>
+                    <li>Monitored SEO rankings and revised website content to improve search engine performance</li>
+                    <li>
+                      Collaborated with clients to understand requirements and translated vision into creative solutions
+                    </li>
+                    <li>
+                      Achieved a 95% client satisfaction rate through tailored solutions and design thinking principles
+                    </li>
+                    <li>Utilized email management tools to streamline communication and optimize productivity</li>
                   </ul>
                 </div>
               </div>
@@ -96,19 +92,20 @@ export default function ExperiencePage() {
           <section>
             <h2 className="text-lg font-medium mb-6">Skills</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Web Development Skills */}
+              {/* Web Development & Tools */}
               <div>
-                <h3 className="text-base font-medium mb-4">Web Development</h3>
+                <h3 className="text-base font-medium mb-4">Web Development & Tools</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    "WordPress CMS",
+                    "WordPress",
                     "BricksBuilder",
                     "Automatic CSS",
                     "Divi Theme",
                     "Elementor",
                     "Webflow",
                     "HTML/CSS",
-                    "Basic JavaScript",
+                    "JavaScript",
+                    "ChatGPT",
                   ].map((skill) => (
                     <span key={skill} className="border rounded-md px-3 py-1.5 text-sm text-muted-foreground">
                       {skill}
@@ -117,18 +114,18 @@ export default function ExperiencePage() {
                 </div>
               </div>
 
-              {/* Digital Marketing Skills */}
+              {/* Digital Marketing & SEO */}
               <div>
-                <h3 className="text-base font-medium mb-4">Digital Marketing</h3>
+                <h3 className="text-base font-medium mb-4">Digital Marketing & SEO</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
                     "SEO",
                     "Google Ads",
-                    "Search Console",
+                    "Google Search Console",
+                    "Digital Marketing",
+                    "Copywriting",
                     "Content Writing",
-                    "Social Media",
-                    "Email Marketing",
-                    "Analytics",
+                    "Tech Support",
                   ].map((skill) => (
                     <span key={skill} className="border rounded-md px-3 py-1.5 text-sm text-muted-foreground">
                       {skill}
@@ -137,18 +134,20 @@ export default function ExperiencePage() {
                 </div>
               </div>
 
-              {/* Soft Skills */}
+              {/* Productivity & Management */}
               <div>
-                <h3 className="text-base font-medium mb-4">Soft Skills</h3>
+                <h3 className="text-base font-medium mb-4">Productivity & Management</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    "Communication",
-                    "Time Management",
-                    "Problem Solving",
-                    "Attention to Detail",
-                    "Teamwork",
-                    "Adaptability",
-                    "Client Relations",
+                    "Microsoft Office",
+                    "Google Suite",
+                    "Slack",
+                    "Asana",
+                    "Trello",
+                    "Calendly",
+                    "Gmail",
+                    "Google Calendar",
+                    "Canva",
                   ].map((skill) => (
                     <span key={skill} className="border rounded-md px-3 py-1.5 text-sm text-muted-foreground">
                       {skill}

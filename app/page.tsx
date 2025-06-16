@@ -28,7 +28,7 @@ export default function Home() {
             <h1 className="text-2xl md:text-3xl font-medium mb-2">Adeline Dela Cruz</h1>
             <div className="flex items-center justify-center md:justify-start text-muted-foreground mb-4">
               <MapPin className="h-4 w-4 mr-2" />
-              <span className="text-sm">Angadanan, Isabela, Philippines</span>
+              <span className="text-sm">Angadanan, Isabela, Philippines | +63 927 955 5276</span>
             </div>
             <p className="text-lg mb-6">WordPress & SEO Specialist | Web Designer</p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
@@ -57,13 +57,14 @@ export default function Home() {
               user-centric websites. I specialize in WordPress development, SEO optimization, and digital marketing.
             </p>
             <p>
-              I've worked with various clients to maintain and manage websites, optimize SEO to boost organic traffic,
-              handle Google Ads campaigns, and provide ongoing updates and content management to keep websites accurate
-              and user-friendly.
+              I've worked with various clients including Capucelli, Golden Biotechnologies, Socal Biosys, and Avos Inc.
+              to maintain and manage websites, optimize SEO to boost organic traffic, handle Google Ads campaigns, and
+              provide ongoing updates and content management to keep websites accurate and user-friendly.
             </p>
             <p>
               With a background in Civil Engineering and a passion for web development, I bring a unique perspective to
-              my projects, focusing on both technical functionality and aesthetic design.
+              my projects, focusing on both technical functionality and aesthetic design, achieving a 95% client
+              satisfaction rate.
             </p>
           </div>
         </section>
@@ -81,14 +82,16 @@ export default function Home() {
             {/* Experience Item 1 */}
             <div className="flex gap-8">
               <div className="w-20 flex-shrink-0 text-right">
-                <span className="text-sm text-muted-foreground">2023-2024</span>
+                <span className="text-sm text-muted-foreground">2024</span>
               </div>
               <div>
-                <h3 className="font-medium">Web Designer - Tech VA</h3>
-                <p className="text-sm text-muted-foreground mb-2">Prairie Giraffe</p>
+                <h3 className="font-medium">WordPress & SEO Specialist</h3>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Freelance Projects (Capucelli, Golden Biotechnologies, Socal Biosys, Avos Inc.)
+                </p>
                 <p className="text-sm text-muted-foreground">
-                  Crafted 10+ visually appealing WordPress websites with user-friendly design. Optimized SEO and
-                  implemented responsive designs.
+                  Maintained and managed WordPress websites, optimized SEO to boost organic traffic, handled Google Ads
+                  campaigns, and provided ongoing updates and content management.
                 </p>
               </div>
             </div>
@@ -96,14 +99,14 @@ export default function Home() {
             {/* Experience Item 2 */}
             <div className="flex gap-8">
               <div className="w-20 flex-shrink-0 text-right">
-                <span className="text-sm text-muted-foreground">2024</span>
+                <span className="text-sm text-muted-foreground">2022-2024</span>
               </div>
               <div>
-                <h3 className="font-medium">Junior Operations Manager</h3>
-                <p className="text-sm text-muted-foreground mb-2">Prairie Giraffe</p>
+                <h3 className="font-medium">Web Designer</h3>
+                <p className="text-sm text-muted-foreground mb-2">Prairie Giraffe, Wyoming, United States</p>
                 <p className="text-sm text-muted-foreground">
-                  Key role in day-to-day business management, overseeing projects and ensuring stakeholder
-                  communication.
+                  Designed and developed 10+ appealing websites using WordPress, Bricks, CSS, and Frames. Achieved 95%
+                  client satisfaction rate through tailored solutions and responsive designs.
                 </p>
               </div>
             </div>
@@ -338,35 +341,44 @@ export default function Home() {
 
           <div className="space-y-6">
             <div>
-              <h3 className="text-sm font-medium mb-3">Frontend</h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="tech-badge">WordPress</span>
-                <span className="tech-badge">HTML</span>
-                <span className="tech-badge">CSS</span>
-                <span className="tech-badge">JavaScript</span>
-                <span className="tech-badge">BricksBuilder</span>
-                <span className="tech-badge">Elementor</span>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-medium mb-3">Digital Marketing</h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="tech-badge">SEO</span>
-                <span className="tech-badge">Google Ads</span>
-                <span className="tech-badge">Content Writing</span>
-                <span className="tech-badge">Analytics</span>
-                <span className="tech-badge">Social Media</span>
-              </div>
-            </div>
-
-            <div>
               <h3 className="text-sm font-medium mb-3">Tools</h3>
               <div className="flex flex-wrap gap-2">
-                <span className="tech-badge">Google Analytics</span>
-                <span className="tech-badge">Search Console</span>
+                <span className="tech-badge">WordPress</span>
+                <span className="tech-badge">BricksBuilder</span>
+                <span className="tech-badge">Automatic CSS</span>
+                <span className="tech-badge">Divi Theme</span>
+                <span className="tech-badge">Elementor</span>
+                <span className="tech-badge">Webflow</span>
+                <span className="tech-badge">Google Ads</span>
+                <span className="tech-badge">Google Search Console</span>
                 <span className="tech-badge">Canva</span>
-                <span className="tech-badge">Figma</span>
+                <span className="tech-badge">ChatGPT</span>
+                <span className="tech-badge">Slack</span>
+                <span className="tech-badge">Asana</span>
+                <span className="tech-badge">Trello</span>
+                <span className="tech-badge">Calendly</span>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-medium mb-3">Skills</h3>
+              <div className="flex flex-wrap gap-2">
+                <span className="tech-badge">Web Design/Development</span>
+                <span className="tech-badge">SEO</span>
+                <span className="tech-badge">Digital Marketing</span>
+                <span className="tech-badge">Google Ads</span>
+                <span className="tech-badge">Copywriting</span>
+                <span className="tech-badge">Tech Support</span>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-medium mb-3">Office Suite</h3>
+              <div className="flex flex-wrap gap-2">
+                <span className="tech-badge">Microsoft Office</span>
+                <span className="tech-badge">Google Suite</span>
+                <span className="tech-badge">Gmail</span>
+                <span className="tech-badge">Google Calendar</span>
               </div>
             </div>
           </div>
@@ -402,11 +414,12 @@ export default function Home() {
           <div className="text-muted-foreground space-y-4">
             <p>
               When I'm not designing websites, I focus on personal growth and exploring new interests. I enjoy reading,
-              meditating, and developing my career skills.
+              meditating, and developing my career skills through continuous learning.
             </p>
             <p>
-              I'm passionate about cooking, fitness, and following developments in stocks and cryptocurrency. These
-              diverse interests help me maintain a balanced perspective and bring fresh ideas to my work.
+              I'm passionate about cooking, fitness, and following developments in stocks and cryptocurrency. I also
+              enjoy designing and exploring creative solutions. These diverse interests help me maintain a balanced
+              perspective and bring fresh ideas to my work.
             </p>
           </div>
         </section>
@@ -419,8 +432,25 @@ export default function Home() {
 
           <div className="space-y-6">
             <div>
+              <p className="text-sm font-medium mb-1">Phone</p>
+              <p className="text-muted-foreground">+63 927 955 5276</p>
+            </div>
+
+            <div>
               <p className="text-sm font-medium mb-1">Email</p>
               <p className="text-muted-foreground">dlcrzad@gmail.com</p>
+            </div>
+
+            <div>
+              <p className="text-sm font-medium mb-1">LinkedIn</p>
+              <a
+                href="https://linkedin.com/in/dlcrzad"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary"
+              >
+                linkedin.com/in/dlcrzad
+              </a>
             </div>
 
             <div>
