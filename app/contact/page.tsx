@@ -1,204 +1,298 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
+
+import { useState, useEffect } from "react"
+import { Mail, Phone, MapPin, Send, Calendar } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowLeft, PhoneCall, Mail, MapPin, CheckCircle } from "lucide-react"
-import Link from "next/link"
+import { Label } from "@/components/ui/label"
+import { SiteHeader } from "@/components/site-header"
+import { SiteFooter } from "@/components/site-footer"
 
 export default function ContactPage() {
-  const [formState, setFormState] = useState({
+  const [isVisible, setIsVisible] = useState(false)
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  useEffect(() => {
+    setIsVisible(true)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate")
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    const elements = document.querySelectorAll(".fade-in-up, .fade-in-left, .fade-in-right, .scale-in")
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormState((prev) => ({ ...prev, [name]: value }))
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
-
-    // In a real implementation, you would send the form data to your email service
-    // This is a simulation for the demo
-    // The actual implementation would use a server action or API route
-
-    try {
-      // Example of what the server action would look like:
-      // const result = await sendEmail({
-      //   to: "dlcrzad@gmail.com",
-      //   from: formState.email,
-      //   subject: formState.subject,
-      //   message: `Name: ${formState.name}\nEmail: ${formState.email}\nMessage: ${formState.message}`
-      // });
-
-      // For now, we'll simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      setFormState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      })
-    } catch (error) {
-      console.error("Error sending email:", error)
-      setIsSubmitting(false)
-      // In a real implementation, you would handle the error here
-    }
+    // Handle form submission here
+    console.log("Form submitted:", formData)
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    })
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-soft-black">
       <SiteHeader />
 
-      <main className="container-sm py-12">
-        <Link href="/">
-          <Button variant="ghost" size="sm" className="mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
-          </Button>
-        </Link>
+      {/* Hero Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1
+            className={`text-4xl md:text-6xl font-bold text-white mb-6 ${isVisible ? "animate-fade-in" : "opacity-0"}`}
+          >
+            Let's Work
+            <span className="text-warm-yellow block">Together</span>
+          </h1>
+          <p
+            className={`text-xl text-gray-300 max-w-3xl mx-auto ${isVisible ? "animate-fade-in animate-delay-200" : "opacity-0"}`}
+          >
+            Ready to bring your project to life? I'd love to hear about your ideas and discuss how I can help you
+            achieve your digital goals.
+          </p>
+        </div>
+      </section>
 
-        <h1 className="text-2xl font-medium mb-8">Contact</h1>
-
-        <div className="space-y-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="border rounded-lg p-6">
-              <PhoneCall className="h-5 w-5 mb-3 text-muted-foreground" />
-              <h3 className="font-medium mb-1">Phone</h3>
-              <p className="text-sm text-muted-foreground">+63 927 955 5276</p>
+      {/* Contact Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div className="fade-in-left">
+              <Card className="bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300">
+                <CardHeader>
+                  <CardTitle className="text-white text-2xl">Send Me a Message</CardTitle>
+                  <CardDescription className="text-gray-300">
+                    Fill out the form below and I'll get back to you within 24 hours.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name" className="text-white">
+                          Name
+                        </Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          type="text"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className="bg-soft-black border-warm-yellow/30 text-white placeholder-gray-400 focus:border-warm-yellow"
+                          placeholder="Your full name"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email" className="text-white">
+                          Email
+                        </Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="bg-soft-black border-warm-yellow/30 text-white placeholder-gray-400 focus:border-warm-yellow"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="subject" className="text-white">
+                        Subject
+                      </Label>
+                      <Input
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        required
+                        className="bg-soft-black border-warm-yellow/30 text-white placeholder-gray-400 focus:border-warm-yellow"
+                        placeholder="What's this about?"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="message" className="text-white">
+                        Message
+                      </Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={6}
+                        className="bg-soft-black border-warm-yellow/30 text-white placeholder-gray-400 focus:border-warm-yellow resize-none"
+                        placeholder="Tell me about your project..."
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-3 rounded-full font-medium w-full hover-lift glow-on-hover"
+                    >
+                      Send Message
+                      <Send className="ml-2 h-5 w-5" />
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
             </div>
 
-            <div className="border rounded-lg p-6">
-              <Mail className="h-5 w-5 mb-3 text-muted-foreground" />
-              <h3 className="font-medium mb-1">Email</h3>
-              <p className="text-sm text-muted-foreground">dlcrzad@gmail.com</p>
-            </div>
-
-            <div className="border rounded-lg p-6">
-              <MapPin className="h-5 w-5 mb-3 text-muted-foreground" />
-              <h3 className="font-medium mb-1">Location</h3>
-              <p className="text-sm text-muted-foreground">Angadanan, Isabela, Philippines</p>
-            </div>
-          </div>
-
-          <div className="border rounded-lg p-6">
-            <h2 className="text-lg font-medium mb-6">Send a Message</h2>
-
-            {isSubmitted ? (
-              <div className="flex flex-col items-center py-8">
-                <CheckCircle className="h-8 w-8 text-primary mb-4" />
-                <h3 className="text-lg font-medium mb-2">Message Sent!</h3>
-                <p className="text-muted-foreground text-center max-w-md mb-6">
-                  Thank you for reaching out. I'll get back to you as soon as possible.
+            {/* Contact Info */}
+            <div className="space-y-8 fade-in-right">
+              <div>
+                <h2 className="text-3xl font-bold text-white mb-6">Get In Touch</h2>
+                <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                  I'm always excited to work on new projects and help businesses grow their online presence. Whether you
+                  need a new website, SEO optimization, or digital marketing strategy, I'm here to help.
                 </p>
-                <Button onClick={() => setIsSubmitted(false)}>Send Another Message</Button>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <input type="hidden" name="recipient" value="dlcrzad@gmail.com" />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium">
-                      Your Name
-                    </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formState.name}
-                      onChange={handleChange}
-                      placeholder="John Doe"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">
-                      Your Email
-                    </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formState.email}
-                      onChange={handleChange}
-                      placeholder="john@example.com"
-                      required
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium">
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    value={formState.subject}
-                    onChange={handleChange}
-                    placeholder="Project Inquiry"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formState.message}
-                    onChange={handleChange}
-                    placeholder="Tell me about your project..."
-                    rows={6}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    <span className="flex items-center">
-                      <svg
-                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
-                      </svg>
-                      Sending...
-                    </span>
-                  ) : (
-                    "Send Message"
-                  )}
-                </Button>
-              </form>
-            )}
+
+              <div className="space-y-6">
+                <Card className="bg-soft-black border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="text-warm-yellow">
+                        <Mail className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-white font-semibold">Email</h3>
+                        <p className="text-gray-300">dlcrzad@gmail.com</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-soft-black border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="text-warm-yellow">
+                        <Phone className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-white font-semibold">Phone</h3>
+                        <p className="text-gray-300">+1 (555) 123-4567</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-soft-black border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="text-warm-yellow">
+                        <MapPin className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-white font-semibold">Location</h3>
+                        <p className="text-gray-300">Remote Worldwide</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="pt-8">
+                <h3 className="text-xl font-bold text-white mb-4">Prefer to Schedule a Call?</h3>
+                <p className="text-gray-300 mb-6">
+                  Book a free 30-minute consultation to discuss your project in detail.
+                </p>
+                <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-3 rounded-full font-medium hover-lift glow-on-hover">
+                    Schedule Consultation
+                    <Calendar className="ml-2 h-5 w-5" />
+                  </Button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-6 bg-charcoal">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center fade-in-up">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {[
+              {
+                question: "How long does a typical project take?",
+                answer:
+                  "Project timelines vary depending on complexity. A simple website typically takes 2-4 weeks, while more complex projects with custom features can take 6-12 weeks. I'll provide a detailed timeline during our initial consultation.",
+              },
+              {
+                question: "Do you provide ongoing support after launch?",
+                answer:
+                  "Yes! I offer ongoing maintenance, updates, and support packages to ensure your website continues to perform optimally. This includes security updates, content changes, and technical support.",
+              },
+              {
+                question: "What's included in your SEO services?",
+                answer:
+                  "My SEO services include keyword research, on-page optimization, technical SEO audits, content strategy, link building, and monthly reporting. I focus on sustainable, white-hat techniques that deliver long-term results.",
+              },
+              {
+                question: "Can you work with my existing website?",
+                answer:
+                  "I can work with existing websites to improve performance, add new features, optimize for SEO, or redesign specific sections. I'll assess your current site and recommend the best approach.",
+              },
+              {
+                question: "What are your payment terms?",
+                answer:
+                  "I typically work with a 50% deposit to start the project and 50% upon completion. For larger projects, we can arrange milestone-based payments. All payment terms are clearly outlined in the project contract.",
+              },
+            ].map((faq, index) => (
+              <Card
+                key={index}
+                className={`bg-soft-black border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up animate-delay-${(index + 1) * 100}`}
+              >
+                <CardHeader>
+                  <CardTitle className="text-white text-lg">{faq.question}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <SiteFooter />
     </div>

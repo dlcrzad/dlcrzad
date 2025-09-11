@@ -1,173 +1,252 @@
-import Link from "next/link"
+"use client"
+
+import { useState, useEffect } from "react"
 import Image from "next/image"
+import Link from "next/link"
+import { ExternalLink, Calendar } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { Button } from "@/components/ui/button"
-import { ArrowLeft, ExternalLink } from "lucide-react"
 
 export default function ProjectsPage() {
+  const [isVisible, setIsVisible] = useState(false)
+  const [filter, setFilter] = useState("All")
+
+  useEffect(() => {
+    setIsVisible(true)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate")
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    const elements = document.querySelectorAll(".fade-in-up, .fade-in-left, .fade-in-right, .scale-in")
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  const projects = [
+    {
+      title: "Avos Inc",
+      description:
+        "Modern corporate website with advanced SEO optimization, lead generation features, and comprehensive analytics integration.",
+      image: "/images/avosinc.png",
+      category: "Corporate",
+      tags: ["Web Development", "SEO", "Lead Generation", "Analytics"],
+      link: "/projects/avos-inc",
+      year: "2024",
+      client: "Avos Inc",
+      duration: "3 months",
+      results: [
+        "300% increase in organic traffic",
+        "50% improvement in conversion rate",
+        "Top 3 rankings for target keywords",
+      ],
+    },
+    {
+      title: "Golden Biotechnologies",
+      description:
+        "Professional biotech company website with scientific content management, research showcase, and publication system.",
+      image: "/images/goldenbiotechnologies.png",
+      category: "Healthcare",
+      tags: ["Corporate Website", "CMS", "Research Portal", "Publications"],
+      link: "/projects/golden-biotechnologies",
+      year: "2024",
+      client: "Golden Biotechnologies",
+      duration: "4 months",
+      results: [
+        "Enhanced professional credibility",
+        "Streamlined research publication",
+        "Improved stakeholder engagement",
+      ],
+    },
+    {
+      title: "MC Welding Service",
+      description:
+        "Industrial service website with comprehensive project gallery, customer testimonials, and service booking system.",
+      image: "/images/mcweldingservicellc.png",
+      category: "Industrial",
+      tags: ["Service Website", "Portfolio", "Testimonials", "Booking System"],
+      link: "/projects/mc-welding-service",
+      year: "2023",
+      client: "MC Welding Service LLC",
+      duration: "2 months",
+      results: ["200% increase in service inquiries", "Enhanced portfolio showcase", "Improved customer trust"],
+    },
+    {
+      title: "Western Sport Floors",
+      description:
+        "Sports flooring company website with product catalog, installation gallery, and quote request system.",
+      image: "/images/westernsportsfloor.png",
+      category: "Sports",
+      tags: ["E-commerce", "Product Catalog", "Gallery", "Quote System"],
+      link: "/projects/western-sport-floors",
+      year: "2023",
+      client: "Western Sport Floors",
+      duration: "3 months",
+      results: ["150% increase in quote requests", "Better product visibility", "Enhanced user experience"],
+    },
+  ]
+
+  const categories = ["All", "Corporate", "Healthcare", "Industrial", "Sports", "E-commerce"]
+
+  const filteredProjects = filter === "All" ? projects : projects.filter((project) => project.category === filter)
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-soft-black">
       <SiteHeader />
 
-      <main className="container-sm px-5 md:px-6 py-12">
-        <Link href="/">
-          <Button variant="ghost" size="sm" className="mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
-          </Button>
-        </Link>
+      {/* Hero Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1
+            className={`text-4xl md:text-6xl font-bold text-white mb-6 ${isVisible ? "animate-fade-in" : "opacity-0"}`}
+          >
+            My Recent
+            <span className="text-warm-yellow block">Projects</span>
+          </h1>
+          <p
+            className={`text-xl text-gray-300 max-w-3xl mx-auto ${isVisible ? "animate-fade-in animate-delay-200" : "opacity-0"}`}
+          >
+            Explore a collection of websites and digital solutions I've created for clients across various industries.
+            Each project showcases my commitment to quality, performance, and results.
+          </p>
+        </div>
+      </section>
 
-        <h1 className="text-2xl font-medium mb-8">Projects</h1>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Project 1 */}
-          <div className="border rounded-lg overflow-hidden">
-            <div className="h-48 bg-card relative">
-              <Image
-                src="/images/goldenbiotechnologies.png"
-                alt="Golden Biotechnologies Website"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="font-medium mb-2">Golden Biotechnologies</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Corporate website with content management system and lead generation
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="badge">WordPress</span>
-                <span className="badge">CMS</span>
-                <span className="badge">Lead Gen</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <a
-                  href="https://goldenbiotechnologies.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-primary hover:underline flex items-center"
-                >
-                  goldenbiotechnologies.com <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
-                <Link href="/projects/golden-biotechnologies">
-                  <Button variant="outline" size="sm">
-                    View Details
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Project 2 */}
-          <div className="border rounded-lg overflow-hidden">
-            <div className="h-48 bg-card relative">
-              <Image src="/images/avosinc.png" alt="Avos Inc Website" fill className="object-cover" />
-            </div>
-            <div className="p-4">
-              <h3 className="font-medium mb-2">Avos Inc</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Corporate website with product catalog and customer support portal
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="badge">WordPress</span>
-                <span className="badge">E-commerce</span>
-                <span className="badge">Support</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <a
-                  href="https://avosinc.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-primary hover:underline flex items-center"
-                >
-                  avosinc.com <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
-                <Link href="/projects/avos-inc">
-                  <Button variant="outline" size="sm">
-                    View Details
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Project 3 */}
-          <div className="border rounded-lg overflow-hidden">
-            <div className="h-48 bg-card relative">
-              <Image
-                src="/images/westernsportsfloor.png"
-                alt="Western Sport Floors Website"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="font-medium mb-2">Western Sport Floors</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Service business website with portfolio and contact form
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="badge">WordPress</span>
-                <span className="badge">Bricks</span>
-                <span className="badge">Portfolio</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <a
-                  href="https://westernsportfloors.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-primary hover:underline flex items-center"
-                >
-                  westernsportfloors.com <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
-                <Link href="/projects/western-sport-floors">
-                  <Button variant="outline" size="sm">
-                    View Details
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Project 4 */}
-          <div className="border rounded-lg overflow-hidden">
-            <div className="h-48 bg-card relative">
-              <Image
-                src="/images/mcweldingservicellc.png"
-                alt="MC Welding Service Website"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="font-medium mb-2">MC Welding Service</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                Local business website with service listings and contact information
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="badge">WordPress</span>
-                <span className="badge">Local SEO</span>
-                <span className="badge">Services</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <a
-                  href="https://mcweldingservicellc.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-primary hover:underline flex items-center"
-                >
-                  mcweldingservicellc.com <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
-                <Link href="/projects/mc-welding-service">
-                  <Button variant="outline" size="sm">
-                    View Details
-                  </Button>
-                </Link>
-              </div>
-            </div>
+      {/* Filter Section */}
+      <section className="py-10 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-4 fade-in-up">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                onClick={() => setFilter(category)}
+                variant={filter === category ? "default" : "outline"}
+                className={`px-6 py-2 rounded-full transition-all duration-300 ${
+                  filter === category
+                    ? "bg-warm-yellow text-black hover:bg-warm-yellow/90"
+                    : "border-warm-yellow/30 text-warm-yellow hover:bg-warm-yellow hover:text-black"
+                }`}
+              >
+                {category}
+              </Button>
+            ))}
           </div>
         </div>
-      </main>
+      </section>
+
+      {/* Projects Grid */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
+            {filteredProjects.map((project, index) => (
+              <Card
+                key={index}
+                className={`bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up animate-delay-${(index + 1) * 100} group overflow-hidden`}
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <Link
+                    href={project.link}
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
+                    <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black">
+                      View Case Study
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <CardTitle className="text-white text-xl">{project.title}</CardTitle>
+                      <CardDescription className="text-gray-300 mt-2">{project.description}</CardDescription>
+                    </div>
+                    <Badge variant="outline" className="border-warm-yellow/30 text-warm-yellow">
+                      {project.year}
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-gray-400">Client:</span>
+                      <p className="text-white font-medium">{project.client}</p>
+                    </div>
+                    <div>
+                      <span className="text-gray-400">Duration:</span>
+                      <p className="text-white font-medium">{project.duration}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-white font-semibold mb-2">Key Results:</h4>
+                    <ul className="space-y-1">
+                      {project.results.map((result, idx) => (
+                        <li key={idx} className="text-gray-300 text-sm flex items-start">
+                          <div className="w-1.5 h-1.5 bg-warm-yellow rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          {result}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, idx) => (
+                      <Badge key={idx} variant="outline" className="border-warm-yellow/30 text-warm-yellow text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-6 bg-charcoal">
+        <div className="max-w-4xl mx-auto text-center fade-in-up">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Start Your Project?</h2>
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Let's create something amazing together. Schedule a consultation to discuss your project and see how I can
+            help bring your vision to life.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-3 rounded-full font-medium hover-lift glow-on-hover">
+                Schedule Consultation
+                <Calendar className="ml-2 h-5 w-5" />
+              </Button>
+            </a>
+            <Link href="/contact">
+              <Button
+                variant="outline"
+                className="border-warm-yellow text-warm-yellow hover:bg-warm-yellow hover:text-black px-8 py-3 rounded-full font-medium transition-all duration-300 bg-transparent"
+              >
+                Get In Touch
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <SiteFooter />
     </div>

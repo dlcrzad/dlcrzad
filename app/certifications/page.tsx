@@ -1,244 +1,184 @@
-import Link from "next/link"
+"use client"
+
+import { useEffect } from "react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { Calendar, Award, ExternalLink, ArrowLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ExternalLink, Award, Calendar } from "lucide-react"
 
-export default function CertificationsPage() {
+export default function Certifications() {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate")
+        }
+      })
+    }, observerOptions)
+
+    const animatedElements = document.querySelectorAll(".fade-in-up, .fade-in-left, .fade-in-right, .scale-in")
+    animatedElements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  const certifications = [
+    {
+      title: "Google Analytics Individual Qualification",
+      issuer: "Google",
+      date: "2023",
+      description:
+        "Demonstrates proficiency in Google Analytics including planning and principles, implementation and data collection, configuration and administration, and conversion and attribution.",
+      skills: ["Google Analytics", "Data Analysis", "Conversion Tracking", "Reporting"],
+      credentialUrl: "#",
+    },
+    {
+      title: "Google Ads Search Certification",
+      issuer: "Google",
+      date: "2023",
+      description:
+        "Covers basic and advanced concepts of Search advertising, including best practices for creating, managing, measuring, and optimizing Search ad campaigns.",
+      skills: ["Google Ads", "Search Advertising", "Keyword Research", "Campaign Optimization"],
+      credentialUrl: "#",
+    },
+    {
+      title: "Google Ads Display Certification",
+      issuer: "Google",
+      date: "2023",
+      description:
+        "Demonstrates knowledge of how to create, manage, and optimize Display campaigns that drive results across the Google Display Network.",
+      skills: ["Display Advertising", "Audience Targeting", "Creative Optimization", "Remarketing"],
+      credentialUrl: "#",
+    },
+    {
+      title: "SEO Fundamentals Course",
+      issuer: "SEMrush Academy",
+      date: "2022",
+      description:
+        "Comprehensive course covering SEO basics, keyword research, on-page optimization, technical SEO, and link building strategies.",
+      skills: ["SEO Strategy", "Keyword Research", "On-Page SEO", "Technical SEO"],
+      credentialUrl: "#",
+    },
+    {
+      title: "Content Marketing Certification",
+      issuer: "HubSpot Academy",
+      date: "2022",
+      description:
+        "Covers content marketing strategy, content creation, content promotion, and measuring content marketing success.",
+      skills: ["Content Strategy", "Content Creation", "Content Promotion", "Analytics"],
+      credentialUrl: "#",
+    },
+    {
+      title: "WordPress Development Fundamentals",
+      issuer: "WordPress.org",
+      date: "2021",
+      description:
+        "Comprehensive training on WordPress development including themes, plugins, customization, and best practices.",
+      skills: ["WordPress Development", "PHP", "Theme Customization", "Plugin Development"],
+      credentialUrl: "#",
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-black text-white font-sans">
       <SiteHeader />
 
-      <main className="container-sm px-5 md:px-6 py-12">
-        <Link href="/">
-          <Button variant="ghost" size="sm" className="mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
-          </Button>
-        </Link>
-
-        <h1 className="text-2xl font-medium mb-8">Licenses & Certifications</h1>
-        <p className="text-muted-foreground mb-8">
-          Professional certifications and licenses that demonstrate my expertise and commitment to continuous learning.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Add this as the first certification */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Award className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium mb-1">Facebook Marketing and Advertising</h3>
-                <p className="text-sm text-muted-foreground">Simplilearn</p>
-              </div>
-            </div>
-            <div className="flex items-center text-sm text-muted-foreground mb-4">
-              <Calendar className="h-4 w-4 mr-1" />
-              <span>Issued 2024</span>
-              <span className="mx-2">•</span>
-              <span>No Expiration</span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Comprehensive certification covering Facebook advertising strategies, campaign optimization, audience
-              targeting, and social media marketing best practices.
+      <main className="pt-24">
+        {/* Hero Section */}
+        <section className="py-20 bg-black">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h1 className="text-4xl font-bold text-white mb-4 fade-in-up">Certifications</h1>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto fade-in-up animate-delay-100">
+              Professional certifications and continuous learning in WordPress development, SEO, and digital marketing.
             </p>
-            <a
-              href="#"
-              className="text-sm text-primary hover:underline inline-flex items-center"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Credential <ExternalLink className="h-3 w-3 ml-1" />
-            </a>
           </div>
+        </section>
 
-          {/* Certification 1 */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Award className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium mb-1">Google Analytics Certification</h3>
-                <p className="text-sm text-muted-foreground">Google</p>
-              </div>
-            </div>
-            <div className="flex items-center text-sm text-muted-foreground mb-4">
-              <Calendar className="h-4 w-4 mr-1" />
-              <span>Issued Jan 2024</span>
-              <span className="mx-2">•</span>
-              <span>No Expiration</span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Comprehensive certification covering web analytics implementation, data collection, processing,
-              configuration, and reporting.
-            </p>
-            <a
-              href="#"
-              className="text-sm text-primary hover:underline inline-flex items-center"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Credential <ExternalLink className="h-3 w-3 ml-1" />
-            </a>
-          </div>
+        {/* Certifications Grid */}
+        <section className="py-20 bg-black">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-8">
+              {certifications.map((cert, index) => (
+                <div
+                  key={index}
+                  className={`bg-black rounded-lg p-8 border border-golden-yellow hover:border-golden-yellow/80 transition-all hover-lift glow-on-hover fade-in-up animate-delay-${
+                    ((index % 2) + 1) * 100
+                  }`}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-golden-yellow/20 rounded-lg flex items-center justify-center hover:bg-golden-yellow/30 transition-colors duration-300">
+                        <Award className="h-6 w-6 text-golden-yellow" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">{cert.title}</h3>
+                        <p className="text-golden-yellow font-medium">{cert.issuer}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 text-sm text-gray-400">
+                      <Calendar className="h-4 w-4" />
+                      <span>{cert.date}</span>
+                    </div>
+                  </div>
 
-          {/* Certification 2 */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Award className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium mb-1">WordPress Development Fundamentals</h3>
-                <p className="text-sm text-muted-foreground">Udemy</p>
-              </div>
-            </div>
-            <div className="flex items-center text-sm text-muted-foreground mb-4">
-              <Calendar className="h-4 w-4 mr-1" />
-              <span>Issued Nov 2023</span>
-              <span className="mx-2">•</span>
-              <span>No Expiration</span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Comprehensive course covering WordPress theme development, plugin integration, and custom site building
-              techniques.
-            </p>
-            <a
-              href="#"
-              className="text-sm text-primary hover:underline inline-flex items-center"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Credential <ExternalLink className="h-3 w-3 ml-1" />
-            </a>
-          </div>
+                  <p className="text-gray-400 mb-4">{cert.description}</p>
 
-          {/* Certification 3 */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Award className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium mb-1">SEO Specialist Certification</h3>
-                <p className="text-sm text-muted-foreground">HubSpot Academy</p>
-              </div>
-            </div>
-            <div className="flex items-center text-sm text-muted-foreground mb-4">
-              <Calendar className="h-4 w-4 mr-1" />
-              <span>Issued Sep 2023</span>
-              <span className="mx-2">•</span>
-              <span>Expires Sep 2025</span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Certification covering on-page and technical SEO, keyword research, link building, and content
-              optimization strategies.
-            </p>
-            <a
-              href="#"
-              className="text-sm text-primary hover:underline inline-flex items-center"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Credential <ExternalLink className="h-3 w-3 ml-1" />
-            </a>
-          </div>
+                  <div className="mb-4">
+                    <h4 className="text-white font-medium mb-2">Skills Covered:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {cert.skills.map((skill, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-2 py-1 bg-golden-yellow/20 text-golden-yellow rounded-full border border-golden-yellow/30 hover:bg-golden-yellow/30 transition-colors duration-300"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
 
-          {/* Certification 4 */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Award className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium mb-1">Content Marketing Strategy</h3>
-                <p className="text-sm text-muted-foreground">Coursera</p>
-              </div>
+                  <a
+                    href={cert.credentialUrl}
+                    className="text-golden-yellow hover:text-golden-yellow/80 flex items-center gap-1 text-sm font-medium transition-colors duration-300"
+                  >
+                    View Credential <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              ))}
             </div>
-            <div className="flex items-center text-sm text-muted-foreground mb-4">
-              <Calendar className="h-4 w-4 mr-1" />
-              <span>Issued Aug 2023</span>
-              <span className="mx-2">•</span>
-              <span>No Expiration</span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Comprehensive course on developing effective content marketing strategies, audience targeting, and content
-              creation for digital platforms.
-            </p>
-            <a
-              href="#"
-              className="text-sm text-primary hover:underline inline-flex items-center"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Credential <ExternalLink className="h-3 w-3 ml-1" />
-            </a>
           </div>
+        </section>
 
-          {/* Certification 5 */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Award className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium mb-1">Google Ads Fundamentals</h3>
-                <p className="text-sm text-muted-foreground">Google</p>
-              </div>
-            </div>
-            <div className="flex items-center text-sm text-muted-foreground mb-4">
-              <Calendar className="h-4 w-4 mr-1" />
-              <span>Issued Oct 2023</span>
-              <span className="mx-2">•</span>
-              <span>Expires Oct 2024</span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Certification covering Google Ads platform basics, campaign setup, optimization strategies, and
-              performance measurement.
-            </p>
-            <a
-              href="#"
-              className="text-sm text-primary hover:underline inline-flex items-center"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Credential <ExternalLink className="h-3 w-3 ml-1" />
-            </a>
-          </div>
+        {/* Stats Section */}
+        <section className="py-20 bg-black">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold text-white mb-16 fade-in-up">Continuous Learning</h2>
 
-          {/* Certification 6 */}
-          <div className="border rounded-lg p-6">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Award className="h-6 w-6 text-primary" />
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-black rounded-lg p-6 border border-golden-yellow hover:border-golden-yellow/80 transition-all hover-lift fade-in-up">
+                <div className="text-3xl font-bold text-golden-yellow mb-2">6+</div>
+                <p className="text-white font-medium mb-1">Certifications</p>
+                <p className="text-gray-400 text-sm">Professional certifications earned</p>
               </div>
-              <div>
-                <h3 className="font-medium mb-1">Responsive Web Design</h3>
-                <p className="text-sm text-muted-foreground">freeCodeCamp</p>
+
+              <div className="bg-black rounded-lg p-6 border border-golden-yellow hover:border-golden-yellow/80 transition-all hover-lift fade-in-up animate-delay-100">
+                <div className="text-3xl font-bold text-golden-yellow mb-2">50+</div>
+                <p className="text-white font-medium mb-1">Hours</p>
+                <p className="text-gray-400 text-sm">Of professional training completed</p>
+              </div>
+
+              <div className="bg-black rounded-lg p-6 border border-golden-yellow hover:border-golden-yellow/80 transition-all hover-lift fade-in-up animate-delay-200">
+                <div className="text-3xl font-bold text-golden-yellow mb-2">2024</div>
+                <p className="text-white font-medium mb-1">Latest Update</p>
+                <p className="text-gray-400 text-sm">Most recent certification earned</p>
               </div>
             </div>
-            <div className="flex items-center text-sm text-muted-foreground mb-4">
-              <Calendar className="h-4 w-4 mr-1" />
-              <span>Issued Jul 2023</span>
-              <span className="mx-2">•</span>
-              <span>No Expiration</span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Certification covering HTML5, CSS3, responsive design principles, and accessibility best practices for
-              modern web development.
-            </p>
-            <a
-              href="#"
-              className="text-sm text-primary hover:underline inline-flex items-center"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Credential <ExternalLink className="h-3 w-3 ml-1" />
-            </a>
           </div>
-        </div>
+        </section>
       </main>
 
       <SiteFooter />

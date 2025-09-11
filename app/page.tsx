@@ -1,489 +1,441 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { MapPin, Send, ArrowRight, ExternalLink, Calendar, Award } from "lucide-react"
+import {
+  ArrowRight,
+  Mail,
+  Star,
+  ChevronDown,
+  ExternalLink,
+  Calendar,
+  Award,
+  Code,
+  Palette,
+  Search,
+  TrendingUp,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
-export default function Home() {
+export default function HomePage() {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate")
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    const elements = document.querySelectorAll(".fade-in-up, .fade-in-left, .fade-in-right, .scale-in")
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-soft-black">
       <SiteHeader />
 
-      <main className="container-sm px-5 md:px-6">
-        {/* Hero Section */}
-        <section className="py-12 md:py-16 flex flex-col md:flex-row items-center gap-8">
-          <div className="w-full md:w-1/3">
-            <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto md:mx-0">
+      {/* Hero Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className={`space-y-8 ${isVisible ? "animate-slide-in-up" : "opacity-0"}`}>
+            {/* Profile Image */}
+            <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-warm-yellow shadow-2xl hover-lift glow-on-hover">
               <Image
                 src="/images/profile-transparent.png"
-                alt="Adeline Dela Cruz"
-                fill
-                className="object-cover rounded-full"
+                alt="Adeline Cruz - Web Developer & SEO Expert"
+                width={128}
+                height={128}
+                className="w-full h-full object-cover"
                 priority
               />
             </div>
-          </div>
-          <div className="w-full md:w-2/3 text-center md:text-left">
-            <h1 className="text-2xl md:text-3xl font-medium mb-2">Adeline Dela Cruz</h1>
-            <div className="flex items-center justify-center md:justify-start text-muted-foreground mb-4">
-              <MapPin className="h-4 w-4 mr-2" />
-              <span className="text-sm">Angadanan, Isabela, Philippines | +63 927 955 5276</span>
+
+            {/* Main Content */}
+            <div className="space-y-4">
+              <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">Hi, I'm Adeline!</h1>
+              <h2 className="text-xl md:text-2xl text-gray-300 leading-relaxed">
+                I create stunning WordPress websites,
+              </h2>
+              <h2 className="text-xl md:text-2xl text-gray-300 leading-relaxed">
+                (And yes, I handle SEO & digital marketing too.)
+              </h2>
+              <p className="text-lg text-gray-400 pt-4">How can I help?</p>
             </div>
-            <p className="text-lg mb-6">WordPress & SEO Specialist | Web Designer</p>
-            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
-                <Button variant="default" size="sm" className="rounded-md">
-                  Schedule a Call
+                <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-3 rounded-full text-lg font-medium hover-lift glow-on-hover">
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </a>
-              <Link href="/contact">
-                <Button variant="outline" size="sm" className="rounded-md">
-                  <Send className="mr-2 h-4 w-4" /> Send Email
+              <Link href="/projects">
+                <Button
+                  variant="outline"
+                  className="border-warm-yellow text-warm-yellow hover:bg-warm-yellow hover:text-black px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 bg-transparent"
+                >
+                  View My Work
                 </Button>
               </Link>
             </div>
-          </div>
-        </section>
 
-        {/* About Section */}
-        <section id="about" className="section">
-          <div className="section-header">
-            <h2 className="section-title">About</h2>
-          </div>
-          <div className="space-y-4 text-muted-foreground">
-            <p>
-              I'm a WordPress & SEO Specialist and Web Designer with experience in creating visually striking,
-              user-centric websites. I specialize in WordPress development, SEO optimization, and digital marketing.
-            </p>
-            <p>
-              I've worked with various clients including Capucelli, Golden Biotechnologies, Socal Biosys, and Avos Inc.
-              to maintain and manage websites, optimize SEO to boost organic traffic, handle Google Ads campaigns, and
-              provide ongoing updates and content management to keep websites accurate and user-friendly.
-            </p>
-            <p>
-              With a background in Civil Engineering and a passion for web development, I bring a unique perspective to
-              my projects, focusing on both technical functionality and aesthetic design, achieving a 95% client
-              satisfaction rate.
-            </p>
-          </div>
-        </section>
-
-        {/* Experience Section */}
-        <section id="experience" className="section">
-          <div className="section-header items-start">
-            <h2 className="section-title">Experience</h2>
-            <Link href="/experience" className="view-all">
-              View All <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
-
-          <div className="space-y-8">
-            {/* Experience Item 1 */}
-            <div className="flex gap-8">
-              <div className="w-20 flex-shrink-0 text-right">
-                <span className="text-sm text-muted-foreground">2024</span>
+            {/* Stats */}
+            <div className="flex items-center justify-center gap-8 pt-8">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-warm-yellow">50+</div>
+                <div className="text-sm text-gray-400">Projects Completed</div>
               </div>
-              <div>
-                <h3 className="font-medium">WordPress & SEO Specialist</h3>
-                <p className="text-sm text-muted-foreground mb-2">
-                  Freelance Projects (Capucelli, Golden Biotechnologies, Socal Biosys, Avos Inc.)
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Maintained and managed WordPress websites, optimized SEO to boost organic traffic, handled Google Ads
-                  campaigns, and provided ongoing updates and content management.
-                </p>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-warm-yellow">5+</div>
+                <div className="text-sm text-gray-400">Years Experience</div>
               </div>
-            </div>
-
-            {/* Experience Item 2 */}
-            <div className="flex gap-8">
-              <div className="w-20 flex-shrink-0 text-right">
-                <span className="text-sm text-muted-foreground">2022-2024</span>
-              </div>
-              <div>
-                <h3 className="font-medium">Web Designer</h3>
-                <p className="text-sm text-muted-foreground mb-2">Prairie Giraffe, Wyoming, United States</p>
-                <p className="text-sm text-muted-foreground">
-                  Designed and developed 10+ appealing websites using WordPress, Bricks, CSS, and Frames. Achieved 95%
-                  client satisfaction rate through tailored solutions and responsive designs.
-                </p>
-              </div>
-            </div>
-
-            {/* Education */}
-            <div className="flex gap-8">
-              <div className="w-20 flex-shrink-0 text-right">
-                <span className="text-sm text-muted-foreground">2020-2024</span>
-              </div>
-              <div>
-                <h3 className="font-medium">Bachelor of Science in Civil Engineering</h3>
-                <p className="text-sm text-muted-foreground">University of La Salette, Santiago City, Isabela</p>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-warm-yellow">100%</div>
+                <div className="text-sm text-gray-400">Client Satisfaction</div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Certifications Section */}
-        <section id="certifications" className="section">
-          <div className="section-header">
-            <h2 className="section-title">Licenses & Certifications</h2>
-            <Link href="/certifications" className="view-all">
-              View All <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
+        {/* Scroll indicator */}
+        <div className="flex justify-center mt-16">
+          <ChevronDown className="h-8 w-8 text-warm-yellow animate-bounce-gentle" />
+        </div>
+      </section>
 
-          <div className="space-y-6">
-            {/* Certification 1 */}
-            <div className="flex gap-8">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Award className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium mb-1">Google Analytics Certification</h3>
-                <p className="text-sm text-muted-foreground mb-2">Google</p>
-                <div className="flex items-center text-xs text-muted-foreground mb-2">
-                  <Calendar className="h-3 w-3 mr-1" />
-                  <span>Issued Jan 2024</span>
-                  <span className="mx-2">•</span>
-                  <span>No Expiration</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Certification 2 */}
-            <div className="flex gap-8">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Award className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-medium mb-1">SEO Specialist Certification</h3>
-                <p className="text-sm text-muted-foreground mb-2">HubSpot Academy</p>
-                <div className="flex items-center text-xs text-muted-foreground mb-2">
-                  <Calendar className="h-3 w-3 mr-1" />
-                  <span>Issued Sep 2023</span>
-                  <span className="mx-2">•</span>
-                  <span>Expires Sep 2025</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Projects Section */}
-        <section id="projects" className="section">
-          <div className="section-header">
-            <h2 className="section-title">Recent Projects</h2>
-            <Link href="/projects" className="view-all">
-              View All <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Project 1 */}
-            <div className="border rounded-lg overflow-hidden">
-              <div className="h-48 bg-card relative">
-                <Image
-                  src="/images/goldenbiotechnologies.png"
-                  alt="Golden Biotechnologies Website"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-medium mb-2">Golden Biotechnologies</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Corporate website with content management system and lead generation
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="badge">WordPress</span>
-                  <span className="badge">CMS</span>
-                  <span className="badge">Lead Gen</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <a
-                    href="https://goldenbiotechnologies.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-primary hover:underline flex items-center"
-                  >
-                    goldenbiotechnologies.com <ExternalLink className="h-3 w-3 ml-1" />
-                  </a>
-                  <Link href="/projects/golden-biotechnologies">
-                    <Button variant="outline" size="sm">
-                      View Details
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Project 2 */}
-            <div className="border rounded-lg overflow-hidden">
-              <div className="h-48 bg-card relative">
-                <Image src="/images/avosinc.png" alt="Avos Inc Website" fill className="object-cover" />
-              </div>
-              <div className="p-4">
-                <h3 className="font-medium mb-2">Avos Inc</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Corporate website with product catalog and customer support portal
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="badge">WordPress</span>
-                  <span className="badge">E-commerce</span>
-                  <span className="badge">Support</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <a
-                    href="https://avosinc.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-primary hover:underline flex items-center"
-                  >
-                    avosinc.com <ExternalLink className="h-3 w-3 ml-1" />
-                  </a>
-                  <Link href="/projects/avos-inc">
-                    <Button variant="outline" size="sm">
-                      View Details
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Blog Section */}
-        <section id="blog" className="section">
-          <div className="section-header">
-            <h2 className="section-title">Recent Blog Posts</h2>
-            <Link href="/blog" className="view-all">
-              View All <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Blog Post 1 */}
-            <div className="border rounded-lg overflow-hidden">
-              <div className="h-48 bg-card relative">
-                <Image src="/images/seo-strategies.png" alt="SEO Strategies for 2024" fill className="object-cover" />
-              </div>
-              <div className="p-4">
-                <Link href="/blog/seo-strategies-2024">
-                  <h3 className="font-medium hover:underline mb-2">SEO Strategies That Actually Work in 2024</h3>
-                </Link>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Discover the most effective SEO techniques that are driving real results in 2024, from content
-                  optimization to technical SEO improvements.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="badge">SEO</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <Calendar className="h-3 w-3 mr-1" />
-                    <span>May 5, 2024</span>
-                  </div>
-                  <Link href="/blog/seo-strategies-2024">
-                    <Button variant="outline" size="sm">
-                      Read Article
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Blog Post 2 */}
-            <div className="border rounded-lg overflow-hidden">
-              <div className="h-48 bg-card relative">
-                <Image
-                  src="/images/10-ways-to-speed-up-wordpress-website.png"
-                  alt="WordPress Performance Tips"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-4">
-                <Link href="/blog/wordpress-speed-optimization">
-                  <h3 className="font-medium hover:underline mb-2">10 Ways to Speed Up Your WordPress Website</h3>
-                </Link>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Learn practical techniques to optimize your WordPress site's performance and improve user experience
-                  with these proven speed optimization tips.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="badge">WordPress</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <Calendar className="h-3 w-3 mr-1" />
-                    <span>April 22, 2024</span>
-                  </div>
-                  <Link href="/blog/wordpress-speed-optimization">
-                    <Button variant="outline" size="sm">
-                      Read Article
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Tech Stack Section */}
-        <section id="tech-stack" className="section">
-          <div className="section-header">
-            <h2 className="section-title">Tech Stack</h2>
-            <Link href="/tech-stack" className="view-all">
-              View All <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
-
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-sm font-medium mb-3">Tools</h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="tech-badge">WordPress</span>
-                <span className="tech-badge">BricksBuilder</span>
-                <span className="tech-badge">Automatic CSS</span>
-                <span className="tech-badge">Divi Theme</span>
-                <span className="tech-badge">Elementor</span>
-                <span className="tech-badge">Webflow</span>
-                <span className="tech-badge">Google Ads</span>
-                <span className="tech-badge">Google Search Console</span>
-                <span className="tech-badge">Canva</span>
-                <span className="tech-badge">ChatGPT</span>
-                <span className="tech-badge">Slack</span>
-                <span className="tech-badge">Asana</span>
-                <span className="tech-badge">Trello</span>
-                <span className="tech-badge">Calendly</span>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-medium mb-3">Skills</h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="tech-badge">Web Design/Development</span>
-                <span className="tech-badge">SEO</span>
-                <span className="tech-badge">Digital Marketing</span>
-                <span className="tech-badge">Google Ads</span>
-                <span className="tech-badge">Copywriting</span>
-                <span className="tech-badge">Tech Support</span>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-medium mb-3">Office Suite</h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="tech-badge">Microsoft Office</span>
-                <span className="tech-badge">Google Suite</span>
-                <span className="tech-badge">Gmail</span>
-                <span className="tech-badge">Google Calendar</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonial Section */}
-        <section id="testimonials" className="section">
-          <div className="section-header">
-            <h2 className="section-title">Testimonials</h2>
-          </div>
-
-          <div className="border rounded-lg p-6">
-            <p className="text-muted-foreground mb-6">
-              Adeline Dela Cruz is an outstanding Virtual Assistant who provided valuable support with web design,
-              digital marketing, content writing, administrative tasks, and email management. Her attention to detail,
-              creativity, and organizational skills greatly enhanced my productivity. Adeline consistently delivered
-              quality work and handled multiple responsibilities. I highly recommend her to anyone seeking a reliable
-              and skilled VA. She is a true professional and will be a tremendous asset to any team.
-            </p>
-            <div>
-              <p className="font-medium">Kellee Carroll</p>
-              <p className="text-sm text-muted-foreground">Owner, Prairie Giraffe LLC</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Beyond Web Design Section */}
-        <section id="beyond" className="section">
-          <div className="section-header">
-            <h2 className="section-title">Beyond Web Design</h2>
-          </div>
-
-          <div className="text-muted-foreground space-y-4">
-            <p>
-              When I'm not designing websites, I focus on personal growth and exploring new interests. I enjoy reading,
-              meditating, and developing my career skills through continuous learning.
-            </p>
-            <p>
-              I'm passionate about cooking, fitness, and following developments in stocks and cryptocurrency. I also
-              enjoy designing and exploring creative solutions. These diverse interests help me maintain a balanced
-              perspective and bring fresh ideas to my work.
+      {/* Services Section */}
+      <section className="py-20 px-6 bg-charcoal">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Services That Drive Results</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              From concept to launch, I provide comprehensive digital solutions that help your business thrive online.
             </p>
           </div>
-        </section>
-
-        {/* Connect Section */}
-        <section id="connect" className="section">
-          <div className="section-header">
-            <h2 className="section-title">Connect</h2>
-          </div>
-
-          <div className="space-y-6">
-            <div>
-              <p className="text-sm font-medium mb-1">Phone</p>
-              <p className="text-muted-foreground">+63 927 955 5276</p>
-            </div>
-
-            <div>
-              <p className="text-sm font-medium mb-1">Email</p>
-              <p className="text-muted-foreground">dlcrzad@gmail.com</p>
-            </div>
-
-            <div>
-              <p className="text-sm font-medium mb-1">LinkedIn</p>
-              <a
-                href="https://linkedin.com/in/dlcrzad"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary"
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Code className="h-8 w-8" />,
+                title: "Web Development",
+                description:
+                  "Custom websites built with modern technologies for optimal performance and user experience.",
+                features: ["Responsive Design", "Fast Loading", "SEO Optimized", "Mobile First"],
+              },
+              {
+                icon: <Search className="h-8 w-8" />,
+                title: "SEO Optimization",
+                description: "Comprehensive SEO strategies to improve your search rankings and drive organic traffic.",
+                features: ["Keyword Research", "On-Page SEO", "Technical SEO", "Content Strategy"],
+              },
+              {
+                icon: <Palette className="h-8 w-8" />,
+                title: "UI/UX Design",
+                description:
+                  "Beautiful, intuitive designs that convert visitors into customers and enhance user satisfaction.",
+                features: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
+              },
+              {
+                icon: <TrendingUp className="h-8 w-8" />,
+                title: "Digital Marketing",
+                description: "Strategic marketing campaigns to increase your online visibility and grow your business.",
+                features: ["Social Media", "Content Marketing", "PPC Campaigns", "Analytics"],
+              },
+              {
+                icon: <Award className="h-8 w-8" />,
+                title: "Brand Identity",
+                description: "Complete brand identity solutions including logos, color schemes, and brand guidelines.",
+                features: ["Logo Design", "Brand Guidelines", "Color Palette", "Typography"],
+              },
+              {
+                icon: <Calendar className="h-8 w-8" />,
+                title: "Consultation",
+                description:
+                  "Expert advice and strategic planning to help you make informed decisions about your digital presence.",
+                features: ["Strategy Planning", "Technical Audit", "Competitor Analysis", "Growth Planning"],
+              },
+            ].map((service, index) => (
+              <Card
+                key={index}
+                className={`bg-soft-black border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up animate-delay-${(index + 1) * 100}`}
               >
-                linkedin.com/in/dlcrzad
-              </a>
-            </div>
+                <CardHeader>
+                  <div className="text-warm-yellow mb-4">{service.icon}</div>
+                  <CardTitle className="text-white text-xl">{service.title}</CardTitle>
+                  <CardDescription className="text-gray-300">{service.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx} className="text-gray-400 text-sm flex items-center">
+                        <div className="w-1.5 h-1.5 bg-warm-yellow rounded-full mr-3"></div>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div>
-              <p className="text-sm font-medium mb-2">Let's Talk</p>
-              <div className="flex flex-wrap gap-3">
-                <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="sm" className="rounded-md">
-                    Schedule a Call
+      {/* Featured Projects Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Featured Projects</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Take a look at some of my recent work and see how I've helped businesses achieve their digital goals.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Avos Inc",
+                description: "Modern corporate website with advanced SEO optimization and lead generation features.",
+                image: "/images/avosinc.png",
+                tags: ["Web Development", "SEO", "Lead Generation"],
+                link: "/projects/avos-inc",
+              },
+              {
+                title: "Golden Biotechnologies",
+                description:
+                  "Professional biotech company website with scientific content management and research showcase.",
+                image: "/images/goldenbiotechnologies.png",
+                tags: ["Corporate Website", "CMS", "Research Portal"],
+                link: "/projects/golden-biotechnologies",
+              },
+              {
+                title: "MC Welding Service",
+                description: "Industrial service website with project gallery and customer testimonials.",
+                image: "/images/mcweldingservicellc.png",
+                tags: ["Service Website", "Portfolio", "Testimonials"],
+                link: "/projects/mc-welding-service",
+              },
+            ].map((project, index) => (
+              <Card
+                key={index}
+                className={`bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up animate-delay-${(index + 1) * 100} group overflow-hidden`}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <Link
+                    href={project.link}
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
+                    <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black">
+                      View Project
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-white">{project.title}</CardTitle>
+                  <CardDescription className="text-gray-300">{project.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, idx) => (
+                      <Badge key={idx} variant="outline" className="border-warm-yellow/30 text-warm-yellow">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <div className="text-center mt-12 fade-in-up">
+            <Link href="/projects">
+              <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-3 rounded-full text-lg font-medium hover-lift">
+                View All Projects
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* About Me Section */}
+      <section className="py-20 px-6 bg-charcoal">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="fade-in-left">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">About Me</h2>
+              <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
+                <p>
+                  Hi, I'm Adeline Cruz, a passionate web developer and SEO specialist with over 5 years of experience
+                  helping businesses establish and grow their online presence.
+                </p>
+                <p>
+                  I specialize in creating custom websites that not only look stunning but also perform exceptionally in
+                  search engines. My approach combines technical expertise with creative design to deliver results that
+                  exceed expectations.
+                </p>
+                <p>
+                  When I'm not coding or optimizing websites, you'll find me staying up-to-date with the latest web
+                  technologies and SEO trends to ensure my clients always get the best solutions.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <Link href="/experience">
+                  <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-6 py-3 rounded-full font-medium hover-lift">
+                    View Experience
                   </Button>
-                </a>
+                </Link>
                 <Link href="/contact">
-                  <Button variant="outline" size="sm" className="rounded-md">
-                    Contact Form
+                  <Button
+                    variant="outline"
+                    className="border-warm-yellow text-warm-yellow hover:bg-warm-yellow hover:text-black px-6 py-3 rounded-full font-medium transition-all duration-300 bg-transparent"
+                  >
+                    Get In Touch
                   </Button>
                 </Link>
               </div>
             </div>
-
-            <div>
-              <p className="text-sm font-medium mb-2">Resume</p>
-              <a
-                href="https://drive.google.com/file/d/1H7MKGFDvkgvRl4weVbKkz0qJJ3xee2rO/view?usp=drive_link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="outline" size="sm" className="rounded-md">
-                  View Resume
-                </Button>
-              </a>
+            <div className="fade-in-right">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-soft-black p-6 rounded-2xl border border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
+                  <div className="text-2xl font-bold text-warm-yellow mb-2">50+</div>
+                  <div className="text-gray-300">Projects Completed</div>
+                </div>
+                <div className="bg-soft-black p-6 rounded-2xl border border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
+                  <div className="text-2xl font-bold text-warm-yellow mb-2">5+</div>
+                  <div className="text-gray-300">Years Experience</div>
+                </div>
+                <div className="bg-soft-black p-6 rounded-2xl border border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
+                  <div className="text-2xl font-bold text-warm-yellow mb-2">100%</div>
+                  <div className="text-gray-300">Client Satisfaction</div>
+                </div>
+                <div className="bg-soft-black p-6 rounded-2xl border border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
+                  <div className="text-2xl font-bold text-warm-yellow mb-2">24/7</div>
+                  <div className="text-gray-300">Support Available</div>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* What Clients Say Section */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Clients Say</h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Don't just take my word for it. Here's what my clients have to say about working with me.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Sarah Johnson",
+                role: "CEO, Tech Startup",
+                content:
+                  "Adeline transformed our online presence completely. Our website traffic increased by 300% within 3 months of launch.",
+                rating: 5,
+                image: "/placeholder-user.jpg",
+              },
+              {
+                name: "Michael Chen",
+                role: "Marketing Director",
+                content:
+                  "The SEO work Adeline did for us was exceptional. We're now ranking #1 for our main keywords and seeing incredible growth.",
+                rating: 5,
+                image: "/placeholder-user.jpg",
+              },
+              {
+                name: "Emily Rodriguez",
+                role: "Small Business Owner",
+                content:
+                  "Professional, reliable, and results-driven. Adeline delivered exactly what we needed and more. Highly recommended!",
+                rating: 5,
+                image: "/placeholder-user.jpg",
+              },
+            ].map((testimonial, index) => (
+              <Card
+                key={index}
+                className={`bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up animate-delay-${(index + 1) * 100}`}
+              >
+                <CardHeader>
+                  <div className="flex items-center gap-4">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                      <Image
+                        src={testimonial.image || "/placeholder.svg"}
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <CardTitle className="text-white text-lg">{testimonial.name}</CardTitle>
+                      <CardDescription className="text-gray-400">{testimonial.role}</CardDescription>
+                    </div>
+                  </div>
+                  <div className="flex gap-1">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-warm-yellow text-warm-yellow" />
+                    ))}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300 italic">"{testimonial.content}"</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-6 bg-charcoal">
+        <div className="max-w-4xl mx-auto text-center fade-in-up">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Grow Your Business?</h2>
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Let's work together to create a powerful online presence that drives results. Schedule a free consultation
+            to discuss your project.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-4 rounded-full text-lg font-medium hover-lift glow-on-hover">
+                Schedule Free Consultation
+                <Calendar className="ml-2 h-5 w-5" />
+              </Button>
+            </a>
+            <Link href="/contact">
+              <Button
+                variant="outline"
+                className="border-warm-yellow text-warm-yellow hover:bg-warm-yellow hover:text-black px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 bg-transparent"
+              >
+                Send Message
+                <Mail className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <SiteFooter />
     </div>

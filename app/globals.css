@@ -4,48 +4,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
-    --primary: 0 0% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 10%;
+    --background: 26 26 26;
+    --foreground: 0 0% 95%;
+    --card: 26 26 26;
+    --card-foreground: 0 0% 95%;
+    --popover: 26 26 26;
+    --popover-foreground: 0 0% 95%;
+    --primary: 48 89% 60%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 44 44 44;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 44 44 44;
+    --muted-foreground: 0 0% 70%;
+    --accent: 48 89% 60%;
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 10%;
+    --border: 48 89% 60%;
+    --input: 48 89% 60%;
+    --ring: 48 89% 60%;
     --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 10%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 80%;
   }
 }
 
@@ -54,16 +32,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-medium tracking-tight;
+    @apply bg-soft-black text-gray-100;
+    font-family: Arial, sans-serif;
   }
 }
 
@@ -71,30 +41,134 @@ html {
   scroll-behavior: smooth;
 }
 
-.section-title {
-  @apply text-lg font-medium flex items-center gap-2 mb-6;
+/* Remove scroll snap */
+section {
+  scroll-snap-align: none;
 }
 
-.badge {
-  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs bg-secondary text-secondary-foreground;
+/* Selection */
+::selection {
+  background: #f4d03f;
+  color: #000;
 }
 
-.tech-badge {
-  @apply inline-flex items-center rounded-md px-2 py-1 text-xs bg-secondary text-secondary-foreground;
+/* Smooth transitions */
+* {
+  transition: all 0.3s ease;
 }
 
-.container-sm {
-  @apply max-w-3xl mx-auto px-5 sm:px-6;
+/* Interactive hover effects */
+.group:hover .group-hover\:bg-warm-yellow\/30 {
+  background-color: rgb(244 208 63 / 0.3);
 }
 
-.section {
-  @apply py-10 border-t border-border;
+.group:hover .group-hover\:text-warm-yellow {
+  color: #f4d03f;
 }
 
-.section-header {
-  @apply flex items-center justify-between mb-6;
+/* Button hover effects */
+.hover\:shadow-lg:hover {
+  box-shadow: 0 10px 15px -3px rgb(244 208 63 / 0.2), 0 4px 6px -2px rgb(244 208 63 / 0.1);
 }
 
-.view-all {
-  @apply text-sm text-muted-foreground hover:text-foreground flex items-center gap-1;
+.hover\:shadow-md:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+}
+
+/* Animation delays for staggered effects */
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Hover animations */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(244, 208, 63, 0.15);
+}
+
+/* Glow effect */
+.glow-on-hover {
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(244, 208, 63, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .text-4xl {
+    font-size: 2.25rem;
+  }
+  .text-3xl {
+    font-size: 1.875rem;
+  }
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+}
+
+/* Intersection Observer Animation Classes */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-left.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-right.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scale-in.animate {
+  opacity: 1;
+  transform: scale(1);
 }
