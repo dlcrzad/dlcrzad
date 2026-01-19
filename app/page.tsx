@@ -72,7 +72,7 @@ export default function HomePage() {
                 I create stunning WordPress websites,
               </h2>
               <h2 className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                (And yes, I handle SEO & digital marketing too.)
+                (And yes, I handle SEO &amp; digital marketing too.)
               </h2>
               <p className="text-lg text-gray-400 pt-4">How can I help?</p>
             </div>
@@ -98,11 +98,11 @@ export default function HomePage() {
             {/* Stats */}
             <div className="flex items-center justify-center gap-8 pt-8">
               <div className="text-center">
-                <div className="text-2xl font-bold text-warm-yellow">50+</div>
+                <div className="text-2xl font-bold text-warm-yellow">10+</div>
                 <div className="text-sm text-gray-400">Projects Completed</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-warm-yellow">5+</div>
+                <div className="text-2xl font-bold text-warm-yellow">2+</div>
                 <div className="text-sm text-gray-400">Years Experience</div>
               </div>
               <div className="text-center">
@@ -286,17 +286,13 @@ export default function HomePage() {
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">About Me</h2>
               <div className="space-y-4 text-gray-300 text-lg leading-relaxed">
                 <p>
-                  Hi, I'm Adeline Cruz, a passionate web developer and SEO specialist with over 5 years of experience
-                  helping businesses establish and grow their online presence.
+                  Hi, I'm Adeline Cruz, a Web Designer & SEO Specialist based in Angadanan, Isabela, Philippines. I help travel companies, tech startups, and wrought iron engineering firms build beautiful WordPress websites that rank and convert.
                 </p>
                 <p>
-                  I specialize in creating custom websites that not only look stunning but also perform exceptionally in
-                  search engines. My approach combines technical expertise with creative design to deliver results that
-                  exceed expectations.
+                  Since August 2022, I've been designing websites with WordPress, Bricks, and Elementor while managing comprehensive SEO strategies. My clients include Lemon Drop Campers, Avos Inc., and Golden Biotechnologies—companies that needed WordPress expertise and SEO-driven content strategy to compete online.
                 </p>
                 <p>
-                  When I'm not coding or optimizing websites, you'll find me staying up-to-date with the latest web
-                  technologies and SEO trends to ensure my clients always get the best solutions.
+                  I specialize in on-page and technical SEO, WordPress optimization, and affiliate site management. From fixing non-indexed URLs to optimizing backend operations, I ensure your website performs flawlessly.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
@@ -318,11 +314,11 @@ export default function HomePage() {
             <div className="fade-in-right">
               <div className="grid grid-cols-2 gap-6">
                 <div className="bg-soft-black p-6 rounded-2xl border border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
-                  <div className="text-2xl font-bold text-warm-yellow mb-2">50+</div>
+                  <div className="text-2xl font-bold text-warm-yellow mb-2">10+</div>
                   <div className="text-gray-300">Projects Completed</div>
                 </div>
                 <div className="bg-soft-black p-6 rounded-2xl border border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
-                  <div className="text-2xl font-bold text-warm-yellow mb-2">5+</div>
+                  <div className="text-2xl font-bold text-warm-yellow mb-2">2+</div>
                   <div className="text-gray-300">Years Experience</div>
                 </div>
                 <div className="bg-soft-black p-6 rounded-2xl border border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">

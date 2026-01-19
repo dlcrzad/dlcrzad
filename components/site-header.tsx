@@ -38,13 +38,6 @@ export function SiteHeader() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-warm-yellow transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
-              href="/blog"
-              className="text-gray-300 hover:text-warm-yellow transition-colors duration-300 relative group"
-            >
-              Blog
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-warm-yellow transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-            <Link
               href="/contact"
               className="text-gray-300 hover:text-warm-yellow transition-colors duration-300 relative group"
             >
@@ -90,13 +83,6 @@ export function SiteHeader() {
               onClick={() => setIsMenuOpen(false)}
             >
               Projects
-            </Link>
-            <Link
-              href="/blog"
-              className="block text-gray-300 hover:text-warm-yellow py-2 transition-colors duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Blog
             </Link>
             <Link
               href="/contact"

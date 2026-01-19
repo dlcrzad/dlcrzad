@@ -206,7 +206,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="text-white font-semibold">Phone</h3>
-                        <p className="text-gray-300">+1 (555) 123-4567</p>
+                        <p className="text-gray-300">+63 991 804 8306</p>
                       </div>
                     </div>
                   </CardContent>
@@ -220,7 +220,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="text-white font-semibold">Location</h3>
-                        <p className="text-gray-300">Remote Worldwide</p>
+                        <p className="text-gray-300">Angadanan, Isabela, Philippines</p>
                       </div>
                     </div>
                   </CardContent>
