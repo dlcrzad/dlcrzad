@@ -10,7 +10,11 @@ export const metadata: Metadata = {
   title: "Adeline Dela Cruz | WordPress & SEO Specialist",
   description:
     "Personal portfolio of Adeline Dela Cruz, a WordPress & SEO Specialist and Web Designer based in Isabela, Philippines.",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: "/images/profile-transparent.png",
+    apple: "/images/profile-transparent.png",
+  },
 }
 
 export default function RootLayout({
