@@ -71,6 +71,7 @@ export default function HomePage() {
               <h2 className="text-xl md:text-2xl text-gray-300 leading-relaxed">
                 I help business owners manage and update their websites and make web design revisions.
                 <br />
+                <br />
                 (And yes, I handle SEO &amp; solve other tech related problems.)
               </h2>
               <p className="text-lg text-gray-400 pt-4">How can I help?</p>
