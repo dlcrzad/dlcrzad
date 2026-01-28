@@ -39,10 +39,10 @@ export default function ProjectsPage() {
       title: "Avos Inc. Wrought Iron Engineering",
       description:
         "Corporate website for premium wrought iron engineering company with portfolio showcase and SEO optimization.",
-      image: "/images/avosinc.png",
+      image: "/images/avos-inc.webp",
       category: "Corporate",
       tags: ["Web Development", "SEO", "Portfolio"],
-      link: "/projects/avos-inc",
+      liveUrl: "https://avosinc.com",
       year: "2024",
       client: "Avos Inc",
       duration: "3 months",
@@ -56,10 +56,10 @@ export default function ProjectsPage() {
       title: "Lemon Drop Campers",
       description:
         "Travel and campervan affiliate website with comprehensive SEO strategy, campground guides, and itinerary content.",
-      image: "/images/avosinc.png",
+      image: "/images/lemon-drop-campers.webp",
       category: "Travel",
       tags: ["SEO", "Content Strategy", "Affiliate"],
-      link: "/projects/avos-inc",
+      liveUrl: "https://lemondropcampers.com",
       year: "2025",
       client: "Lemon Drop Campers",
       duration: "Ongoing",
@@ -73,10 +73,10 @@ export default function ProjectsPage() {
       title: "Ray's Ukulele Hawaii",
       description:
         "Ukulele shop website with product catalog, music education resources, and community engagement features.",
-      image: "/images/avosinc.png",
+      image: "/images/rays-ukulele.webp",
       category: "E-commerce",
       tags: ["E-commerce", "Product Catalog", "SEO"],
-      link: "/projects/avos-inc",
+      liveUrl: "https://raysukulele.com",
       year: "2025",
       client: "Ray's Ukulele Hawaii",
       duration: "2 months",
@@ -93,7 +93,7 @@ export default function ProjectsPage() {
       image: "/images/goldenbiotechnologies.png",
       category: "Healthcare",
       tags: ["Corporate Website", "CMS", "Research"],
-      link: "/projects/golden-biotechnologies",
+      liveUrl: "https://goldenbiotechnologies.com",
       year: "2024-2025",
       client: "Golden Biotechnologies",
       duration: "4 months",
@@ -107,10 +107,10 @@ export default function ProjectsPage() {
       title: "GBT - EMEA",
       description:
         "European division website with multi-region support, localization, and regional content management.",
-      image: "/images/goldenbiotechnologies.png",
+      image: "/images/gbt-emea.webp",
       category: "Corporate",
       tags: ["Localization", "Multi-region", "CMS"],
-      link: "/projects/avos-inc",
+      liveUrl: "https://gbt-emea.com",
       year: "2024",
       client: "GBT - EMEA",
       duration: "3 months",
@@ -127,7 +127,7 @@ export default function ProjectsPage() {
       image: "/images/goldenbiotechnologies.png",
       category: "Healthcare",
       tags: ["Technical Documentation", "Product Info", "B2B"],
-      link: "/projects/avos-inc",
+      liveUrl: "https://socalbiosys.com",
       year: "2024",
       client: "SoCal Biosys",
       duration: "3 months",
@@ -144,7 +144,7 @@ export default function ProjectsPage() {
       image: "/images/mcweldingservicellc.png",
       category: "Industrial",
       tags: ["Service Website", "Portfolio", "Booking System"],
-      link: "/projects/mc-welding-service",
+      liveUrl: "https://mcweldingservice.com",
       year: "2023",
       client: "MC Welding Service LLC",
       duration: "2 months",
@@ -157,20 +157,20 @@ export default function ProjectsPage() {
       image: "/images/westernsportsfloor.png",
       category: "Sports",
       tags: ["E-commerce", "Product Catalog", "Gallery"],
-      link: "/projects/western-sport-floors",
+      liveUrl: "https://westernsportfloors.com",
       year: "2023",
       client: "Western Sport Floors",
       duration: "3 months",
       results: ["Quote request increase", "Product visibility", "Enhanced UX"],
     },
     {
-      title: "Glenrock Energy - Carbon Management Solutions",
+      title: "Glenrock Energy",
       description:
-        "Energy company website with sustainability focus, carbon management solutions showcase, and technical resources.",
-      image: "/images/avosinc.png",
+        "Energy company website with sustainability focus, innovative energy solutions showcase, and technical resources.",
+      image: "/images/glenrock-energy.webp",
       category: "Energy",
       tags: ["Corporate", "Sustainability", "Technical"],
-      link: "/projects/avos-inc",
+      liveUrl: "https://glenrockenergy.com",
       year: "2023",
       client: "Glenrock Energy",
       duration: "3 months",
@@ -184,10 +184,10 @@ export default function ProjectsPage() {
       title: "Extreme Precision",
       description:
         "Precision manufacturing company website showcasing technical expertise, quality standards, and industrial solutions.",
-      image: "/images/avosinc.png",
+      image: "/images/extreme-precision.webp",
       category: "Manufacturing",
       tags: ["Industrial", "Manufacturing", "B2B"],
-      link: "/projects/avos-inc",
+      liveUrl: "https://extremeprecision.com",
       year: "2023",
       client: "Extreme Precision",
       duration: "2 months",
@@ -264,15 +264,17 @@ export default function ProjectsPage() {
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <Link
-                    href={project.link}
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   >
                     <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black">
-                      View Case Study
+                      View Live
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
-                  </Link>
+                  </a>
                 </div>
                 <CardHeader>
                   <div className="flex items-start justify-between">

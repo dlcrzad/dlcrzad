@@ -37,6 +37,7 @@
     color: rgb(243 244 246);
     font-family: Arial, sans-serif;
     position: relative;
+    overflow-x: hidden;
   }
   
   body::before {
@@ -51,6 +52,101 @@
     pointer-events: none;
     z-index: 0;
   }
+  
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle 400px at 10% 20%, rgba(244, 208, 63, 0.08) 0%, transparent 50%),
+      radial-gradient(circle 300px at 90% 10%, rgba(244, 208, 63, 0.05) 0%, transparent 50%),
+      radial-gradient(circle 500px at 50% 100%, rgba(244, 208, 63, 0.04) 0%, transparent 50%);
+    background-attachment: fixed;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(-10px);
+  }
+  50% {
+    transform: translateY(-40px) translateX(10px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(244, 208, 63, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(244, 208, 63, 0.4);
+  }
+}
+
+@keyframes rotate-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Interactive background elements */
+.interactive-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-element {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.1;
+}
+
+.bg-element-1 {
+  width: 400px;
+  height: 400px;
+  background: #f4d03f;
+  top: -100px;
+  left: -100px;
+  animation: float 15s ease-in-out infinite;
+}
+
+.bg-element-2 {
+  width: 300px;
+  height: 300px;
+  background: #f4d03f;
+  top: 50%;
+  right: -50px;
+  animation: float 20s ease-in-out infinite 2s;
+}
+
+.bg-element-3 {
+  width: 350px;
+  height: 350px;
+  background: #f4d03f;
+  bottom: -100px;
+  left: 50%;
+  animation: float 18s ease-in-out infinite 4s;
 }
 
 html {
