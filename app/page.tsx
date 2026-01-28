@@ -73,7 +73,7 @@ export default function HomePage() {
                 <br />
                 <br />
                 (And yes, I handle SEO &amp; solve other tech related problems.)
-              </h2>
+              </h3>
               <p className="text-lg text-gray-400 pt-4">How can I help?</p>
             </div>
 
