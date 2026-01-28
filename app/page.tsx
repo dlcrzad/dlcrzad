@@ -69,10 +69,9 @@ export default function HomePage() {
             <div className="space-y-4">
               <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">Hi, I'm Adeline!</h1>
               <h2 className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                I help business owners manage and update their websites
-              </h2>
-              <h2 className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                and make web design revisions. (And yes, I handle SEO &amp; solve other tech related problems.)
+                I help business owners manage and update their websites and make web design revisions.
+                <br />
+                (And yes, I handle SEO &amp; solve other tech related problems.)
               </h2>
               <p className="text-lg text-gray-400 pt-4">How can I help?</p>
             </div>
@@ -344,64 +343,22 @@ export default function HomePage() {
               Don't just take my word for it. Here's what my clients have to say about working with me.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Kellee Carroll",
-                role: "Founder, Prairie Giraffe",
-                content:
-                  "Adeline Dela Cruz is an outstanding Virtual Assistant who provided valuable support with web design, seo, administrative tasks, and email management. Her attention to detail, creativity, and organizational skills greatly enhanced my productivity. Adeline consistently delivered quality work and handled multiple responsibilities. I highly recommend her to anyone seeking a reliable and skilled VA. She is a true professional and will be a tremendous asset to any team.",
-                rating: 5,
-                image: "/placeholder-user.jpg",
-                link: "https://prairiegiraffe.com",
-              },
-              {
-                name: "Sarah Johnson",
-                role: "CEO, Tech Startup",
-                content:
-                  "Adeline transformed our online presence completely. Our website traffic increased by 300% within 3 months of launch.",
-                rating: 5,
-                image: "/placeholder-user.jpg",
-              },
-              {
-                name: "Michael Chen",
-                role: "Marketing Director",
-                content:
-                  "The SEO work Adeline did for us was exceptional. We're now ranking #1 for our main keywords and seeing incredible growth.",
-                rating: 5,
-                image: "/placeholder-user.jpg",
-              },
-            ].map((testimonial, index) => (
-              <Card
-                key={index}
-                className={`bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up animate-delay-${(index + 1) * 100}`}
-              >
-                <CardHeader>
-                  <div className="flex items-center gap-4">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                      <Image
-                        src={testimonial.image || "/placeholder.svg"}
-                        alt={testimonial.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div>
-                      <CardTitle className="text-white text-lg">{testimonial.name}</CardTitle>
-                      <CardDescription className="text-gray-400">{testimonial.role}</CardDescription>
-                    </div>
-                  </div>
-                  <div className="flex gap-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-warm-yellow text-warm-yellow" />
-                    ))}
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-300 italic">"{testimonial.content}"</p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="max-w-3xl mx-auto">
+            <Card className="bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up">
+              <CardHeader>
+                <CardTitle className="text-white text-lg">
+                  <a href="https://prairiegiraffe.com" target="_blank" rel="noopener noreferrer" className="hover:text-warm-yellow transition-colors">
+                    Kellee Carroll
+                  </a>
+                </CardTitle>
+                <CardDescription className="text-gray-400">Founder, Prairie Giraffe</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 italic">
+                  "Adeline Dela Cruz is an outstanding Virtual Assistant who provided valuable support with web design, seo, administrative tasks, and email management. Her attention to detail, creativity, and organizational skills greatly enhanced my productivity. Adeline consistently delivered quality work and handled multiple responsibilities. I highly recommend her to anyone seeking a reliable and skilled VA. She is a true professional and will be a tremendous asset to any team."
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
