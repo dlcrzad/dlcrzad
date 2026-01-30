@@ -14,6 +14,8 @@ import { SiteFooter } from "@/components/site-footer"
 
 export default function ContactPage() {
   const [isVisible, setIsVisible] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -49,17 +51,49 @@ export default function ContactPage() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    })
+    setIsLoading(true)
+    setSubmitMessage(null)
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitMessage({
+          type: 'success',
+          text: 'Message sent successfully! I\'ll get back to you within 24 hours.',
+        })
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        })
+      } else {
+        setSubmitMessage({
+          type: 'error',
+          text: data.error || 'Failed to send message. Please try again.',
+        })
+      }
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setSubmitMessage({
+        type: 'error',
+        text: 'An error occurred. Please try again or contact me directly.',
+      })
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -98,6 +132,17 @@ export default function ContactPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
+                  {submitMessage && (
+                    <div
+                      className={`mb-6 p-4 rounded-lg ${
+                        submitMessage.type === 'success'
+                          ? 'bg-green-500/20 border border-green-500/50 text-green-300'
+                          : 'bg-red-500/20 border border-red-500/50 text-red-300'
+                      }`}
+                    >
+                      {submitMessage.text}
+                    </div>
+                  )}
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -163,9 +208,10 @@ export default function ContactPage() {
                     </div>
                     <Button
                       type="submit"
-                      className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-3 rounded-full font-medium w-full hover-lift glow-on-hover"
+                      disabled={isLoading}
+                      className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-3 rounded-full font-medium w-full hover-lift glow-on-hover disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Send Message
+                      {isLoading ? 'Sending...' : 'Send Message'}
                       <Send className="ml-2 h-5 w-5" />
                     </Button>
                   </form>
