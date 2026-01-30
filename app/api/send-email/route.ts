@@ -1,24 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
-// Validate environment variables
-const validateEnv = () => {
-  if (!process.env.EMAIL_FROM || !process.env.EMAIL_PASSWORD) {
-    throw new Error('Email configuration is missing. Please check your environment variables.')
-  }
-}
-
-// Configure your email service
+// Configure your email service (lazy initialization)
 let transporter: nodemailer.Transporter | null = null
 
 const getTransporter = () => {
   if (!transporter) {
-    validateEnv()
+    const emailFrom = process.env.EMAIL_FROM
+    const emailPassword = process.env.EMAIL_PASSWORD
+
+    if (!emailFrom || !emailPassword) {
+      throw new Error('Email configuration is missing. Please set EMAIL_FROM and EMAIL_PASSWORD in environment variables.')
+    }
+
     transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_FROM,
-        pass: process.env.EMAIL_PASSWORD,
+        user: emailFrom,
+        pass: emailPassword,
       },
     })
   }
@@ -41,19 +40,18 @@ const sanitizeInput = (input: string): string => {
     .replace(/'/g, '&#039;')
 }
 
+// Validate environment variables
+const validateEnv = () => {
+  const emailFrom = process.env.EMAIL_FROM
+  const emailPassword = process.env.EMAIL_PASSWORD
+
+  if (!emailFrom || !emailPassword) {
+    throw new Error('Email configuration is missing. Please set EMAIL_FROM and EMAIL_PASSWORD in environment variables.')
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
-    // Check for required environment variables
-    try {
-      validateEnv()
-    } catch (error) {
-      console.error('Configuration error:', error)
-      return NextResponse.json(
-        { error: 'Email service is not properly configured. Please contact the administrator.' },
-        { status: 503 }
-      )
-    }
-
     const body = await request.json()
     const { name, email, subject, message } = body
 
@@ -114,9 +112,17 @@ export async function POST(request: NextRequest) {
     }
 
     // Get transporter and send both emails
-    const emailTransporter = getTransporter()
-    await emailTransporter.sendMail(mailToYou)
-    await emailTransporter.sendMail(mailToClient)
+    try {
+      const emailTransporter = getTransporter()
+      await emailTransporter.sendMail(mailToYou)
+      await emailTransporter.sendMail(mailToClient)
+    } catch (transporterError) {
+      console.error('Transporter error:', transporterError)
+      return NextResponse.json(
+        { error: 'Email service is not properly configured. Please contact the administrator.' },
+        { status: 503 }
+      )
+    }
 
     return NextResponse.json(
       { success: true, message: 'Email sent successfully!' },
