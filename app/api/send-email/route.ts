@@ -1,39 +1,95 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
+// Validate environment variables
+const validateEnv = () => {
+  if (!process.env.EMAIL_FROM || !process.env.EMAIL_PASSWORD) {
+    throw new Error('Email configuration is missing. Please check your environment variables.')
+  }
+}
+
 // Configure your email service
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_FROM,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-})
+let transporter: nodemailer.Transporter | null = null
+
+const getTransporter = () => {
+  if (!transporter) {
+    validateEnv()
+    transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_FROM,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    })
+  }
+  return transporter
+}
+
+// Email validation helper
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+// Sanitize HTML to prevent injection
+const sanitizeInput = (input: string): string => {
+  return input
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, subject, message } = await request.json()
+    // Check for required environment variables
+    try {
+      validateEnv()
+    } catch (error) {
+      console.error('Configuration error:', error)
+      return NextResponse.json(
+        { error: 'Email service is not properly configured. Please contact the administrator.' },
+        { status: 503 }
+      )
+    }
+
+    const body = await request.json()
+    const { name, email, subject, message } = body
 
     // Validate input
-    if (!name || !email || !subject || !message) {
+    if (!name?.trim() || !email?.trim() || !subject?.trim() || !message?.trim()) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        { error: 'All fields are required' },
         { status: 400 }
       )
     }
+
+    // Validate email format
+    if (!isValidEmail(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email address' },
+        { status: 400 }
+      )
+    }
+
+    // Sanitize inputs to prevent HTML injection
+    const sanitizedName = sanitizeInput(name.trim())
+    const sanitizedSubject = sanitizeInput(subject.trim())
+    const sanitizedMessage = sanitizeInput(message.trim())
 
     // Email to you
     const mailToYou = {
       from: process.env.EMAIL_FROM,
       to: 'dlcrzad@gmail.com',
-      subject: `New Contact Form Submission: ${subject}`,
+      subject: `New Contact Form Submission: ${sanitizedSubject}`,
       html: `
         <h2>New Message from Your Website</h2>
-        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Name:</strong> ${sanitizedName}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Subject:</strong> ${sanitizedSubject}</p>
         <h3>Message:</h3>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${sanitizedMessage.replace(/\n/g, '<br>')}</p>
         <hr>
         <p><em>This message was sent from your contact form.</em></p>
       `,
@@ -46,20 +102,21 @@ export async function POST(request: NextRequest) {
       subject: 'We received your message!',
       html: `
         <h2>Thank you for reaching out!</h2>
-        <p>Hi ${name},</p>
+        <p>Hi ${sanitizedName},</p>
         <p>I've received your message and will get back to you within 24 hours.</p>
         <h3>Your Message Summary:</h3>
-        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Subject:</strong> ${sanitizedSubject}</p>
         <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p>${sanitizedMessage.replace(/\n/g, '<br>')}</p>
         <hr>
         <p>Best regards,<br>Adeline Dela Cruz</p>
       `,
     }
 
-    // Send both emails
-    await transporter.sendMail(mailToYou)
-    await transporter.sendMail(mailToClient)
+    // Get transporter and send both emails
+    const emailTransporter = getTransporter()
+    await emailTransporter.sendMail(mailToYou)
+    await emailTransporter.sendMail(mailToClient)
 
     return NextResponse.json(
       { success: true, message: 'Email sent successfully!' },
@@ -67,8 +124,9 @@ export async function POST(request: NextRequest) {
     )
   } catch (error) {
     console.error('Email error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Failed to send email'
     return NextResponse.json(
-      { error: 'Failed to send email' },
+      { error: errorMessage },
       { status: 500 }
     )
   }
