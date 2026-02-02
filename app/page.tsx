@@ -193,7 +193,7 @@ export default function HomePage() {
                 description: "Corporate website for premium wrought iron engineering company with portfolio showcase and SEO optimization.",
                 image: "/images/avos-inc.webp",
                 tags: ["Web Development", "SEO", "Portfolio"],
-                link: "/projects/avos-inc",
+                link: "/projects",
               },
               {
                 title: "Lemon Drop Campers",
