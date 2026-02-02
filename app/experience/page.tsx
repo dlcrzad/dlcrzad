@@ -49,7 +49,7 @@ export default function ExperiencePage() {
     },
     {
       title: "Web Designer & SEO Specialist (Part-Time)",
-      company: "Avos Inc. Wrought Iron Engineering",
+      company: "Avos Inc",
       location: "Portland, Oregon",
       period: "2024 - 2026",
       description:
