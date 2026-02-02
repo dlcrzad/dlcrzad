@@ -189,7 +189,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Avos Inc. Wrought Iron Engineering",
+                title: "Avos Inc",
                 description: "Corporate website for premium wrought iron engineering company with portfolio showcase and SEO optimization.",
                 image: "/images/avos-inc.webp",
                 tags: ["Web Development", "SEO", "Portfolio"],

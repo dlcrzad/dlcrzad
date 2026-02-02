@@ -36,13 +36,13 @@ export default function ProjectsPage() {
 
   const projects = [
     {
-      title: "Avos Inc. Wrought Iron Engineering",
+      title: "Avos Inc",
       description:
         "Corporate website for premium wrought iron engineering company with portfolio showcase and SEO optimization.",
       image: "/images/avos-inc.webp",
       category: "Corporate",
       tags: ["Web Development", "SEO", "Portfolio"],
-      liveUrl: "https://avosinc.com",
+      liveUrl: "avosinc.com",
       year: "2024",
       client: "Avos Inc",
       duration: "3 months",
