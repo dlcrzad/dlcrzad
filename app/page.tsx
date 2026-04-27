@@ -98,7 +98,7 @@ export default function HomePage() {
                   />
                 </div>
                 <div className="flex-1">
-                  <h1 className="text-3xl font-bold text-black mb-1">Build & Rank</h1>
+                  <h1 className="text-3xl font-bold text-black mb-1">Adeline Dela Cruz</h1>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mb-3">
                     <MapPin className="w-4 h-4" />
                     <span>Remote, Worldwide</span>

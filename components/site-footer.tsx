@@ -61,7 +61,7 @@ export function SiteFooter() {
         </div>
 
         <div className="border-t border-gray-200 pt-6 text-center">
-          <p className="text-gray-600 text-xs">© 2026 Build & Rank. All rights reserved.</p>
+          <p className="text-gray-600 text-xs">© 2026 Adeline Dela Cruz. All rights reserved.</p>
         </div>
       </div>
     </footer>

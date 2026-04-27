@@ -12,7 +12,7 @@ export function SiteHeader() {
     <header className="bg-white sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
         <Link href="/" className="text-lg font-bold text-black hover:opacity-70 transition-opacity">
-          Build & Rank
+          Adeline Dela Cruz
         </Link>
         <div className="flex items-center gap-8">
           <nav className="hidden md:flex space-x-8">
