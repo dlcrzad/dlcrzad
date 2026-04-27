@@ -62,21 +62,7 @@ export default function ExperiencePage() {
       ],
       technologies: ["WordPress", "SEO", "Content Optimization", "HTML/CSS", "Web Design", "Google Search Console"],
     },
-    {
-      title: "WordPress & SEO Specialist (Part-Time)",
-      company: "Golden Biotechnologies, GBT - EMEA, SoCal Biosys",
-      location: "California, United States",
-      period: "2024 - 2025",
-      description:
-        "Maintained and managed multiple WordPress websites, ensuring seamless performance and uptime. Addressed technical issues and managed domain transfers and hosting configurations.",
-      achievements: [
-        "Fixed non-indexed URLs and optimized backend operations for better performance",
-        "Successfully transferred domains and configured hosting environments",
-        "Ensured smooth website migrations with zero downtime",
-        "Maintained 100% website uptime and reliability",
-      ],
-      technologies: ["WordPress", "Technical SEO", "Domain Management", "Hosting Configuration", "Website Optimization"],
-    },
+
     {
       title: "Web Designer",
       company: "Prairie Giraffe",

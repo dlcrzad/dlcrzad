@@ -86,57 +86,7 @@ export default function ProjectsPage() {
         "Community building",
       ],
     },
-    {
-      title: "Golden Biotechnologies",
-      description:
-        "Professional biotech company website with scientific content management and research showcase.",
-      image: "/images/goldenbiotechnologies.png",
-      category: "Healthcare",
-      tags: ["Corporate Website", "CMS", "Research"],
-      liveUrl: "https://goldenbiotechnologies.com",
-      year: "2024-2025",
-      client: "Golden Biotechnologies",
-      duration: "4 months",
-      results: [
-        "Professional credibility",
-        "Research showcase",
-        "Stakeholder engagement",
-      ],
-    },
-    {
-      title: "GBT - EMEA",
-      description:
-        "European division website with multi-region support, localization, and regional content management.",
-      image: "/images/gbt-emea.webp",
-      category: "Corporate",
-      tags: ["Localization", "Multi-region", "CMS"],
-      liveUrl: "https://gbt-emea.com",
-      year: "2024",
-      client: "GBT - EMEA",
-      duration: "3 months",
-      results: [
-        "Regional targeting",
-        "Localization support",
-        "Enhanced reach",
-      ],
-    },
-    {
-      title: "SoCal Biosys",
-      description:
-        "Biotech systems company website with technical documentation, product information, and industry credibility.",
-      image: "/images/goldenbiotechnologies.png",
-      category: "Healthcare",
-      tags: ["Technical Documentation", "Product Info", "B2B"],
-      liveUrl: "https://socalbiosys.com",
-      year: "2024",
-      client: "SoCal Biosys",
-      duration: "3 months",
-      results: [
-        "Technical credibility",
-        "Documentation showcase",
-        "Lead generation",
-      ],
-    },
+
     {
       title: "MC Welding Service",
       description:
