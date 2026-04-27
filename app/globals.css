@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 26 26 26;
-    --foreground: 0 0% 95%;
-    --card: 26 26 26;
-    --card-foreground: 0 0% 95%;
-    --popover: 26 26 26;
-    --popover-foreground: 0 0% 95%;
-    --primary: 48 89% 60%;
-    --primary-foreground: 0 0% 0%;
-    --secondary: 44 44 44;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 44 44 44;
-    --muted-foreground: 0 0% 70%;
-    --accent: 48 89% 60%;
-    --accent-foreground: 0 0% 0%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 3%;
+    --muted: 0 0% 88%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 0%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 48 89% 60%;
-    --input: 48 89% 60%;
-    --ring: 48 89% 60%;
+    --border: 0 0% 90%;
+    --input: 0 0% 95%;
+    --ring: 0 0% 3%;
     --radius: 0.5rem;
   }
 }
@@ -32,121 +32,12 @@
     @apply border-border;
   }
   body {
-    background: linear-gradient(135deg, #1a1a1a 0%, #232323 50%, #1f1f1f 100%);
-    background-attachment: fixed;
-    color: rgb(243 244 246);
-    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #000000;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     position: relative;
     overflow-x: hidden;
   }
-  
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(244, 208, 63, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(244, 208, 63, 0.02) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle 400px at 10% 20%, rgba(244, 208, 63, 0.08) 0%, transparent 50%),
-      radial-gradient(circle 300px at 90% 10%, rgba(244, 208, 63, 0.05) 0%, transparent 50%),
-      radial-gradient(circle 500px at 50% 100%, rgba(244, 208, 63, 0.04) 0%, transparent 50%);
-    background-attachment: fixed;
-    pointer-events: none;
-    z-index: 0;
-    animation: float 20s ease-in-out infinite;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  25% {
-    transform: translateY(-20px) translateX(-10px);
-  }
-  50% {
-    transform: translateY(-40px) translateX(10px);
-  }
-  75% {
-    transform: translateY(-20px) translateX(-10px);
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(244, 208, 63, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(244, 208, 63, 0.4);
-  }
-}
-
-@keyframes rotate-slow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Interactive background elements */
-.interactive-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.bg-element {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.1;
-}
-
-.bg-element-1 {
-  width: 400px;
-  height: 400px;
-  background: #f4d03f;
-  top: -100px;
-  left: -100px;
-  animation: float 15s ease-in-out infinite;
-}
-
-.bg-element-2 {
-  width: 300px;
-  height: 300px;
-  background: #f4d03f;
-  top: 50%;
-  right: -50px;
-  animation: float 20s ease-in-out infinite 2s;
-}
-
-.bg-element-3 {
-  width: 350px;
-  height: 350px;
-  background: #f4d03f;
-  bottom: -100px;
-  left: 50%;
-  animation: float 18s ease-in-out infinite 4s;
 }
 
 html {
@@ -160,8 +51,8 @@ section {
 
 /* Selection */
 ::selection {
-  background: #f4d03f;
-  color: #000;
+  background: #000000;
+  color: #ffffff;
 }
 
 /* Smooth transitions */
@@ -169,62 +60,9 @@ section {
   transition: all 0.3s ease;
 }
 
-/* Interactive hover effects */
-.group:hover .group-hover\:bg-warm-yellow\/30 {
-  background-color: rgb(244 208 63 / 0.3);
-}
-
-.group:hover .group-hover\:text-warm-yellow {
-  color: #f4d03f;
-}
-
 /* Button hover effects */
-.hover\:shadow-lg:hover {
-  box-shadow: 0 10px 15px -3px rgb(244 208 63 / 0.2), 0 4px 6px -2px rgb(244 208 63 / 0.1);
-}
-
-.hover\:shadow-md:hover {
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-}
-
-/* Animation delays for staggered effects */
-.animate-delay-100 {
-  animation-delay: 0.1s;
-}
-
-.animate-delay-200 {
-  animation-delay: 0.2s;
-}
-
-.animate-delay-300 {
-  animation-delay: 0.3s;
-}
-
-.animate-delay-400 {
-  animation-delay: 0.4s;
-}
-
-.animate-delay-500 {
-  animation-delay: 0.5s;
-}
-
-/* Hover animations */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(244, 208, 63, 0.15);
-}
-
-/* Glow effect */
-.glow-on-hover {
-  transition: box-shadow 0.3s ease;
-}
-
-.glow-on-hover:hover {
-  box-shadow: 0 0 20px rgba(244, 208, 63, 0.3);
+button:hover {
+  opacity: 0.9;
 }
 
 /* Responsive adjustments */

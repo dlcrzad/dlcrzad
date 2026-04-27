@@ -56,11 +56,6 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Softer, eye-friendly black and warm yellow palette
-        "warm-yellow": "#F4D03F",
-        "soft-black": "#1A1A1A",
-        charcoal: "#2C2C2C",
-        black: "#000000",
       },
       borderRadius: {
         lg: "var(--radius)",

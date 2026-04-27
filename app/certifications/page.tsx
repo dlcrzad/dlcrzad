@@ -84,69 +84,45 @@ export default function Certifications() {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
+    <div className="min-h-screen bg-white">
       <SiteHeader />
 
-      <main className="pt-24">
+      <main className="py-20">
         {/* Hero Section */}
-        <section className="py-20 bg-black">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h1 className="text-4xl font-bold text-white mb-4 fade-in-up">Certifications</h1>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto fade-in-up animate-delay-100">
+        <section className="border-b border-gray-200 py-16">
+          <div className="max-w-4xl mx-auto px-6">
+            <h1 className="text-4xl font-bold text-black mb-4 fade-in-up">Certifications</h1>
+            <p className="text-lg text-gray-600 max-w-2xl fade-in-up">
               Professional certifications and continuous learning in WordPress development, SEO, and digital marketing.
             </p>
           </div>
         </section>
 
         {/* Certifications Grid */}
-        <section className="py-20 bg-black">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-8">
+        <section className="py-16 border-b border-gray-200">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="space-y-8">
               {certifications.map((cert, index) => (
-                <div
-                  key={index}
-                  className={`bg-black rounded-lg p-8 border border-golden-yellow hover:border-golden-yellow/80 transition-all hover-lift glow-on-hover fade-in-up animate-delay-${
-                    ((index % 2) + 1) * 100
-                  }`}
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-golden-yellow/20 rounded-lg flex items-center justify-center hover:bg-golden-yellow/30 transition-colors duration-300">
-                        <Award className="h-6 w-6 text-golden-yellow" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-white">{cert.title}</h3>
-                        <p className="text-golden-yellow font-medium">{cert.issuer}</p>
-                      </div>
+                <div key={index} className="pb-8 border-b border-gray-200 last:border-b-0 last:pb-0 fade-in-up">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <h3 className="text-xl font-semibold text-black">{cert.title}</h3>
+                      <p className="text-gray-600">{cert.issuer}</p>
                     </div>
-                    <div className="flex items-center gap-1 text-sm text-gray-400">
-                      <Calendar className="h-4 w-4" />
-                      <span>{cert.date}</span>
-                    </div>
+                    <span className="text-sm text-gray-500">{cert.date}</span>
                   </div>
 
-                  <p className="text-gray-400 mb-4">{cert.description}</p>
+                  <p className="text-gray-600 mb-4">{cert.description}</p>
 
-                  <div className="mb-4">
-                    <h4 className="text-white font-medium mb-2">Skills Covered:</h4>
+                  <div>
                     <div className="flex flex-wrap gap-2">
                       {cert.skills.map((skill, i) => (
-                        <span
-                          key={i}
-                          className="text-xs px-2 py-1 bg-golden-yellow/20 text-golden-yellow rounded-full border border-golden-yellow/30 hover:bg-golden-yellow/30 transition-colors duration-300"
-                        >
+                        <span key={i} className="text-xs px-3 py-1 bg-gray-100 text-gray-700 rounded-full">
                           {skill}
                         </span>
                       ))}
                     </div>
                   </div>
-
-                  <a
-                    href={cert.credentialUrl}
-                    className="text-golden-yellow hover:text-golden-yellow/80 flex items-center gap-1 text-sm font-medium transition-colors duration-300"
-                  >
-                    View Credential <ExternalLink className="h-3 w-3" />
-                  </a>
                 </div>
               ))}
             </div>
@@ -154,27 +130,27 @@ export default function Certifications() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-20 bg-black">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold text-white mb-16 fade-in-up">Continuous Learning</h2>
+        <section className="py-16">
+          <div className="max-w-4xl mx-auto px-6">
+            <h2 className="text-3xl font-bold text-black mb-12 fade-in-up text-center">Continuous Learning</h2>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-black rounded-lg p-6 border border-golden-yellow hover:border-golden-yellow/80 transition-all hover-lift fade-in-up">
-                <div className="text-3xl font-bold text-golden-yellow mb-2">6+</div>
-                <p className="text-white font-medium mb-1">Certifications</p>
-                <p className="text-gray-400 text-sm">Professional certifications earned</p>
+              <div className="text-center fade-in-up p-6 border border-gray-200 rounded-lg">
+                <div className="text-4xl font-bold text-black mb-2">6+</div>
+                <p className="text-black font-medium mb-1">Certifications</p>
+                <p className="text-gray-600 text-sm">Professional certifications earned</p>
               </div>
 
-              <div className="bg-black rounded-lg p-6 border border-golden-yellow hover:border-golden-yellow/80 transition-all hover-lift fade-in-up animate-delay-100">
-                <div className="text-3xl font-bold text-golden-yellow mb-2">50+</div>
-                <p className="text-white font-medium mb-1">Hours</p>
-                <p className="text-gray-400 text-sm">Of professional training completed</p>
+              <div className="text-center fade-in-up p-6 border border-gray-200 rounded-lg">
+                <div className="text-4xl font-bold text-black mb-2">50+</div>
+                <p className="text-black font-medium mb-1">Hours</p>
+                <p className="text-gray-600 text-sm">Of professional training completed</p>
               </div>
 
-              <div className="bg-black rounded-lg p-6 border border-golden-yellow hover:border-golden-yellow/80 transition-all hover-lift fade-in-up animate-delay-200">
-                <div className="text-3xl font-bold text-golden-yellow mb-2">2024</div>
-                <p className="text-white font-medium mb-1">Latest Update</p>
-                <p className="text-gray-400 text-sm">Most recent certification earned</p>
+              <div className="text-center fade-in-up p-6 border border-gray-200 rounded-lg">
+                <div className="text-4xl font-bold text-black mb-2">2024</div>
+                <p className="text-black font-medium mb-1">Latest Update</p>
+                <p className="text-gray-600 text-sm">Most recent certification earned</p>
               </div>
             </div>
           </div>

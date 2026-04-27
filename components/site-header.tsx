@@ -9,49 +9,45 @@ export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="bg-charcoal/95 backdrop-blur-sm border-b border-warm-yellow/30 animate-slide-up">
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold text-white hover:text-warm-yellow transition-colors duration-300">
+        <Link href="/" className="text-xl font-bold text-black hover:text-gray-600 transition-colors duration-300">
           Build & Rank
         </Link>
         <div className="flex items-center gap-8">
           <nav className="hidden md:flex space-x-8">
             <Link
               href="/"
-              className="text-gray-300 hover:text-warm-yellow transition-colors duration-300 relative group"
+              className="text-gray-600 hover:text-black transition-colors duration-300"
             >
               Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-warm-yellow transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
               href="/experience"
-              className="text-gray-300 hover:text-warm-yellow transition-colors duration-300 relative group"
+              className="text-gray-600 hover:text-black transition-colors duration-300"
             >
               Experience
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-warm-yellow transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
               href="/projects"
-              className="text-gray-300 hover:text-warm-yellow transition-colors duration-300 relative group"
+              className="text-gray-600 hover:text-black transition-colors duration-300"
             >
               Projects
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-warm-yellow transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
               href="/contact"
-              className="text-gray-300 hover:text-warm-yellow transition-colors duration-300 relative group"
+              className="text-gray-600 hover:text-black transition-colors duration-300"
             >
               Contact
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-warm-yellow transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </nav>
           <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
-            <Button className="bg-warm-yellow hover:bg-warm-yellow/90 hover:shadow-lg text-black px-4 py-2 rounded-full font-medium hidden md:inline-flex transition-all duration-300 hover-lift">
-              Let's Connect
+            <Button className="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded font-medium hidden md:inline-flex transition-all duration-300">
+              Schedule Call
             </Button>
           </a>
           <button
-            className="md:hidden text-gray-300 hover:text-warm-yellow transition-colors duration-300"
+            className="md:hidden text-gray-600 hover:text-black transition-colors duration-300"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -61,39 +57,39 @@ export function SiteHeader() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-charcoal/98 backdrop-blur-sm border-t border-warm-yellow/30 animate-slide-up">
+        <div className="md:hidden bg-white border-t border-gray-200">
           <nav className="px-6 py-4 space-y-4">
             <Link
               href="/"
-              className="block text-gray-300 hover:text-warm-yellow py-2 transition-colors duration-300"
+              className="block text-gray-600 hover:text-black py-2 transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               href="/experience"
-              className="block text-gray-300 hover:text-warm-yellow py-2 transition-colors duration-300"
+              className="block text-gray-600 hover:text-black py-2 transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Experience
             </Link>
             <Link
               href="/projects"
-              className="block text-gray-300 hover:text-warm-yellow py-2 transition-colors duration-300"
+              className="block text-gray-600 hover:text-black py-2 transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Projects
             </Link>
             <Link
               href="/contact"
-              className="block text-gray-300 hover:text-warm-yellow py-2 transition-colors duration-300"
+              className="block text-gray-600 hover:text-black py-2 transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
             </Link>
             <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-warm-yellow hover:bg-warm-yellow/90 hover:shadow-lg text-black px-4 py-2 rounded-full font-medium w-full transition-all duration-300">
-                Let's Connect
+              <Button className="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded font-medium w-full transition-all duration-300">
+                Schedule Call
               </Button>
             </a>
           </nav>
