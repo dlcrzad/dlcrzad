@@ -9,9 +9,9 @@ export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold text-black hover:text-gray-600 transition-colors duration-300">
+    <header className="bg-white sticky top-0 z-40">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+        <Link href="/" className="text-lg font-bold text-black hover:opacity-70 transition-opacity">
           Build & Rank
         </Link>
         <div className="flex items-center gap-8">

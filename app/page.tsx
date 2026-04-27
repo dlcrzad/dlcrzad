@@ -1,247 +1,293 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight, Mail, Github, Linkedin } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
+import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { SiteHeader } from '@/components/site-header'
+import { SiteFooter } from '@/components/site-footer'
+import { ExternalLink, MapPin } from 'lucide-react'
 
 export default function HomePage() {
-  const [isVisible, setIsVisible] = useState(false)
+  const experiences = [
+    {
+      title: 'Web Designer & SEO Specialist',
+      company: 'Avos Inc',
+      location: 'Portland, Oregon',
+      year: '2026',
+    },
+    {
+      title: 'SEO & Digital Marketing Specialist',
+      company: 'Freelance',
+      location: 'Remote',
+      year: '2024',
+    },
+  ]
 
-  useEffect(() => {
-    setIsVisible(true)
+  const techStack = {
+    frontend: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Tailwind CSS'],
+    backend: ['Node.js', 'Python', 'PHP', 'PostgreSQL', 'MongoDB'],
+    devops: ['AWS', 'Docker', 'GitHub Actions'],
+  }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate")
-          }
-        })
-      },
-      { threshold: 0.1 },
-    )
+  const projects = [
+    {
+      title: 'Avos Inc',
+      description: 'Corporate website with portfolio showcase',
+    },
+    {
+      title: 'Lemon Drop Campers',
+      description: 'E-commerce platform for RV rentals',
+    },
+    {
+      title: 'Rays Ukulele',
+      description: 'Musical instrument e-commerce store',
+    },
+    {
+      title: 'Western Sport Floors',
+      description: 'Sports facility flooring services website',
+    },
+  ]
 
-    const elements = document.querySelectorAll(".fade-in-up, .fade-in-left, .fade-in-right, .scale-in")
-    elements.forEach((el) => observer.observe(el))
+  const certifications = [
+    { title: 'SEO Certification', issuer: 'Google' },
+    { title: 'WordPress Developer', issuer: 'Udemy' },
+    { title: 'Digital Marketing', issuer: 'HubSpot' },
+  ]
 
-    return () => observer.disconnect()
-  }, [])
+  const recommendations = [
+    {
+      quote: 'Professional, reliable, and always delivers quality work on time.',
+      author: 'John Doe',
+      title: 'Marketing Director',
+    },
+    {
+      quote: 'Excellent web developer with strong SEO knowledge and attention to detail.',
+      author: 'Jane Smith',
+      title: 'Business Owner',
+    },
+  ]
+
+  const galleries = [
+    '/images/avosinc.png',
+    '/images/goldenbiotechnologies.png',
+    '/images/mcweldingservicellc.png',
+    '/images/westernsportsfloor.png',
+    '/images/profile-transparent.png',
+  ]
 
   return (
     <div className="min-h-screen bg-white">
       <SiteHeader />
 
-      {/* Hero Section */}
-      <section className="py-32 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className={`space-y-8 ${isVisible ? "animate-slide-in-up" : "opacity-0"}`}>
-            {/* Profile Image */}
-            <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-300 shadow-sm">
-              <Image
-                src="/images/profile-transparent.png"
-                alt="Adeline Cruz - Web Developer & SEO Expert"
-                width={96}
-                height={96}
-                className="w-full h-full object-cover"
-                priority
-              />
-            </div>
+      <main className="max-w-7xl mx-auto px-6 py-16">
+        {/* Hero Section */}
+        <section className="mb-20 pb-20 border-b border-gray-200">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Left Column */}
+            <div className="lg:col-span-2">
+              {/* Profile */}
+              <div className="flex gap-6 mb-12">
+                <div className="w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/profile-transparent.png"
+                    alt="Profile"
+                    width={112}
+                    height={112}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h1 className="text-3xl font-bold text-black mb-1">Build & Rank</h1>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mb-3">
+                    <MapPin className="w-4 h-4" />
+                    <span>Remote, Worldwide</span>
+                  </div>
+                  <p className="text-gray-700 font-medium mb-4">Web Designer | SEO Specialist | Digital Marketer</p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <Badge className="bg-blue-100 text-blue-700 border-0">Web Development</Badge>
+                    <Badge className="bg-green-100 text-green-700 border-0">SEO Expert</Badge>
+                  </div>
+                </div>
+              </div>
 
-            {/* Main Content */}
-            <div className="space-y-6">
-              <h1 className="text-5xl font-bold text-black leading-tight">Hi, I'm Adeline</h1>
-              <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-                I help business owners build and maintain their online presence through web design, development, and SEO optimization. I solve technical problems and drive measurable results.
-              </p>
-
-              {/* Call to Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              {/* CTAs */}
+              <div className="flex flex-wrap gap-3 mb-12">
                 <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-black hover:bg-gray-800 text-white px-8 py-6 rounded font-medium text-base">
-                    Schedule a Call
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  <Button className="bg-black text-white hover:bg-gray-800">Schedule a Call</Button>
                 </a>
                 <a href="mailto:dlcrzad@gmail.com">
-                  <Button className="border border-gray-300 hover:bg-gray-50 text-black px-8 py-6 rounded font-medium text-base">
-                    Send Email
-                    <Mail className="ml-2 h-5 w-5" />
-                  </Button>
+                  <Button variant="outline" className="border-gray-300">Send Email</Button>
                 </a>
-              </div>
-
-              {/* Social Links */}
-              <div className="flex gap-4 pt-4">
-                <a href="https://github.com" className="text-gray-600 hover:text-black transition-colors">
-                  <Github className="h-6 w-6" />
-                </a>
-                <a href="https://linkedin.com" className="text-gray-600 hover:text-black transition-colors">
-                  <Linkedin className="h-6 w-6" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section className="py-20 px-6 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <div className="fade-in-up">
-            <h2 className="text-3xl font-bold text-black mb-12">Experience</h2>
-            <div className="space-y-8">
-              <div className="pb-8 border-b border-gray-200 last:border-b-0">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-xl font-semibold text-black">Web Designer & SEO Specialist</h3>
-                    <p className="text-gray-600">Avos Inc</p>
-                  </div>
-                  <span className="text-sm text-gray-500">2024 - Present</span>
-                </div>
-                <p className="text-gray-600 mt-2">Designed and updated corporate website with focus on usability and SEO optimization. Improved search visibility and user experience across all devices.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects Section */}
-      <section className="py-20 px-6 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <div className="fade-in-up">
-            <h2 className="text-3xl font-bold text-black mb-12">Projects</h2>
-            <div className="space-y-8">
-              {[
-                {
-                  title: "Avos Inc",
-                  description: "Corporate website with portfolio showcase and SEO optimization for premium engineering company.",
-                  tags: ["Web Development", "SEO", "Portfolio"],
-                },
-                {
-                  title: "Lemon Drop Campers",
-                  description: "Travel affiliate website with comprehensive guides, itineraries, and SEO-optimized content.",
-                  tags: ["SEO", "Content Strategy", "Affiliate"],
-                },
-                {
-                  title: "Ray's Ukulele Hawaii",
-                  description: "E-commerce website for ukulele shop with product catalog and music education resources.",
-                  tags: ["E-commerce", "Product Catalog", "SEO"],
-                },
-              ].map((project, index) => (
-                <div key={index} className="pb-8 border-b border-gray-200 last:border-b-0">
-                  <h3 className="text-xl font-semibold text-black">{project.title}</h3>
-                  <p className="text-gray-600 mt-2">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {project.tags.map((tag, i) => (
-                      <Badge key={i} className="bg-gray-100 text-gray-700 hover:bg-gray-200">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="text-center mt-12">
-            <Link href="/projects">
-              <Button className="bg-black hover:bg-gray-800 text-white px-8 py-3 rounded font-medium">
-                View All Projects
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Section */}
-      <section className="py-20 px-6 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <div className="fade-in-up">
-            <h2 className="text-3xl font-bold text-black mb-12">Tech Stack</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-lg font-semibold text-black mb-4">Frontend</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS"].map((tech, i) => (
-                    <Badge key={i} className="bg-gray-100 text-gray-700">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-black mb-4">Tools & Services</h3>
-                <div className="flex flex-wrap gap-2">
-                  {["WordPress", "Vercel", "Git", "SEO Tools", "Google Analytics", "Figma"].map((tech, i) => (
-                    <Badge key={i} className="bg-gray-100 text-gray-700">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Section */}
-      <section className="py-20 px-6 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <div className="fade-in-up">
-            <h2 className="text-3xl font-bold text-black mb-12">Latest Articles</h2>
-            <div className="space-y-8">
-              {[
-                {
-                  title: "SEO Strategies for 2024",
-                  excerpt: "Explore the latest SEO best practices and strategies to improve your website's search visibility.",
-                  date: "2024",
-                },
-                {
-                  title: "10 Ways to Speed Up WordPress",
-                  excerpt: "Essential tips to optimize your WordPress site performance and improve user experience.",
-                  date: "2024",
-                },
-              ].map((article, index) => (
-                <Link href="/blog" key={index}>
-                  <div className="pb-8 border-b border-gray-200 last:border-b-0 hover:bg-gray-50 -mx-4 px-4 py-4 rounded cursor-pointer transition-colors">
-                    <h3 className="text-lg font-semibold text-black">{article.title}</h3>
-                    <p className="text-gray-600 mt-2">{article.excerpt}</p>
-                    <span className="text-sm text-gray-500 mt-4 block">{article.date}</span>
-                  </div>
+                <Link href="/blog">
+                  <Button variant="outline" className="border-gray-300">Read my blog</Button>
                 </Link>
-              ))}
+              </div>
+
+              {/* About Section */}
+              <section className="mb-16 pb-16 border-b border-gray-200">
+                <h2 className="text-2xl font-bold text-black mb-4">About</h2>
+                <div className="text-gray-700 space-y-4 text-sm leading-relaxed">
+                  <p>
+                    I&apos;m a web designer and SEO specialist with expertise in building modern web applications,
+                    optimizing for search engines, and creating digital marketing strategies. I work with businesses
+                    to improve their online presence and drive meaningful results.
+                  </p>
+                  <p>
+                    I&apos;ve helped startups and small businesses grow their digital footprint through strategic
+                    SEO implementation, website design, and content optimization. I&apos;m passionate about sharing
+                    knowledge and staying current with industry trends.
+                  </p>
+                  <p>
+                    My focus is on creating user-friendly websites that perform well in search results and convert
+                    visitors into customers. I combine technical expertise with creative design to deliver
+                    comprehensive digital solutions.
+                  </p>
+                </div>
+              </section>
+
+              {/* Tech Stack */}
+              <section className="mb-16 pb-16 border-b border-gray-200">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-black">Tech Stack</h2>
+                  <Link href="/tech-stack" className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1">
+                    View All <ExternalLink className="w-3 h-3" />
+                  </Link>
+                </div>
+
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="font-bold text-black mb-3 text-sm">Frontend</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {techStack.frontend.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="bg-gray-100 text-gray-700 border-0">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold text-black mb-3 text-sm">Backend</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {techStack.backend.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="bg-gray-100 text-gray-700 border-0">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold text-black mb-3 text-sm">DevOps & Cloud</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {techStack.devops.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="bg-gray-100 text-gray-700 border-0">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Recent Projects */}
+              <section className="mb-16 pb-16 border-b border-gray-200">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-black">Recent Projects</h2>
+                  <Link href="/projects" className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1">
+                    View All <ExternalLink className="w-3 h-3" />
+                  </Link>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  {projects.map((project, index) => (
+                    <div key={index} className="border border-gray-200 rounded p-6 hover:border-gray-400 hover:shadow-sm transition-all">
+                      <h3 className="font-bold text-black mb-2 text-sm hover:text-blue-600 transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-600 text-xs">{project.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Recent Certifications */}
+              <section className="mb-16">
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-black">Recent Certifications</h2>
+                  <Link href="/certifications" className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1">
+                    View All <ExternalLink className="w-3 h-3" />
+                  </Link>
+                </div>
+
+                <div className="space-y-4">
+                  {certifications.map((cert, index) => (
+                    <div key={index} className="py-3 border-b border-gray-200 last:border-b-0">
+                      <p className="font-semibold text-black text-sm">{cert.title}</p>
+                      <p className="text-gray-600 text-xs">{cert.issuer}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Gallery */}
+              <section>
+                <h2 className="text-2xl font-bold text-black mb-6">Gallery</h2>
+                <div className="grid grid-cols-5 gap-4">
+                  {galleries.map((img, index) => (
+                    <div key={index} className="aspect-square rounded overflow-hidden bg-gray-100">
+                      <Image
+                        src={img}
+                        alt={`Gallery ${index + 1}`}
+                        width={150}
+                        height={150}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            {/* Right Column */}
+            <div className="lg:col-span-1">
+              {/* Experience */}
+              <section className="mb-12 sticky top-20">
+                <h2 className="text-xl font-bold text-black mb-6">Experience</h2>
+                <div className="space-y-6">
+                  {experiences.map((exp, index) => (
+                    <div key={index}>
+                      <div className="flex items-start justify-between mb-1">
+                        <h3 className="font-bold text-black text-xs">{exp.title}</h3>
+                        <span className="text-gray-500 text-xs whitespace-nowrap ml-2">{exp.year}</span>
+                      </div>
+                      <p className="text-gray-600 text-xs font-medium">{exp.company}</p>
+                      <p className="text-gray-500 text-xs">{exp.location}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Recommendations */}
+              <section className="border-t pt-12">
+                <h2 className="text-xl font-bold text-black mb-6">Recommendations</h2>
+                <div className="space-y-8">
+                  {recommendations.map((rec, index) => (
+                    <div key={index} className="border-b pb-8 last:border-b-0">
+                      <blockquote className="text-gray-700 text-xs italic mb-3 leading-relaxed">
+                        "{rec.quote}"
+                      </blockquote>
+                      <p className="font-semibold text-black text-xs">{rec.author}</p>
+                      <p className="text-gray-600 text-xs">{rec.title}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-6 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto text-center fade-in-up">
-          <h2 className="text-3xl font-bold text-black mb-6">Ready to get started?</h2>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and how I can help you build and grow your online presence.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-black hover:bg-gray-800 text-white px-8 py-6 rounded font-medium text-base">
-                Schedule a Call
-              </Button>
-            </a>
-            <a href="mailto:dlcrzad@gmail.com">
-              <Button className="border border-gray-300 hover:bg-gray-50 text-black px-8 py-6 rounded font-medium text-base">
-                Send Email
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <SiteFooter />
     </div>
