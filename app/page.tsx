@@ -2,188 +2,92 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { SiteHeader } from '@/components/site-header'
-import { SiteFooter } from '@/components/site-footer'
-import { ExternalLink, MapPin } from 'lucide-react'
+import { ArrowUpRight, BriefcaseBusiness, Code2, FileText, FolderKanban, Github, Globe2, Menu, MessageCircle, Monitor, Moon, PanelsTopLeft, Sparkles, Users, X } from 'lucide-react'
+import { useState } from 'react'
+
+const nav = [
+  { label: 'About', href: '#about', icon: Globe2 },
+  { label: 'Writing', href: '#writing', icon: FileText },
+  { label: 'Projects', href: '#projects', icon: FolderKanban },
+  { label: 'Experience', href: '#experience', icon: BriefcaseBusiness },
+  { label: 'Contact', href: '#contact', icon: MessageCircle },
+]
+
+const posts = [
+  ['How I build websites that get found', 'A practical look at the design and SEO decisions behind a durable website.', 'Aug 2026'],
+  ['The quiet power of a clear content system', 'Why good structure makes every page easier to write, ship, and grow.', 'Jul 2026'],
+  ['Designing for the people behind the metric', 'A reminder that analytics are only useful when they lead to better experiences.', 'Jun 2026'],
+]
+
+const projects = [
+  { name: 'Avos Inc', type: 'Brand site / SEO', description: 'A clear, conversion-minded home for a growing digital studio.', color: 'project-blue' },
+  { name: 'Lemon Drop Campers', type: 'Travel / Editorial', description: 'A warm travel resource built for discovery and organic search.', color: 'project-orange' },
+  { name: 'Dela Cruz Studio', type: 'Portfolio / Identity', description: 'A living notebook for experiments in web design and content.', color: 'project-lilac' },
+]
+
+const experience = [
+  ['2026 — now', 'Web Designer & SEO Specialist', 'Avos Inc'],
+  ['2024 — 2026', 'Independent Web Designer', 'Freelance'],
+  ['2022 — 2024', 'Content & Search Strategist', 'Remote teams'],
+]
+
+const stack = ['WordPress', 'Webflow', 'Figma', 'SEO', 'Google Analytics', 'HTML / CSS', 'Content strategy', 'Email marketing']
 
 export default function HomePage() {
+  const [mobileOpen, setMobileOpen] = useState(false)
   return (
-    <div className="min-h-screen bg-white">
-      <SiteHeader />
-
-      <main className="max-w-6xl mx-auto px-4 py-12">
-        {/* Bento Grid Container */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-max">
-
-          {/* Profile Card - Col 1, Row span 2 */}
-          <div className="md:col-span-1 md:row-span-2 border border-gray-200 rounded-lg p-6 space-y-4">
-            <div className="aspect-square rounded-lg overflow-hidden bg-gray-100">
-              <Image
-                src="/images/profile-transparent.png"
-                alt="Adeline Dela Cruz"
-                width={200}
-                height={200}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-black">Adeline Dela Cruz</h1>
-              <div className="flex items-center gap-2 text-gray-600 text-xs mt-2">
-                <MapPin className="w-3 h-3" />
-                <span>Remote, Worldwide</span>
-              </div>
-            </div>
-          </div>
-
-          {/* About Card - Col 3, Row 1 */}
-          <div className="md:col-span-3 border border-gray-200 rounded-lg p-6 space-y-3">
-            <h2 className="text-lg font-bold text-black">About</h2>
-            <p className="text-xs text-gray-700 leading-relaxed">
-              I&apos;m a web designer and SEO specialist focused on building fast, user-friendly websites and optimizing for search engines. I help businesses grow their online presence through strategic design and marketing.
-            </p>
-            <p className="text-xs text-gray-700 leading-relaxed">
-              Experienced in WordPress development, technical SEO, and digital marketing strategies. I work with startups and businesses to create solutions that drive measurable results.
-            </p>
-          </div>
-
-          {/* CTA Card - Col 3, Row 2 */}
-          <div className="md:col-span-3 border border-gray-200 rounded-lg p-6 space-y-2">
-            <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer" className="block">
-              <Button className="bg-black hover:bg-gray-800 text-white w-full text-xs h-8">Schedule a Call</Button>
-            </a>
-            <a href="mailto:dlcrzad@gmail.com" className="block">
-              <Button variant="outline" className="border-gray-300 w-full text-xs h-8">Send Email</Button>
-            </a>
-            <Link href="/blog" className="block">
-              <Button variant="outline" className="border-gray-300 w-full text-xs h-8">Read my blog</Button>
-            </Link>
-          </div>
-
-          {/* Tech Stack - Col 2, Row 3 */}
-          <div className="md:col-span-2 border border-gray-200 rounded-lg p-6 space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold text-black">Tech Stack</h2>
-              <Link href="/tech-stack" className="text-xs text-gray-600 hover:text-black flex items-center gap-1">
-                View All <ExternalLink className="w-3 h-3" />
-              </Link>
-            </div>
-            <div className="space-y-2">
-              <div>
-                <h3 className="text-xs font-semibold text-black mb-1.5">Frontend</h3>
-                <div className="flex flex-wrap gap-1">
-                  {['React', 'Next.js', 'Tailwind CSS'].map(tech => (
-                    <span key={tech} className="px-2 py-1 text-xs rounded bg-gray-50 text-gray-700 border border-gray-200">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xs font-semibold text-black mb-1.5">Backend</h3>
-                <div className="flex flex-wrap gap-1">
-                  {['PHP', 'Node.js', 'Python'].map(tech => (
-                    <span key={tech} className="px-2 py-1 text-xs rounded bg-gray-50 text-gray-700 border border-gray-200">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Projects - Col 2, Row 3 */}
-          <div className="md:col-span-2 border border-gray-200 rounded-lg p-6 space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold text-black">Recent Projects</h2>
-              <Link href="/projects" className="text-xs text-gray-600 hover:text-black flex items-center gap-1">
-                View All <ExternalLink className="w-3 h-3" />
-              </Link>
-            </div>
-            <div className="space-y-2">
-              {[
-                { title: 'Avos Inc', desc: 'Corporate website with portfolio' },
-                { title: 'Lemon Drop Campers', desc: 'Travel affiliate website' }
-              ].map(proj => (
-                <div key={proj.title} className="py-2 border-b border-gray-100 last:border-b-0">
-                  <p className="text-xs font-semibold text-black">{proj.title}</p>
-                  <p className="text-xs text-gray-600">{proj.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Experience Timeline - Col 1, Row span 3 */}
-          <div className="md:col-span-1 md:row-span-3 border border-gray-200 rounded-lg p-6 space-y-4">
-            <h2 className="text-lg font-bold text-black">Experience</h2>
-            <div className="space-y-3">
-              {[
-                { title: 'Web Designer & SEO', company: 'Avos Inc', year: '2026' },
-                { title: 'SEO Specialist', company: 'Freelance', year: '2024' },
-              ].map((exp, i) => (
-                <div key={i} className="relative pl-5">
-                  <div className="absolute left-0 top-1.5 w-2.5 h-2.5 rounded-full border-2 border-gray-400 bg-white"></div>
-                  <h3 className="text-xs font-semibold text-black">{exp.title}</h3>
-                  <p className="text-xs text-gray-600">{exp.company}</p>
-                  <p className="text-[10px] font-mono text-gray-500">{exp.year}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Certifications - Col 2, Row 4 */}
-          <div className="md:col-span-2 border border-gray-200 rounded-lg p-6 space-y-3">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold text-black">Certifications</h2>
-              <Link href="/certifications" className="text-xs text-gray-600 hover:text-black flex items-center gap-1">
-                View All <ExternalLink className="w-3 h-3" />
-              </Link>
-            </div>
-            <div className="space-y-2">
-              {[
-                { title: 'SEO Certification', issuer: 'Google' },
-                { title: 'WordPress Developer', issuer: 'Udemy' }
-              ].map(cert => (
-                <div key={cert.title} className="py-2 border-b border-gray-100 last:border-b-0">
-                  <p className="text-xs font-semibold text-black">{cert.title}</p>
-                  <p className="text-xs text-gray-600">{cert.issuer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Recommendations - Col 1, Row 4 */}
-          <div className="md:col-span-1 border border-gray-200 rounded-lg p-6 space-y-3">
-            <h2 className="text-lg font-bold text-black">Recommendations</h2>
-            <div className="space-y-3">
-              {[
-                { quote: 'Professional and reliable.', author: 'John Doe' },
-                { quote: 'Excellent SEO knowledge.', author: 'Jane Smith' }
-              ].map((rec, i) => (
-                <div key={i} className="py-2 border-b border-gray-100 last:border-b-0">
-                  <p className="text-xs italic text-gray-700">"{rec.quote}"</p>
-                  <p className="text-xs font-semibold text-black mt-1">{rec.author}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Articles - Col 2, Row 4 */}
-          <div className="md:col-span-2 border border-gray-200 rounded-lg p-6 space-y-3">
-            <h2 className="text-lg font-bold text-black">Recent Articles</h2>
-            <div className="space-y-2">
-              {['SEO Strategies for 2024', '10 Ways to Speed Up WordPress'].map(article => (
-                <Link key={article} href="/blog" className="block py-2 border-b border-gray-100 last:border-b-0 hover:text-blue-600">
-                  <p className="text-xs font-semibold text-black">{article}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-
+    <div className="portfolio-shell">
+      <aside className="site-sidebar">
+        <Link href="#about" className="brand-mark">Adeline Dela Cruz</Link>
+        <p className="brand-caption">Web designer & search strategist</p>
+        <nav className="sidebar-nav" aria-label="Main navigation">
+          {nav.map(({ label, href, icon: Icon }) => <a key={href} href={href}><Icon />{label}</a>)}
+        </nav>
+        <div className="sidebar-rule" />
+        <div className="sidebar-links">
+          <a href="mailto:dlcrzad@gmail.com">Email <ArrowUpRight /></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
+          <a href="https://github.com" target="_blank" rel="noreferrer">GitHub <ArrowUpRight /></a>
         </div>
-      </main>
+        <div className="sidebar-bottom">
+          <span className="status-dot" /> Available for select projects
+          <span className="copyright">© 2026 / Isabela, PH</span>
+        </div>
+      </aside>
 
-      <SiteFooter />
+      <header className="mobile-header">
+        <Link href="#about" className="brand-mark">Adeline / DC</Link>
+        <button className="menu-button" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? 'Close menu' : 'Open menu'}>{mobileOpen ? <X /> : <Menu />}</button>
+        {mobileOpen && <nav className="mobile-nav">{nav.map(({ label, href }) => <a key={href} href={href} onClick={() => setMobileOpen(false)}>{label}</a>)}</nav>}
+      </header>
+
+      <main className="portfolio-main">
+        <section id="about" className="hero-section section-block">
+          <div className="hero-copy">
+            <p className="eyebrow">01 / Hello there</p>
+            <h1>Websites with<br /><em>something to say.</em></h1>
+            <p className="hero-intro">I&apos;m Adeline — a web designer and SEO specialist helping thoughtful businesses become easier to find, understand, and remember.</p>
+            <div className="hero-actions"><a className="text-link" href="mailto:dlcrzad@gmail.com">Let&apos;s work together <ArrowUpRight /></a><a className="text-link muted-link" href="#writing">Read the notes <ArrowUpRight /></a></div>
+          </div>
+          <div className="portrait-frame"><Image src="/images/profile-transparent.png" alt="Portrait of Adeline Dela Cruz" fill sizes="(max-width: 768px) 80vw, 320px" className="portrait" priority /></div>
+          <div className="hero-note">A small independent practice<br />for a more considered web.</div>
+        </section>
+
+        <section className="stats-row" aria-label="Career highlights"><div><strong>06+</strong><span>years creating</span></div><div><strong>32</strong><span>sites shipped</span></div><div><strong>∞</strong><span>things to learn</span></div></section>
+
+        <section id="writing" className="section-block content-section"><SectionHeading number="02" title="Writing" link="View all notes" href="/blog" /><div className="post-list">{posts.map(([title, desc, date]) => <Link className="post-row" href="/blog" key={title}><div><h3>{title}</h3><p>{desc}</p></div><time>{date}</time><ArrowUpRight /></Link>)}</div></section>
+
+        <section id="projects" className="section-block content-section"><SectionHeading number="03" title="Selected projects" link="View archive" href="/projects" /><div className="project-grid">{projects.map((project, i) => <article className={`project-card ${project.color}`} key={project.name}><div className="project-art"><span>0{i + 1}</span><PanelsTopLeft /></div><div className="project-meta"><p>{project.type}</p><h3>{project.name}</h3><span>{project.description}</span></div><ArrowUpRight className="project-arrow" /></article>)}</div></section>
+
+        <section id="experience" className="section-block content-section"><SectionHeading number="04" title="Experience" link="My stack" href="#stack" /><div className="experience-list">{experience.map(([year, title, company]) => <div className="experience-row" key={title}><time>{year}</time><h3>{title}</h3><p>{company}</p></div>)}</div><div id="stack" className="stack-wrap"><p className="label">Tools I use</p><div className="stack-list">{stack.map(item => <span key={item}>{item}</span>)}</div></div></section>
+
+        <section className="section-block content-section split-section"><div><SectionHeading number="05" title="Kind words" link="More recommendations" href="#contact" /><blockquote>“Adeline brings a rare mix of taste, patience, and practical thinking. The work always feels like it belongs.”<cite>— A former collaborator</cite></blockquote></div><div className="principles"><p className="label">The approach</p><p>Good work starts with listening. Then comes the structure, the details, and the care to make it last.</p></div></section>
+
+        <section id="contact" className="contact-section"><Sparkles /><p className="eyebrow">06 / Have a good one</p><h2>Have a project<br /><em>in mind?</em></h2><a className="contact-email" href="mailto:dlcrzad@gmail.com">dlcrzad@gmail.com <ArrowUpRight /></a></section>
+        <footer className="site-footer"><span>Adeline Dela Cruz</span><span>Built with care / 2026</span><span><Github /> <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></span></footer>
+      </main>
     </div>
   )
 }
+
+function SectionHeading({ number, title, link, href }: { number: string; title: string; link: string; href: string }) { return <div className="section-heading"><div><span>{number}</span><h2>{title}</h2></div><a href={href}>{link} <ArrowUpRight /></a></div> }
