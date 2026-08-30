@@ -2,27 +2,49 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, BriefcaseBusiness, Code2, FileText, FolderKanban, Github, Globe2, Menu, MessageCircle, Monitor, Moon, PanelsTopLeft, Sparkles, Users, X } from 'lucide-react'
-import { useState } from 'react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 const nav = [
-  { label: 'About', href: '#about', icon: Globe2 },
-  { label: 'Writing', href: '#writing', icon: FileText },
-  { label: 'Projects', href: '#projects', icon: FolderKanban },
-  { label: 'Experience', href: '#experience', icon: BriefcaseBusiness },
-  { label: 'Contact', href: '#contact', icon: MessageCircle },
-]
-
-const posts = [
-  ['How I build websites that get found', 'A practical look at the design and SEO decisions behind a durable website.', 'Aug 2026'],
-  ['The quiet power of a clear content system', 'Why good structure makes every page easier to write, ship, and grow.', 'Jul 2026'],
-  ['Designing for the people behind the metric', 'A reminder that analytics are only useful when they lead to better experiences.', 'Jun 2026'],
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 const projects = [
-  { name: 'Avos Inc', type: 'Brand site / SEO', description: 'A clear, conversion-minded home for a growing digital studio.', color: 'project-blue' },
-  { name: 'Lemon Drop Campers', type: 'Travel / Editorial', description: 'A warm travel resource built for discovery and organic search.', color: 'project-orange' },
-  { name: 'Dela Cruz Studio', type: 'Portfolio / Identity', description: 'A living notebook for experiments in web design and content.', color: 'project-lilac' },
+  {
+    id: 'lemon-drop',
+    name: 'Lemon Drop Campers',
+    type: 'Campervan Website / SEO & Web Design',
+    location: 'Hawaii, United States',
+    role: 'Web Designer & SEO Specialist',
+    dateRange: 'August 2025 – August 2026',
+    description: 'Managed and optimized a WordPress-based travel and campervan affiliate website, developing a comprehensive SEO strategy and redesigning the site for improved mobile experience and performance.',
+    bullets: [
+      'Managed and optimized a WordPress-based travel and campervan affiliate website, ensuring performance and usability.',
+      'Developed and executed SEO-driven content strategy, including campground guides, itineraries, and evergreen travel resources.',
+      'Implemented on-page and technical SEO improvements, including internal linking, indexing fixes, and sitemap updates.',
+      'Tracked and optimized affiliate link performance using UTM parameters and Google Analytics 4 to support conversions.',
+      'Re-designed the website into a more unique and mobile friendly website.',
+    ],
+    skills: ['WordPress', 'SEO', 'Content Strategy', 'Google Analytics', 'Web Design', 'Mobile Design', 'Performance Optimization'],
+    imageUrl: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Lemon%20Drop%20Campers%20Project%20of%20Adeline.png-7XIztdKTMevegWe5amn3kfe8AdkUwQ.jpeg',
+    color: 'project-orange',
+  },
+  {
+    id: 'avos-inc',
+    name: 'Avos Inc',
+    type: 'Brand site / SEO',
+    description: 'A clear, conversion-minded home for a growing digital studio.',
+    color: 'project-blue',
+  },
+  {
+    id: 'dela-cruz',
+    name: 'Dela Cruz Studio',
+    type: 'Portfolio / Identity',
+    description: 'A living notebook for experiments in web design and content.',
+    color: 'project-lilac',
+  },
 ]
 
 const experience = [
@@ -30,18 +52,30 @@ const experience = [
   ['2024 — 2026', 'Independent Web Designer', 'Freelance'],
   ['2022 — 2024', 'Content & Search Strategist', 'Remote teams'],
 ]
-
 const stack = ['WordPress', 'Webflow', 'Figma', 'SEO', 'Google Analytics', 'HTML / CSS', 'Content strategy', 'Email marketing']
+
+const posts = [
+  ['How I build websites that get found', 'A practical look at the design and SEO decisions behind a durable website.', 'Aug 2026'],
+  ['The quiet power of a clear content system', 'Why good structure makes every page easier to write, ship, and grow.', 'Jul 2026'],
+  ['Designing for the people behind the metric', 'A reminder that analytics are only useful when they lead to better experiences.', 'Jun 2026'],
+]
 
 export default function HomePage() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeProject, setActiveProject] = useState<(typeof projects)[number] | null>(null)
+
+  useEffect(() => {
+    document.body.style.overflow = activeProject ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [activeProject])
+
   return (
     <div className="portfolio-shell">
       <aside className="site-sidebar">
         <Link href="#about" className="brand-mark">Adeline Dela Cruz</Link>
         <p className="brand-caption">Web designer & search strategist</p>
         <nav className="sidebar-nav" aria-label="Main navigation">
-          {nav.map(({ label, href, icon: Icon }) => <a key={href} href={href}><Icon />{label}</a>)}
+          {nav.map(({ label, href }) => <a key={href} href={href}>{label}</a>)}
         </nav>
         <div className="sidebar-rule" />
         <div className="sidebar-links">
@@ -75,15 +109,16 @@ export default function HomePage() {
 
         <section className="stats-row" aria-label="Career highlights"><div><strong>06+</strong><span>years creating</span></div><div><strong>32</strong><span>sites shipped</span></div><div><strong>∞</strong><span>things to learn</span></div></section>
 
-        <section id="writing" className="section-block content-section"><SectionHeading number="02" title="Writing" link="View all notes" href="/blog" /><div className="post-list">{posts.map(([title, desc, date]) => <Link className="post-row" href="/blog" key={title}><div><h3>{title}</h3><p>{desc}</p></div><time>{date}</time><ArrowUpRight /></Link>)}</div></section>
+        <section id="projects" className="section-block content-section"><SectionHeading number="02" title="Selected projects" link="Let&apos;s work" href="#contact" /><p className="section-intro">A few thoughtful websites, content systems, and search strategies built for real people and growing businesses.</p><div className="project-grid">{projects.map((project, i) => <button className={`project-card ${project.color}`} key={project.name} onClick={() => setActiveProject(project)} aria-label={`View ${project.name} project`}><div className="project-art"><span>0{i + 1}</span><ArrowUpRight /></div><div className="project-meta"><p>{project.type}</p><h3>{project.name}</h3><span>{project.description}</span></div></button>)}</div></section>
 
-        <section id="projects" className="section-block content-section"><SectionHeading number="03" title="Selected projects" link="View archive" href="/projects" /><div className="project-grid">{projects.map((project, i) => <article className={`project-card ${project.color}`} key={project.name}><div className="project-art"><span>0{i + 1}</span><PanelsTopLeft /></div><div className="project-meta"><p>{project.type}</p><h3>{project.name}</h3><span>{project.description}</span></div><ArrowUpRight className="project-arrow" /></article>)}</div></section>
+        <section id="writing" className="section-block content-section landing-notes"><SectionHeading number="03" title="Notes from the studio" link="Read all" href="/blog" /><div className="post-list">{posts.map(([title, desc, date]) => <Link className="post-row" href="/blog" key={title}><div><h3>{title}</h3><p>{desc}</p></div><time>{date}</time><ArrowUpRight /></Link>)}</div></section>
 
-        <section id="experience" className="section-block content-section"><SectionHeading number="04" title="Experience" link="My stack" href="#stack" /><div className="experience-list">{experience.map(([year, title, company]) => <div className="experience-row" key={title}><time>{year}</time><h3>{title}</h3><p>{company}</p></div>)}</div><div id="stack" className="stack-wrap"><p className="label">Tools I use</p><div className="stack-list">{stack.map(item => <span key={item}>{item}</span>)}</div></div></section>
+        <section id="experience" className="section-block content-section archive-section"><SectionHeading number="04" title="Experience" link="My stack" href="#stack" /><div className="experience-list">{experience.map(([year, title, company]) => <div className="experience-row" key={title}><time>{year}</time><h3>{title}</h3><p>{company}</p></div>)}</div><div id="stack" className="stack-wrap"><p className="label">Tools I use</p><div className="stack-list">{stack.map(item => <span key={item}>{item}</span>)}</div></div></section>
 
-        <section className="section-block content-section split-section"><div><SectionHeading number="05" title="Kind words" link="More recommendations" href="#contact" /><blockquote>“Adeline brings a rare mix of taste, patience, and practical thinking. The work always feels like it belongs.”<cite>— A former collaborator</cite></blockquote></div><div className="principles"><p className="label">The approach</p><p>Good work starts with listening. Then comes the structure, the details, and the care to make it last.</p></div></section>
+        <section className="section-block content-section split-section archive-section"><div><SectionHeading number="05" title="Kind words" link="More recommendations" href="#contact" /><blockquote>“Adeline brings a rare mix of taste, patience, and practical thinking. The work always feels like it belongs.”<cite>— A former collaborator</cite></blockquote></div><div className="principles"><p className="label">The approach</p><p>Good work starts with listening. Then comes the structure, the details, and the care to make it last.</p></div></section>
 
-        <section id="contact" className="contact-section"><Sparkles /><p className="eyebrow">06 / Have a good one</p><h2>Have a project<br /><em>in mind?</em></h2><a className="contact-email" href="mailto:dlcrzad@gmail.com">dlcrzad@gmail.com <ArrowUpRight /></a></section>
+        <section id="contact" className="contact-section"><p className="eyebrow">06 / Have a good one</p><h2>Have a project<br /><em>in mind?</em></h2><a className="contact-email" href="mailto:dlcrzad@gmail.com">dlcrzad@gmail.com <ArrowUpRight /></a></section>
+        {activeProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveProject(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close project details"><X /></button><div className="modal-copy"><p className="eyebrow">Project / {activeProject.type}</p><h2 id="project-modal-title">{activeProject.name}</h2>{activeProject.location && <div className="project-facts"><span>{activeProject.location}</span><span>{activeProject.role}</span><span>{activeProject.dateRange}</span></div>}<p className="modal-description">{activeProject.description}</p>{activeProject.bullets && <ul className="modal-bullets">{activeProject.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}</ul>}{activeProject.skills && <div className="modal-skills">{activeProject.skills.map(skill => <span key={skill}>{skill}</span>)}</div>}</div>{activeProject.imageUrl && <div className="project-gallery"><Image src={activeProject.imageUrl} alt={`${activeProject.name} website screenshots`} width={1400} height={3400} /></div>}</section></div>}
         <footer className="site-footer"><span>Adeline Dela Cruz</span><span>Built with care / 2026</span><span><Github /> <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></span></footer>
       </main>
     </div>
