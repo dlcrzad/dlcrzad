@@ -1,15 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { DM_Sans, IBM_Plex_Mono } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
 
-const inter = Inter({ subsets: ["latin"] })
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" })
+const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" })
 
 export const metadata: Metadata = {
-  title: "Adeline Dela Cruz | WordPress & SEO Specialist",
+  title: "Adeline Dela Cruz — Web design & search strategy",
   description:
-    "Personal portfolio of Adeline Dela Cruz, a WordPress & SEO Specialist and Web Designer based in Isabela, Philippines.",
+    "Adeline Dela Cruz is a web designer and SEO specialist creating thoughtful, discoverable websites.",
   generator: 'v0.dev',
   icons: {
     icon: "/images/profile-transparent.png",
@@ -23,17 +23,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        {/* Interactive Background Elements */}
-        <div className="interactive-bg">
-          <div className="bg-element bg-element-1"></div>
-          <div className="bg-element bg-element-2"></div>
-          <div className="bg-element bg-element-3"></div>
-        </div>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+    <html lang="en" className="bg-background">
+      <body className={`${dmSans.variable} ${plexMono.variable} ${dmSans.className}`}>
+        {children}
       </body>
     </html>
   )

@@ -114,33 +114,26 @@ export default function BlogPage() {
   )
 
   return (
-    <div className="min-h-screen bg-soft-black">
+    <div className="min-h-screen bg-white">
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1
-            className={`text-4xl md:text-6xl font-bold text-white mb-6 ${isVisible ? "animate-fade-in" : "opacity-0"}`}
-          >
-            Web Development &<span className="text-warm-yellow block">SEO Insights</span>
-          </h1>
-          <p
-            className={`text-xl text-gray-300 max-w-3xl mx-auto mb-8 ${isVisible ? "animate-fade-in animate-delay-200" : "opacity-0"}`}
-          >
-            Stay updated with the latest trends, tips, and strategies in web development and SEO. Learn from real-world
-            experiences and industry best practices.
+      <section className="py-16 px-6 border-b border-gray-200">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-4xl font-bold text-black mb-4">Blog</h1>
+          <p className="text-lg text-gray-600 max-w-2xl">
+            Stay updated with the latest trends, tips, and strategies in web development and SEO.
           </p>
 
           {/* Search Bar */}
-          <div className={`max-w-md mx-auto relative ${isVisible ? "animate-fade-in animate-delay-300" : "opacity-0"}`}>
+          <div className="mt-8 max-w-md relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <Input
               type="text"
               placeholder="Search articles..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 bg-charcoal border-warm-yellow/30 text-white placeholder-gray-400 focus:border-warm-yellow"
+              className="pl-10 bg-white border border-gray-300 text-black placeholder-gray-400"
             />
           </div>
         </div>
@@ -148,133 +141,117 @@ export default function BlogPage() {
 
       {/* Featured Post */}
       {filteredPosts.length > 0 && (
-        <section className="py-10 px-6">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold text-white mb-8 fade-in-up">Featured Article</h2>
-            <Card className="bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up group overflow-hidden">
+        <section className="py-16 px-6 border-b border-gray-200">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-bold text-black mb-8">Featured Article</h2>
+            <div className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow group">
               <div className="grid lg:grid-cols-2 gap-0">
                 <div className="relative h-64 lg:h-auto overflow-hidden">
                   <Image
                     src={filteredPosts[0].image || "/placeholder.svg"}
                     alt={filteredPosts[0].title}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-8 flex flex-col justify-center">
                   <div className="flex items-center gap-4 mb-4">
-                    <Badge variant="outline" className="border-warm-yellow/30 text-warm-yellow">
-                      {filteredPosts[0].category}
-                    </Badge>
-                    <div className="flex items-center gap-2 text-gray-400 text-sm">
+                    <Badge className="bg-blue-100 text-blue-700 border-0">{filteredPosts[0].category}</Badge>
+                    <div className="flex items-center gap-2 text-gray-600 text-sm">
                       <Calendar className="h-4 w-4" />
                       <span>{filteredPosts[0].date}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-400 text-sm">
+                    <div className="flex items-center gap-2 text-gray-600 text-sm">
                       <Clock className="h-4 w-4" />
                       <span>{filteredPosts[0].readTime}</span>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-warm-yellow transition-colors">
+                  <h3 className="text-2xl font-bold text-black mb-4">
                     {filteredPosts[0].title}
                   </h3>
-                  <p className="text-gray-300 mb-6 leading-relaxed">{filteredPosts[0].excerpt}</p>
+                  <p className="text-gray-600 mb-6 leading-relaxed">{filteredPosts[0].excerpt}</p>
                   <Link href={`/blog/${filteredPosts[0].slug}`}>
-                    <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black w-fit">
+                    <Button className="bg-black hover:bg-gray-800 text-white w-fit">
                       Read More
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                 </div>
               </div>
-            </Card>
+            </div>
           </div>
         </section>
       )}
 
       {/* Blog Posts Grid */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-bold text-white mb-8 fade-in-up">Latest Articles</h2>
+      <section className="py-16 px-6 border-b border-gray-200">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-black mb-8">Latest Articles</h2>
           {filteredPosts.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 gap-8">
               {filteredPosts.slice(1).map((post, index) => (
-                <Card
-                  key={index}
-                  className={`bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up animate-delay-${(index + 1) * 100} group overflow-hidden`}
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={post.image || "/placeholder.svg"}
-                      alt={post.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <Badge variant="outline" className="border-warm-yellow/30 text-warm-yellow bg-soft-black/80">
-                        {post.category}
-                      </Badge>
+                <Link key={index} href={`/blog/${post.slug}`}>
+                  <div className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition-shadow group cursor-pointer h-full">
+                    <div className="relative h-48 overflow-hidden">
+                      <Image
+                        src={post.image || "/placeholder.svg"}
+                        alt={post.title}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <Badge className="bg-blue-100 text-blue-700 border-0">{post.category}</Badge>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-4 mb-3 text-sm text-gray-600">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-4 w-4" />
+                          <span>{post.date}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="h-4 w-4" />
+                          <span>{post.readTime}</span>
+                        </div>
+                      </div>
+                      <h3 className="text-lg font-bold text-black mb-2 group-hover:text-blue-600 transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4">{post.excerpt}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {post.tags.slice(0, 3).map((tag, idx) => (
+                          <Badge key={idx} variant="secondary" className="bg-gray-100 text-gray-700 border-0 text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <CardHeader>
-                    <div className="flex items-center gap-4 mb-2 text-sm text-gray-400">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        <span>{post.date}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        <span>{post.readTime}</span>
-                      </div>
-                    </div>
-                    <CardTitle className="text-white group-hover:text-warm-yellow transition-colors">
-                      {post.title}
-                    </CardTitle>
-                    <CardDescription className="text-gray-300">{post.excerpt}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {post.tags.slice(0, 3).map((tag, idx) => (
-                        <Badge key={idx} variant="outline" className="border-warm-yellow/20 text-gray-400 text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <Link href={`/blog/${post.slug}`}>
-                      <Button
-                        variant="outline"
-                        className="border-warm-yellow/30 text-warm-yellow hover:bg-warm-yellow hover:text-black w-full transition-all duration-300 bg-transparent"
-                      >
-                        Read Article
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
+                </Link>
               ))}
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-400 text-lg">No articles found matching your search.</p>
+              <p className="text-gray-600 text-lg">No articles found matching your search.</p>
             </div>
           )}
         </div>
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-20 px-6 bg-charcoal">
-        <div className="max-w-4xl mx-auto text-center fade-in-up">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Stay Updated</h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Subscribe to get the latest articles, tips, and insights delivered directly to your inbox.
+      <section className="py-16 px-6 border-b border-gray-200">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-black mb-4">Stay Updated</h2>
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            Subscribe to get the latest articles delivered to your inbox.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <Input
               type="email"
               placeholder="Enter your email"
-              className="bg-soft-black border-warm-yellow/30 text-white placeholder-gray-400 focus:border-warm-yellow"
+              className="bg-white border border-gray-300 text-black placeholder-gray-400"
             />
-            <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-2 font-medium hover-lift">
+            <Button className="bg-black hover:bg-gray-800 text-white px-8 py-2 font-medium">
               Subscribe
             </Button>
           </div>

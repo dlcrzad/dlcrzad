@@ -1,319 +1,136 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import {
-  ArrowRight,
-  Mail,
-  Star,
-  ChevronDown,
-  ExternalLink,
-  Calendar,
-  Award,
-  Code,
-  Palette,
-  Search,
-  TrendingUp,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowUpRight, Github, Menu, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
+
+const nav = [
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+]
+
+const projects = [
+  {
+    id: 'lemon-drop',
+    name: 'Lemon Drop Campers',
+    type: 'Campervan Website / SEO & Web Design',
+    location: 'Hawaii, United States',
+    role: 'Web Designer & SEO Specialist',
+    dateRange: 'August 2025 – August 2026',
+    description: 'A brighter, more discoverable home for campervan adventures across Hawaii.',
+    website: 'https://lemondropcampers.com',
+    bullets: [
+      'Managed and optimized a WordPress-based travel and campervan affiliate website, ensuring performance and usability.',
+      'Developed and executed SEO-driven content strategy, including campground guides, itineraries, and evergreen travel resources.',
+      'Implemented on-page and technical SEO improvements, including internal linking, indexing fixes, and sitemap updates.',
+      'Tracked and optimized affiliate link performance using UTM parameters and Google Analytics 4 to support conversions.',
+      'Re-designed the website into a more unique and mobile friendly website.',
+    ],
+    skills: ['WordPress', 'Elementor', 'Neve', 'SEO', 'Content Strategy', 'Google Analytics', 'Web Design', 'Mobile Design', 'Performance Optimization'],
+    imageUrl: 'https://blobs.vusercontent.net/blob/Lemon%20Drop%20Campers%20Project%20of%20Adeline-yVkSpAwSt256OkHEFV82QegHoPoPqJ.pdf',
+    color: 'project-orange',
+  },
+  {
+    id: 'avos-inc',
+    name: 'Avos Inc',
+    type: 'Brand site / SEO',
+    description: 'A clear, conversion-minded home for a growing digital studio.',
+    color: 'project-blue',
+  },
+  {
+    id: 'dela-cruz',
+    name: 'Dela Cruz Studio',
+    type: 'Portfolio / Identity',
+    description: 'A living notebook for experiments in web design and content.',
+    color: 'project-lilac',
+  },
+]
+
+const experience = [
+  ['2026 — now', 'Web Designer & SEO Specialist', 'Avos Inc'],
+  ['2024 — 2026', 'Independent Web Designer', 'Freelance'],
+  ['2022 — 2024', 'Content & Search Strategist', 'Remote teams'],
+]
+const stack = ['WordPress', 'Webflow', 'Figma', 'SEO', 'Google Analytics', 'HTML / CSS', 'Content strategy', 'Email marketing']
+
+const posts = [
+  ['How I build websites that get found', 'A practical look at the design and SEO decisions behind a durable website.', 'Aug 2026'],
+  ['The quiet power of a clear content system', 'Why good structure makes every page easier to write, ship, and grow.', 'Jul 2026'],
+  ['Designing for the people behind the metric', 'A reminder that analytics are only useful when they lead to better experiences.', 'Jun 2026'],
+]
 
 export default function HomePage() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeProject, setActiveProject] = useState<(typeof projects)[number] | null>(null)
 
   useEffect(() => {
-    setIsVisible(true)
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate")
-          }
-        })
-      },
-      { threshold: 0.1 },
-    )
-
-    const elements = document.querySelectorAll(".fade-in-up, .fade-in-left, .fade-in-right, .scale-in")
-    elements.forEach((el) => observer.observe(el))
-
-    return () => observer.disconnect()
-  }, [])
+    document.body.style.overflow = activeProject ? 'hidden' : ''
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveProject(null)
+    }
+    if (activeProject) window.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [activeProject])
 
   return (
-    <div className="min-h-screen bg-soft-black">
-      <SiteHeader />
-
-      {/* Hero Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className={`space-y-8 ${isVisible ? "animate-slide-in-up" : "opacity-0"}`}>
-            {/* Profile Image */}
-            <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-warm-yellow shadow-2xl hover-lift glow-on-hover">
-              <Image
-                src="/images/profile-transparent.png"
-                alt="Adeline Cruz - Web Developer & SEO Expert"
-                width={128}
-                height={128}
-                className="w-full h-full object-cover"
-                priority
-              />
-            </div>
-
-            {/* Main Content */}
-            <div className="space-y-4">
-              <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight">Hi, I'm Adeline!</h1>
-              <h2 className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                I help business owners manage and update their websites and make web design revisions.
-                <br />
-                <br />
-                (And yes, I handle SEO & solve other tech related problems.)
-              </h2>
-              <p className="text-lg text-gray-400 pt-4">How can I help?</p>
-            </div>
-
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-3 rounded-full text-lg font-medium hover-lift glow-on-hover">
-                  Start Your Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </a>
-              <Link href="/projects">
-                <Button
-                  variant="outline"
-                  className="border-warm-yellow text-warm-yellow hover:bg-warm-yellow hover:text-black px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 bg-transparent"
-                >
-                  View My Work
-                </Button>
-              </Link>
-            </div>
-
-            {/* Stats */}
-            <div className="flex items-center justify-center gap-8 pt-8">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-warm-yellow">10+</div>
-                <div className="text-sm text-gray-400">Projects Completed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-warm-yellow">2+</div>
-                <div className="text-sm text-gray-400">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-warm-yellow">100%</div>
-                <div className="text-sm text-gray-400">Client Satisfaction</div>
-              </div>
-            </div>
-          </div>
+    <div className="portfolio-shell">
+      <aside className="site-sidebar">
+        <Link href="#about" className="brand-mark">Adeline Dela Cruz</Link>
+        <p className="brand-caption">Web designer & search strategist</p>
+        <nav className="sidebar-nav" aria-label="Main navigation">
+          {nav.map(({ label, href }) => <a key={href} href={href}>{label}</a>)}
+        </nav>
+        <div className="sidebar-rule" />
+        <div className="sidebar-links">
+          <a href="mailto:dlcrzad@gmail.com">Email <ArrowUpRight /></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
+          <a href="https://github.com" target="_blank" rel="noreferrer">GitHub <ArrowUpRight /></a>
         </div>
-      </section>
-
-      {/* About Me Section */}
-      <section className="py-20 px-6 bg-charcoal">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="fade-in-left">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">About Me</h2>
-              <p className="text-gray-300 mb-4 leading-relaxed">
-                I'm a passionate web designer and SEO specialist dedicated to helping business owners establish and grow their online presence. With over 2 years of experience, I combine technical expertise with creative problem-solving to deliver results.
-              </p>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                My approach focuses on understanding your business goals and creating tailored solutions that not only look great but also drive measurable results. Whether you need a new website, design improvements, or SEO optimization, I'm here to help.
-              </p>
-              <Link href="/experience">
-                <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-6 py-3 rounded-full font-medium hover-lift">
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-            <div className="fade-in-right">
-              <div className="grid grid-cols-2 gap-4">
-                <Card className="bg-soft-black border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
-                  <CardHeader>
-                    <Code className="h-8 w-8 text-warm-yellow mb-2" />
-                    <CardTitle className="text-white">Web Development</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-400 text-sm">Custom websites with WordPress, HTML & CSS</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-soft-black border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
-                  <CardHeader>
-                    <Search className="h-8 w-8 text-warm-yellow mb-2" />
-                    <CardTitle className="text-white">SEO Optimization</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-400 text-sm">Keyword research & on-page optimization</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-soft-black border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
-                  <CardHeader>
-                    <Palette className="h-8 w-8 text-warm-yellow mb-2" />
-                    <CardTitle className="text-white">Design</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-400 text-sm">Beautiful, user-friendly interfaces</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-soft-black border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift">
-                  <CardHeader>
-                    <TrendingUp className="h-8 w-8 text-warm-yellow mb-2" />
-                    <CardTitle className="text-white">Growth</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-400 text-sm">Strategies to increase your online visibility</p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
+        <div className="sidebar-bottom">
+          <span className="status-dot" /> Available for select projects
+          <span className="copyright">© 2026 / Isabela, PH</span>
         </div>
-      </section>
+      </aside>
 
-      {/* Featured Projects Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Featured Projects</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              A selection of recent projects that showcase my skills in web design, development, and SEO optimization.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Avos Inc",
-                description: "Corporate website for premium wrought iron engineering company with portfolio showcase and SEO optimization.",
-                image: "/images/avos-inc.webp",
-                tags: ["Web Development", "SEO", "Portfolio"],
-                link: "/projects",
-              },
-              {
-                title: "Lemon Drop Campers",
-                description:
-                  "Travel and campervan affiliate website with comprehensive SEO strategy, campground guides, and itinerary content.",
-                image: "/images/lemon-drop-campers.webp",
-                tags: ["SEO", "Content Strategy", "Affiliate"],
-                link: "/projects",
-              },
-              {
-                title: "Ray's Ukulele Hawaii",
-                description: "Ukulele shop website with product catalog, music education resources, and community engagement features.",
-                image: "/images/rays-ukulele.webp",
-                tags: ["E-commerce", "Product Catalog", "SEO"],
-                link: "/projects",
-              },
-            ].map((project, index) => (
-              <Card
-                key={index}
-                className={`bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift overflow-hidden fade-in-up animate-delay-${(index + 1) * 100}`}
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    fill
-                    className="object-cover hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-white text-lg">{project.title}</CardTitle>
-                  <CardDescription className="text-gray-400">{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, i) => (
-                      <Badge key={i} className="bg-warm-yellow/20 text-warm-yellow hover:bg-warm-yellow/30">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <Link href={project.link}>
-                    <Button className="w-full bg-warm-yellow hover:bg-warm-yellow/90 text-black font-medium">
-                      View Project
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          <div className="text-center mt-12 fade-in-up">
-            <Link href="/projects">
-              <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-3 rounded-full font-medium hover-lift glow-on-hover">
-                View All Projects
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <header className="mobile-header">
+        <Link href="#about" className="brand-mark">Adeline / DC</Link>
+        <button className="menu-button" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? 'Close menu' : 'Open menu'}>{mobileOpen ? <X /> : <Menu />}</button>
+        {mobileOpen && <nav className="mobile-nav">{nav.map(({ label, href }) => <a key={href} href={href} onClick={() => setMobileOpen(false)}>{label}</a>)}</nav>}
+      </header>
 
-      {/* What Clients Say Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Clients Say</h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Don't just take my word for it. Here's what my clients have to say about working with me.
-            </p>
+      <main className="portfolio-main">
+        <section id="about" className="hero-section section-block">
+          <div className="hero-copy">
+            <p className="eyebrow">01 / Hello there</p>
+            <h1>Websites with<br /><em>something to say.</em></h1>
+            <p className="hero-intro">I&apos;m Adeline — a web designer and SEO specialist helping thoughtful businesses become easier to find, understand, and remember.</p>
+            <div className="hero-actions"><a className="text-link" href="mailto:dlcrzad@gmail.com">Let&apos;s work together <ArrowUpRight /></a><a className="text-link muted-link" href="#projects">View the work <ArrowUpRight /></a></div>
           </div>
-          <div className="max-w-3xl mx-auto">
-            <Card className="bg-charcoal border-warm-yellow/20 hover:border-warm-yellow/50 transition-all duration-300 hover-lift fade-in-up">
-              <CardHeader>
-                <CardTitle className="text-white text-lg">
-                  <a href="https://prairiegiraffe.com" target="_blank" rel="noopener noreferrer" className="hover:text-warm-yellow transition-colors">
-                    Kellee Carroll
-                  </a>
-                </CardTitle>
-                <CardDescription className="text-gray-400">Founder, Prairie Giraffe</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 italic">
-                  "Adeline Dela Cruz is an outstanding Virtual Assistant who provided valuable support with web design, seo, administrative tasks, and email management. Her attention to detail, creativity, and organizational skills greatly enhanced my productivity. Adeline consistently delivered quality work and handled multiple responsibilities. I highly recommend her to anyone seeking a reliable and skilled VA. She is a true professional and will be a tremendous asset to any team."
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+          <div className="portrait-frame"><Image src="/images/profile-transparent.png" alt="Portrait of Adeline Dela Cruz" fill sizes="(max-width: 768px) 80vw, 320px" className="portrait" priority /></div>
+          <div className="hero-note">A small independent practice<br />for a more considered web.</div>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-6 bg-charcoal">
-        <div className="max-w-4xl mx-auto text-center fade-in-up">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Grow Your Business?</h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let's work together to create a powerful online presence that drives results. Schedule a free consultation
-            to discuss your project.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://calendly.com/dlcrzad/build-rank" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-warm-yellow hover:bg-warm-yellow/90 text-black px-8 py-4 rounded-full text-lg font-medium hover-lift glow-on-hover">
-                Schedule Free Consultation
-                <Calendar className="ml-2 h-5 w-5" />
-              </Button>
-            </a>
-            <Link href="/contact">
-              <Button
-                variant="outline"
-                className="border-warm-yellow text-warm-yellow hover:bg-warm-yellow hover:text-black px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 bg-transparent"
-              >
-                Send Message
-                <Mail className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+        <section className="stats-row" aria-label="Career highlights"><div><strong>06+</strong><span>years creating</span></div><div><strong>32</strong><span>sites shipped</span></div><div><strong>∞</strong><span>things to learn</span></div></section>
 
-      <SiteFooter />
+        <section id="projects" className="section-block content-section"><SectionHeading number="02" title="Selected projects" link="Let&apos;s work" href="#contact" /><p className="section-intro">A few thoughtful websites, content systems, and search strategies built for real people and growing businesses.</p><div className="project-grid">{projects.map((project, i) => <button className={`project-card ${project.color}`} key={project.name} onClick={() => setActiveProject(project)} aria-label={`View ${project.name} project`}><div className="project-art">{project.id === 'lemon-drop' ? <Image src="/images/lemon-drop-featured.png" alt="Lemon Drop Campers website homepage" fill sizes="(max-width: 800px) 100vw, 240px" /> : <><span>0{i + 1}</span><ArrowUpRight /></>}</div><div className="project-meta"><p>{project.type}</p><h3>{project.name}</h3><span>{project.description}</span></div></button>)}</div></section>
+
+        <section id="writing" className="section-block content-section landing-notes"><SectionHeading number="03" title="Notes from the studio" link="Read all" href="/blog" /><div className="post-list">{posts.map(([title, desc, date]) => <Link className="post-row" href="/blog" key={title}><div><h3>{title}</h3><p>{desc}</p></div><time>{date}</time><ArrowUpRight /></Link>)}</div></section>
+
+        <section id="experience" className="section-block content-section archive-section"><SectionHeading number="04" title="Experience" link="My stack" href="#stack" /><div className="experience-list">{experience.map(([year, title, company]) => <div className="experience-row" key={title}><time>{year}</time><h3>{title}</h3><p>{company}</p></div>)}</div><div id="stack" className="stack-wrap"><p className="label">Tools I use</p><div className="stack-list">{stack.map(item => <span key={item}>{item}</span>)}</div></div></section>
+
+        <section className="section-block content-section split-section archive-section"><div><SectionHeading number="05" title="Kind words" link="More recommendations" href="#contact" /><blockquote>“Adeline brings a rare mix of taste, patience, and practical thinking. The work always feels like it belongs.”<cite>— A former collaborator</cite></blockquote></div><div className="principles"><p className="label">The approach</p><p>Good work starts with listening. Then comes the structure, the details, and the care to make it last.</p></div></section>
+
+        <section id="contact" className="contact-section"><p className="eyebrow">06 / Have a good one</p><h2>Have a project<br /><em>in mind?</em></h2><a className="contact-email" href="mailto:dlcrzad@gmail.com">dlcrzad@gmail.com <ArrowUpRight /></a></section>
+        {activeProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveProject(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close project details"><X /></button><div className="modal-copy"><p className="eyebrow">Project / {activeProject.type}</p><h2 id="project-modal-title">{activeProject.name}</h2>{activeProject.location && <div className="project-facts"><span>{activeProject.location}</span><span>{activeProject.role}</span><span>{activeProject.dateRange}</span></div>}<p className="modal-description">{activeProject.description}</p>{activeProject.bullets && <div className="modal-bullets">{activeProject.bullets.map(bullet => <p key={bullet}>{bullet}</p>)}</div>}{activeProject.skills && <div className="modal-skills">{activeProject.skills.map(skill => <span key={skill}>{skill}</span>)}</div>}{activeProject.website && <a className="modal-website" href={activeProject.website} target="_blank" rel="noreferrer">Visit lemondropcampers.com <ArrowUpRight /></a>}</div>{activeProject.imageUrl && <div className="project-gallery"><iframe src={activeProject.imageUrl} title={`${activeProject.name} project preview`} /></div>}</section></div>}
+        <footer className="site-footer"><span>Adeline Dela Cruz</span><span>Built with care / 2026</span><span><Github /> <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></span></footer>
+      </main>
     </div>
   )
 }
+
+function SectionHeading({ number, title, link, href }: { number: string; title: string; link: string; href: string }) { return <div className="section-heading"><div><span>{number}</span><h2>{title}</h2></div><a href={href}>{link} <ArrowUpRight /></a></div> }
