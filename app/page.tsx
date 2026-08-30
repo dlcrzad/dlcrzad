@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Github, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 const nav = [
@@ -66,7 +66,14 @@ export default function HomePage() {
 
   useEffect(() => {
     document.body.style.overflow = activeProject ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveProject(null)
+    }
+    if (activeProject) window.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', closeOnEscape)
+    }
   }, [activeProject])
 
   return (
@@ -101,7 +108,7 @@ export default function HomePage() {
             <p className="eyebrow">01 / Hello there</p>
             <h1>Websites with<br /><em>something to say.</em></h1>
             <p className="hero-intro">I&apos;m Adeline — a web designer and SEO specialist helping thoughtful businesses become easier to find, understand, and remember.</p>
-            <div className="hero-actions"><a className="text-link" href="mailto:dlcrzad@gmail.com">Let&apos;s work together <ArrowUpRight /></a><a className="text-link muted-link" href="#writing">Read the notes <ArrowUpRight /></a></div>
+            <div className="hero-actions"><a className="text-link" href="mailto:dlcrzad@gmail.com">Let&apos;s work together <ArrowUpRight /></a><a className="text-link muted-link" href="#projects">View the work <ArrowUpRight /></a></div>
           </div>
           <div className="portrait-frame"><Image src="/images/profile-transparent.png" alt="Portrait of Adeline Dela Cruz" fill sizes="(max-width: 768px) 80vw, 320px" className="portrait" priority /><span className="portrait-halftone" aria-hidden="true" /></div>
           <div className="hero-note">A small independent practice<br />for a more considered web.</div>
