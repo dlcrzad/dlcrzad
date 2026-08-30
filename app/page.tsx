@@ -69,7 +69,7 @@ export default function HomePage() {
             <p className="hero-intro">I&apos;m Adeline — a web designer and SEO specialist helping thoughtful businesses become easier to find, understand, and remember.</p>
             <div className="hero-actions"><a className="text-link" href="mailto:dlcrzad@gmail.com">Let&apos;s work together <ArrowUpRight /></a><a className="text-link muted-link" href="#writing">Read the notes <ArrowUpRight /></a></div>
           </div>
-          <div className="portrait-frame"><Image src="/images/profile-transparent.png" alt="Portrait of Adeline Dela Cruz" fill sizes="(max-width: 768px) 80vw, 320px" className="portrait" priority /></div>
+          <div className="portrait-frame"><Image src="/images/profile-transparent.png" alt="Portrait of Adeline Dela Cruz" fill sizes="(max-width: 768px) 80vw, 320px" className="portrait" priority /><span className="portrait-halftone" aria-hidden="true" /></div>
           <div className="hero-note">A small independent practice<br />for a more considered web.</div>
         </section>
 
