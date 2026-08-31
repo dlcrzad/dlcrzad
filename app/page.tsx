@@ -19,7 +19,8 @@ const projects = [
     location: 'Hawaii, United States',
     role: 'Web Designer & SEO Specialist',
     dateRange: 'August 2025 – August 2026',
-    description: 'A campervan rental affiliate website that I managed and redesigned, improving its structure, mobile experience, and SEO while building it into a comprehensive Hawaii camping guide through helpful campground guides, itineraries, and travel content.',
+    description: 'A brighter, more discoverable home for campervan adventures across Hawaii.',
+    popupDescription: 'A campervan rental affiliate website that I managed and redesigned, improving its structure, mobile experience, and SEO while building it into a comprehensive Hawaii camping guide through helpful campground guides, itineraries, and travel content.',
     website: 'https://lemondropcampers.com',
     skills: ['WordPress', 'Elementor', 'Neve', 'SEO', 'Content Strategy', 'Google Analytics', 'Web Design', 'Mobile Design', 'Performance Optimization'],
     imageUrl: 'https://jqnkglalztdgvjuz.public.blob.vercel-storage.com/Lemon%20Drop%20Campers%20Project%20of%20Ads.webp',
@@ -28,8 +29,11 @@ const projects = [
   {
     id: 'avos-inc',
     name: 'Avos Inc',
-    type: 'Brand site / SEO',
-    description: 'A clear, conversion-minded home for a growing digital studio.',
+    type: 'Construction & Metal Fabrication / WordPress & SEO',
+    description: 'Construction & metal fabrication website managed through WordPress, SEO, and content optimization.',
+    popupDescription: 'A construction company website where I am responsible for website development, content updates, SEO, and ongoing website maintenance.',
+    skills: ['WordPress', 'Elementor', 'Security', 'Website Gallery', 'Mobile Design', 'Developer', 'HTML', 'SEO', 'Website Optimization'],
+    imageUrl: 'https://jqnkglalztdgvjuz.public.blob.vercel-storage.com/Avos%20Inc%20Project%20of%20Ads.webp',
     color: 'project-blue',
   },
   {
@@ -110,7 +114,7 @@ export default function HomePage() {
 
         <section className="stats-row" aria-label="Career highlights"><div><strong>06+</strong><span>years creating</span></div><div><strong>32</strong><span>sites shipped</span></div><div><strong>∞</strong><span>things to learn</span></div></section>
 
-        <section id="projects" className="section-block content-section"><SectionHeading number="02" title="Selected projects" link="Let&apos;s work" href="#contact" /><p className="section-intro">A few thoughtful websites, content systems, and search strategies built for real people and growing businesses.</p><div className="project-grid">{projects.map((project, i) => <button className={`project-card ${project.color}`} key={project.name} onClick={() => setActiveProject(project)} aria-label={`View ${project.name} project`}><div className="project-art">{project.id === 'lemon-drop' ? <Image src="/images/lemon-drop-featured.png" alt="Lemon Drop Campers website homepage" fill sizes="(max-width: 800px) 100vw, 240px" /> : <><span>0{i + 1}</span><ArrowUpRight /></>}</div><div className="project-meta"><p>{project.type}</p><h3>{project.name}</h3><span>{project.description}</span></div></button>)}</div></section>
+        <section id="projects" className="section-block content-section"><SectionHeading number="02" title="Selected projects" link="Let&apos;s work" href="#contact" /><p className="section-intro">A few thoughtful websites, content systems, and search strategies built for real people and growing businesses.</p><div className="project-grid">{projects.map((project, i) => <button className={`project-card ${project.color}`} key={project.name} onClick={() => setActiveProject(project)} aria-label={`View ${project.name} project`}><div className="project-art">{project.imageUrl ? <Image src={project.imageUrl} alt={`${project.name} website preview`} fill sizes="(max-width: 800px) 100vw, 240px" /> : <><span>0{i + 1}</span><ArrowUpRight /></>}</div><div className="project-meta"><p>{project.type}</p><h3>{project.name}</h3><span>{project.description}</span></div></button>)}</div></section>
 
         <section id="writing" className="section-block content-section landing-notes"><SectionHeading number="03" title="Notes from the studio" link="Read all" href="/blog" /><div className="post-list">{posts.map(([title, desc, date]) => <Link className="post-row" href="/blog" key={title}><div><h3>{title}</h3><p>{desc}</p></div><time>{date}</time><ArrowUpRight /></Link>)}</div></section>
 
@@ -119,7 +123,7 @@ export default function HomePage() {
         <section className="section-block content-section split-section archive-section"><div><SectionHeading number="05" title="Kind words" link="More recommendations" href="#contact" /><blockquote>“Adeline brings a rare mix of taste, patience, and practical thinking. The work always feels like it belongs.”<cite>— A former collaborator</cite></blockquote></div><div className="principles"><p className="label">The approach</p><p>Good work starts with listening. Then comes the structure, the details, and the care to make it last.</p></div></section>
 
         <section id="contact" className="contact-section"><p className="eyebrow">06 / Have a good one</p><h2>Have a project<br /><em>in mind?</em></h2><a className="contact-email" href="mailto:dlcrzad@gmail.com">dlcrzad@gmail.com <ArrowUpRight /></a></section>
-        {activeProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveProject(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close project details"><X /></button><div className="modal-copy"><p className="eyebrow">Project / {activeProject.type}</p><h2 id="project-modal-title">{activeProject.name}</h2>{activeProject.location && <div className="project-facts"><span>{activeProject.location}</span><span>{activeProject.role}</span><span>{activeProject.dateRange}</span></div>}<p className="modal-description">{activeProject.description}</p>{activeProject.skills && <div className="modal-skills">{activeProject.skills.map(skill => <span key={skill}>{skill}</span>)}</div>}{activeProject.website && <a className="modal-website" href={activeProject.website} target="_blank" rel="noreferrer">Visit lemondropcampers.com <ArrowUpRight /></a>}</div>{activeProject.imageUrl && <div className="project-gallery"><Image src={activeProject.imageUrl} alt={`${activeProject.name} project preview`} width={1600} height={2400} /></div>}</section></div>}
+        {activeProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveProject(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close project details"><X /></button><div className="modal-copy"><p className="eyebrow">Project / {activeProject.type}</p><h2 id="project-modal-title">{activeProject.name}</h2>{activeProject.location && <div className="project-facts"><span>{activeProject.location}</span><span>{activeProject.role}</span><span>{activeProject.dateRange}</span></div>}<p className="modal-description">{activeProject.popupDescription ?? activeProject.description}</p>{activeProject.skills && <div className="modal-skills">{activeProject.skills.map(skill => <span key={skill}>{skill}</span>)}</div>}{activeProject.website && <a className="modal-website" href={activeProject.website} target="_blank" rel="noreferrer">Visit lemondropcampers.com <ArrowUpRight /></a>}</div>{activeProject.imageUrl && <div className="project-gallery"><Image src={activeProject.imageUrl} alt={`${activeProject.name} project preview`} width={1600} height={2400} /></div>}</section></div>}
         <footer className="site-footer"><span>Adeline Dela Cruz</span><span>Built with care / 2026</span><span><Github /> <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></span></footer>
       </main>
     </div>
