@@ -19,17 +19,10 @@ const projects = [
     location: 'Hawaii, United States',
     role: 'Web Designer & SEO Specialist',
     dateRange: 'August 2025 – August 2026',
-    description: 'A brighter, more discoverable home for campervan adventures across Hawaii.',
+    description: 'A campervan rental affiliate website that I managed and redesigned, improving its structure, mobile experience, and SEO while building it into a comprehensive Hawaii camping guide through helpful campground guides, itineraries, and travel content.',
     website: 'https://lemondropcampers.com',
-    bullets: [
-      'Managed and optimized a WordPress-based travel and campervan affiliate website, ensuring performance and usability.',
-      'Developed and executed SEO-driven content strategy, including campground guides, itineraries, and evergreen travel resources.',
-      'Implemented on-page and technical SEO improvements, including internal linking, indexing fixes, and sitemap updates.',
-      'Tracked and optimized affiliate link performance using UTM parameters and Google Analytics 4 to support conversions.',
-      'Re-designed the website into a more unique and mobile friendly website.',
-    ],
     skills: ['WordPress', 'Elementor', 'Neve', 'SEO', 'Content Strategy', 'Google Analytics', 'Web Design', 'Mobile Design', 'Performance Optimization'],
-    imageUrl: 'https://blobs.vusercontent.net/blob/Lemon%20Drop%20Campers%20Project%20of%20Adeline-yVkSpAwSt256OkHEFV82QegHoPoPqJ.pdf',
+    imageUrl: 'https://jqnkglalztdgvjuz.public.blob.vercel-storage.com/Lemon%20Drop%20Campers%20Project%20of%20Ads.webp',
     color: 'project-orange',
   },
   {
@@ -126,7 +119,7 @@ export default function HomePage() {
         <section className="section-block content-section split-section archive-section"><div><SectionHeading number="05" title="Kind words" link="More recommendations" href="#contact" /><blockquote>“Adeline brings a rare mix of taste, patience, and practical thinking. The work always feels like it belongs.”<cite>— A former collaborator</cite></blockquote></div><div className="principles"><p className="label">The approach</p><p>Good work starts with listening. Then comes the structure, the details, and the care to make it last.</p></div></section>
 
         <section id="contact" className="contact-section"><p className="eyebrow">06 / Have a good one</p><h2>Have a project<br /><em>in mind?</em></h2><a className="contact-email" href="mailto:dlcrzad@gmail.com">dlcrzad@gmail.com <ArrowUpRight /></a></section>
-        {activeProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveProject(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close project details"><X /></button><div className="modal-copy"><p className="eyebrow">Project / {activeProject.type}</p><h2 id="project-modal-title">{activeProject.name}</h2>{activeProject.location && <div className="project-facts"><span>{activeProject.location}</span><span>{activeProject.role}</span><span>{activeProject.dateRange}</span></div>}<p className="modal-description">{activeProject.description}</p>{activeProject.bullets && <div className="modal-bullets">{activeProject.bullets.map(bullet => <p key={bullet}>{bullet}</p>)}</div>}{activeProject.skills && <div className="modal-skills">{activeProject.skills.map(skill => <span key={skill}>{skill}</span>)}</div>}{activeProject.website && <a className="modal-website" href={activeProject.website} target="_blank" rel="noreferrer">Visit lemondropcampers.com <ArrowUpRight /></a>}</div>{activeProject.imageUrl && <div className="project-gallery"><iframe src={activeProject.imageUrl} title={`${activeProject.name} project preview`} /></div>}</section></div>}
+        {activeProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveProject(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close project details"><X /></button><div className="modal-copy"><p className="eyebrow">Project / {activeProject.type}</p><h2 id="project-modal-title">{activeProject.name}</h2>{activeProject.location && <div className="project-facts"><span>{activeProject.location}</span><span>{activeProject.role}</span><span>{activeProject.dateRange}</span></div>}<p className="modal-description">{activeProject.description}</p>{activeProject.skills && <div className="modal-skills">{activeProject.skills.map(skill => <span key={skill}>{skill}</span>)}</div>}{activeProject.website && <a className="modal-website" href={activeProject.website} target="_blank" rel="noreferrer">Visit lemondropcampers.com <ArrowUpRight /></a>}</div>{activeProject.imageUrl && <div className="project-gallery"><Image src={activeProject.imageUrl} alt={`${activeProject.name} project preview`} width={1600} height={2400} /></div>}</section></div>}
         <footer className="site-footer"><span>Adeline Dela Cruz</span><span>Built with care / 2026</span><span><Github /> <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></span></footer>
       </main>
     </div>
