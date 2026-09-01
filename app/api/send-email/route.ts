@@ -14,7 +14,10 @@ const getTransporter = () => {
     }
 
     transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      requireTLS: true,
       auth: {
         user: emailFrom,
         pass: emailPassword,
@@ -79,6 +82,7 @@ export async function POST(request: NextRequest) {
     // Email to you
     const mailToYou = {
       from: process.env.EMAIL_FROM,
+      replyTo: email,
       to: 'dlcrzad@gmail.com',
       subject: `New Contact Form Submission: ${sanitizedSubject}`,
       html: `
@@ -93,29 +97,10 @@ export async function POST(request: NextRequest) {
       `,
     }
 
-    // Confirmation email to client
-    const mailToClient = {
-      from: process.env.EMAIL_FROM,
-      to: email,
-      subject: 'We received your message!',
-      html: `
-        <h2>Thank you for reaching out!</h2>
-        <p>Hi ${sanitizedName},</p>
-        <p>I've received your message and will get back to you within 24 hours.</p>
-        <h3>Your Message Summary:</h3>
-        <p><strong>Subject:</strong> ${sanitizedSubject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${sanitizedMessage.replace(/\n/g, '<br>')}</p>
-        <hr>
-        <p>Best regards,<br>Adeline Dela Cruz</p>
-      `,
-    }
-
-    // Get transporter and send both emails
+    // Send only the owner notification. The visitor's address is included as reply-to.
     try {
       const emailTransporter = getTransporter()
       await emailTransporter.sendMail(mailToYou)
-      await emailTransporter.sendMail(mailToClient)
     } catch (transporterError) {
       console.error('Transporter error:', transporterError)
       return NextResponse.json(
