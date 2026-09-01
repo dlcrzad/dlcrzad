@@ -29,26 +29,91 @@ const projects = [
   {
     id: 'avos-inc',
     name: 'Avos Inc',
-    type: 'Construction & Metal Fabrication / WordPress & SEO',
-    description: 'Construction & metal fabrication website managed through WordPress, SEO, and content optimization.',
+    type: 'Metal Fabrication / Web Design & SEO',
+    location: 'Portland, Oregon, United States · Remote',
+    role: 'Website Design and SEO',
+    dateRange: 'November 2024 – July 2026',
+    description: 'Metal fabrication website shaped through WordPress, SEO, and content optimization.',
     popupDescription: 'A construction company website where I am responsible for website development, content updates, SEO, and ongoing website maintenance.',
+    website: 'https://avosinc.com',
     skills: ['WordPress', 'Elementor', 'Security', 'Website Gallery', 'Mobile Design', 'Developer', 'HTML', 'SEO', 'Website Optimization'],
     imageUrl: 'https://jqnkglalztdgvjuz.public.blob.vercel-storage.com/Avos%20Inc%20Project%20of%20Ads.webp',
     color: 'project-blue',
   },
   {
-    id: 'dela-cruz',
-    name: 'Dela Cruz Studio',
-    type: 'Portfolio / Identity',
-    description: 'A living notebook for experiments in web design and content.',
+    id: 'rays-ukulele',
+    name: "Ray's Ukulele",
+    type: 'Tutorial Website / SEO & Web Design',
+    description: 'A welcoming ukulele learning site shaped for practice, discovery, and growth.',
+    popupDescription: 'A ukulele tutorial website where I am responsible for website design and structure, blog writing, SEO, and keeping the website organized, engaging, and easy to navigate.',
+    website: 'https://raysukulele.com',
+    dateRange: 'October 2025 – September 2026',
+    role: 'Web Designer & SEO Specialist',
+    location: 'Remote',
+    skills: ['WordPress', 'Web Design', 'SEO', 'Blog Writing', 'Content Structure', 'Mobile Design'],
+    imageUrl: 'https://jqnkglalztdgvjuz.public.blob.vercel-storage.com/Rays%20Ukulele%20Project%20of%20Ads.webp',
     color: 'project-lilac',
+  },
+  {
+    id: 'glenrock-energy',
+    name: 'Glenrock Energy',
+    type: 'Web Design / Prairie Giraffe',
+    description: 'A focused company website designed for a carbon-management team.',
+    popupDescription: 'A carbon-management company website created through web design work with Prairie Giraffe.',
+    website: 'https://glenrockenergy.com',
+    dateRange: 'August 2023 – March 2024',
+    role: 'Web Designer',
+    skills: ['Web Design', 'WordPress', 'Content Structure', 'Mobile Design'],
+    imageUrl: 'https://jqnkglalztdgvjuz.public.blob.vercel-storage.com/Glenrock%20Energy%20Project%20of%20Ads.webp',
+    color: 'project-blue',
+  },
+  {
+    id: 'extreme-precision',
+    name: 'Extreme Precision',
+    type: 'Web Updates & SEO / Prairie Giraffe',
+    description: 'An industrial services website maintained through clear, useful updates.',
+    popupDescription: 'An industrial service provider website where I added sections, edited content, and handled ongoing website updates with Prairie Giraffe.',
+    website: 'https://ep-industrial.com',
+    dateRange: 'August 2023 – March 2024',
+    role: 'Web Designer - Tech VA',
+    skills: ['Bricks Builder', 'Web Updates', 'SEO', 'Content Editing', 'HTML', 'Website Optimization'],
+    imageUrl: 'https://jqnkglalztdgvjuz.public.blob.vercel-storage.com/Extreme%20Precision%20PG%20Ads.webp',
+    color: 'project-orange',
+  },
+  {
+    id: 'black-rock',
+    name: 'Black Rock MRI',
+    type: 'Web Updates & SEO / Prairie Giraffe',
+    description: 'A focused MRI service page built for a diagnostic imaging provider.',
+    popupDescription: 'A diagnostic imaging website where I created the MRI page and handled website updates with Prairie Giraffe using Elementor.',
+    website: 'https://blackrockmri.com/mri',
+    dateRange: 'August 2023 – March 2024',
+    role: 'Web Designer - Tech VA',
+    skills: ['Elementor', 'Web Updates', 'SEO', 'Page Creation', 'Content Editing', 'Mobile Design'],
+    imageUrl: 'https://jqnkglalztdgvjuz.public.blob.vercel-storage.com/Black%20Rock%20MRI%20Page%20PG%20Ads.webp',
+    color: 'project-lilac',
+  },
+  {
+    id: 'mc-welding',
+    name: 'MC Welding',
+    type: 'Web Design & SEO / Prairie Giraffe',
+    description: 'A practical service website for welding, machining, and fabrication.',
+    popupDescription: 'A welding, machining, and fabrication services website where I created and published pages with Prairie Giraffe using Bricks Builder.',
+    website: 'https://mcweldingservicellc.com',
+    dateRange: 'August 2023 – March 2024',
+    role: 'Web Designer - Tech VA',
+    skills: ['Bricks Builder', 'Web Design', 'SEO', 'Page Creation', 'Content Editing', 'Mobile Design'],
+    imageUrl: 'https://jqnkglalztdgvjuz.public.blob.vercel-storage.com/MC%20Welding%20Project%20of%20Ads.webp',
+    color: 'project-blue',
   },
 ]
 
 const experience = [
-  ['2026 — now', 'Web Designer & SEO Specialist', 'Avos Inc'],
-  ['2024 — 2026', 'Independent Web Designer', 'Freelance'],
-  ['2022 — 2024', 'Content & Search Strategist', 'Remote teams'],
+  ['Aug 2025 — Aug 2026', 'WordPress Dev and SEO Specialist', 'Lemon Drop Campers · Freelance'],
+  ['Nov 2024 — Jul 2026', 'Website Design and SEO', 'Avos Inc · Remote'],
+  ['Aug 2023 — Mar 2024', 'Web Designer — Tech VA', 'Prairie Giraffe · Freelance'],
+  ['Jan 2024 — Feb 2024', 'Junior Operations Manager', 'Prairie Giraffe · Contract'],
+  ['Dec 2019 — Mar 2020', 'Administrative Assistant', 'Local Government Unit of Angadanan · Internship'],
 ]
 const stack = ['WordPress', 'Webflow', 'Figma', 'SEO', 'Google Analytics', 'HTML / CSS', 'Content strategy', 'Email marketing']
 
@@ -123,7 +188,7 @@ export default function HomePage() {
         <section className="section-block content-section split-section archive-section"><div><SectionHeading number="05" title="Kind words" link="More recommendations" href="#contact" /><blockquote>“Adeline brings a rare mix of taste, patience, and practical thinking. The work always feels like it belongs.”<cite>— A former collaborator</cite></blockquote></div><div className="principles"><p className="label">The approach</p><p>Good work starts with listening. Then comes the structure, the details, and the care to make it last.</p></div></section>
 
         <section id="contact" className="contact-section"><p className="eyebrow">06 / Have a good one</p><h2>Have a project<br /><em>in mind?</em></h2><a className="contact-email" href="mailto:dlcrzad@gmail.com">dlcrzad@gmail.com <ArrowUpRight /></a></section>
-        {activeProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveProject(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close project details"><X /></button><div className="modal-copy"><p className="eyebrow">Project / {activeProject.type}</p><h2 id="project-modal-title">{activeProject.name}</h2>{activeProject.location && <div className="project-facts"><span>{activeProject.location}</span><span>{activeProject.role}</span><span>{activeProject.dateRange}</span></div>}<p className="modal-description">{activeProject.popupDescription ?? activeProject.description}</p>{activeProject.skills && <div className="modal-skills">{activeProject.skills.map(skill => <span key={skill}>{skill}</span>)}</div>}{activeProject.website && <a className="modal-website" href={activeProject.website} target="_blank" rel="noreferrer">Visit lemondropcampers.com <ArrowUpRight /></a>}</div>{activeProject.imageUrl && <div className="project-gallery"><Image src={activeProject.imageUrl} alt={`${activeProject.name} project preview`} width={1600} height={2400} /></div>}</section></div>}
+        {activeProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveProject(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close project details"><X /></button><div className="modal-copy"><p className="eyebrow">Project / {activeProject.type}</p><h2 id="project-modal-title">{activeProject.name}</h2>{activeProject.location && <div className="project-facts"><span>{activeProject.location}</span><span>{activeProject.role}</span><span>{activeProject.dateRange}</span></div>}<p className="modal-description">{activeProject.popupDescription ?? activeProject.description}</p>{activeProject.skills && <div className="modal-skills">{activeProject.skills.map(skill => <span key={skill}>{skill}</span>)}</div>}{activeProject.website && <a className="modal-website" href={activeProject.website} target="_blank" rel="noreferrer">Visit {activeProject.website.replace(/^https?:\/\//, '').replace(/\/$/, '')} <ArrowUpRight /></a>}</div>{activeProject.imageUrl && <div className="project-gallery"><Image src={activeProject.imageUrl} alt={`${activeProject.name} project preview`} width={1600} height={2400} /></div>}</section></div>}
         <footer className="site-footer"><span>Adeline Dela Cruz</span><span>Built with care / 2026</span><span><Github /> <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></span></footer>
       </main>
     </div>
