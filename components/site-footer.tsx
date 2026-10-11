@@ -1,6 +1,4 @@
 import Link from "next/link"
-import { Mail, Phone, MapPin } from "lucide-react"
-
 export function SiteFooter() {
   return (
     <footer className="bg-white border-t border-gray-200 py-8 px-6">
@@ -19,13 +17,8 @@ export function SiteFooter() {
             <h4 className="text-sm font-semibold text-black">Social Links</h4>
             <ul className="space-y-2">
               <li>
-                <a href="https://linkedin.com" className="text-gray-600 hover:text-black text-xs transition-colors">
+                <a href="https://linkedin.com/in/dlcrzad" target="_blank" rel="noreferrer" className="text-gray-600 hover:text-black text-xs transition-colors">
                   LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com" className="text-gray-600 hover:text-black text-xs transition-colors">
-                  GitHub
                 </a>
               </li>
               <li>
