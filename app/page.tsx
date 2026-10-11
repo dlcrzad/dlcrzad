@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Github, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 const nav = [
@@ -11,6 +11,7 @@ const nav = [
   { label: 'Experience', href: '#experience' },
   { label: 'Testimonials', href: '#testimonials' },
   { label: 'Contact', href: '#contact' },
+  { label: 'Resume', href: '/resume.pdf', external: true },
 ]
 
 const projects = [
@@ -164,13 +165,13 @@ export default function HomePage() {
         <Link href="#about" className="brand-mark">Adeline Dela Cruz</Link>
         <p className="brand-caption">Web designer & search strategist</p>
         <nav className="sidebar-nav" aria-label="Main navigation">
-          {nav.map(({ label, href }) => <a key={href} href={href}>{label}</a>)}
+          {nav.map(({ label, href, external }) => <a key={href} href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>{label}</a>)}
         </nav>
         <div className="sidebar-rule" />
         <div className="sidebar-links">
           <a href="mailto:dlcrzad@gmail.com">Email <ArrowUpRight /></a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
-          <a href="https://github.com" target="_blank" rel="noreferrer">GitHub <ArrowUpRight /></a>
+          <a href="https://www.linkedin.com/in/dlcrzad" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
+          <a href="/resume.pdf" target="_blank" rel="noreferrer">Resume <ArrowUpRight /></a>
         </div>
         <div className="sidebar-bottom">
           <span className="status-dot" /> Available for select projects
@@ -181,7 +182,7 @@ export default function HomePage() {
       <header className="mobile-header">
         <Link href="#about" className="brand-mark">Adeline / DC</Link>
         <button className="menu-button" onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? 'Close menu' : 'Open menu'}>{mobileOpen ? <X /> : <Menu />}</button>
-        {mobileOpen && <nav className="mobile-nav">{nav.map(({ label, href }) => <a key={href} href={href} onClick={() => setMobileOpen(false)}>{label}</a>)}</nav>}
+        {mobileOpen && <nav className="mobile-nav">{nav.map(({ label, href, external }) => <a key={href} href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined} onClick={() => setMobileOpen(false)}>{label}</a>)}</nav>}
       </header>
 
       <main className="portfolio-main">
@@ -209,7 +210,7 @@ export default function HomePage() {
         <section id="contact" className="contact-section"><p className="eyebrow">06 / Have a good one</p><h2>Have a project<br /><em>in mind?</em></h2><div className="contact-layout"><div><p className="contact-copy">Tell me a little about what you&apos;re building, improving, or trying to make easier to find.</p><a className="contact-email" href="mailto:dlcrzad@gmail.com">dlcrzad@gmail.com <ArrowUpRight /></a></div><form className="contact-form" aria-live="polite" onSubmit={async (event) => { event.preventDefault(); setFormState('sending'); const form = event.currentTarget; try { const response = await fetch('/api/send-email', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) }); if (response.ok) { setFormState('sent'); form.reset() } else { const payload = await response.json().catch(() => null); console.error('[v0] Contact form error:', payload?.error ?? response.statusText); setFormState('error') } } catch (error) { console.error('[v0] Contact form request failed:', error); setFormState('error') } }}><label>Name<input name="name" required /></label><label>Email<input name="email" type="email" required /></label><label>Subject<input name="subject" required /></label><label>Message<textarea name="message" rows={5} required /></label><button type="submit" disabled={formState === 'sending'}>{formState === 'sending' ? 'Sending…' : formState === 'sent' ? 'Message sent' : 'Send message'} <ArrowUpRight /></button>{formState === 'error' && <p className="form-status error">Something went wrong. Please try again.</p>}{formState === 'sent' && <p className="form-status">Thanks — I&apos;ll be in touch soon.</p>}</form></div></section>
         {activeExperience && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveExperience(null)}><section className="project-modal experience-modal" role="dialog" aria-modal="true" aria-labelledby="experience-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveExperience(null)} aria-label="Close experience details"><X /></button><div className="modal-copy"><p className="eyebrow">Experience / {activeExperience.company}</p><h2 id="experience-modal-title">{activeExperience.title}</h2><div className="project-facts"><span>{activeExperience.location}</span><span>{activeExperience.period}</span></div><p className="modal-description">{activeExperience.details}</p>{activeExperience.website && <a className="modal-website" href={activeExperience.website} target="_blank" rel="noreferrer">Visit prairiegiraffe.com <ArrowUpRight /></a>}</div></section></div>}
         {activeProject && <div className="project-modal-backdrop" role="presentation" onClick={() => setActiveProject(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onClick={event => event.stopPropagation()}><button className="modal-close" onClick={() => setActiveProject(null)} aria-label="Close project details"><X /></button><div className="modal-copy"><p className="eyebrow">Project / {activeProject.type}</p><h2 id="project-modal-title">{activeProject.name}</h2>{activeProject.location && <div className="project-facts"><span>{activeProject.location}</span><span>{activeProject.role}</span><span>{activeProject.dateRange}</span></div>}<p className="modal-description">{activeProject.popupDescription ?? activeProject.description}</p>{activeProject.skills && <div className="modal-skills">{activeProject.skills.map(skill => <span key={skill}>{skill}</span>)}</div>}{activeProject.website && <a className="modal-website" href={activeProject.website} target="_blank" rel="noreferrer">Visit {activeProject.website.replace(/^https?:\/\//, '').replace(/\/$/, '')} <ArrowUpRight /></a>}</div>{activeProject.imageUrl && <div className="project-gallery"><Image src={activeProject.imageUrl} alt={`${activeProject.name} project preview`} width={1600} height={2400} /></div>}</section></div>}
-        <footer className="site-footer"><span>Adeline Dela Cruz</span><span>Built with care / 2026</span><span><Github /> <a href="https://github.com" target="_blank" rel="noreferrer">GitHub</a></span></footer>
+        <footer className="site-footer"><span>Adeline Dela Cruz</span><span>Built with care / 2026</span><span><a href="/resume.pdf" target="_blank" rel="noreferrer">View resume</a></span></footer>
       </main>
     </div>
   )
