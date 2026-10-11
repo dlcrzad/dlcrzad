@@ -7,7 +7,7 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" })
 const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono" })
 
 export const metadata: Metadata = {
-  title: "Adeline Dela Cruz — Web design & search strategy",
+  title: "Adeline Dela Cruz — WordPress and SEO Specialist",
   description:
     "Adeline Dela Cruz is a web designer and SEO specialist creating thoughtful, discoverable websites.",
   generator: 'v0.dev',

@@ -163,7 +163,7 @@ export default function HomePage() {
     <div className="portfolio-shell">
       <aside className="site-sidebar">
         <Link href="#about" className="brand-mark">Adeline Dela Cruz</Link>
-        <p className="brand-caption">Web designer & search strategist</p>
+        <p className="brand-caption">WordPress and SEO Specialist</p>
         <nav className="sidebar-nav" aria-label="Main navigation">
           {nav.map(({ label, href, external }) => <a key={href} href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>{label}</a>)}
         </nav>
@@ -197,7 +197,7 @@ export default function HomePage() {
           <div className="hero-note">A small independent practice<br />for a more considered web.</div>
         </section>
 
-        <section className="stats-row" aria-label="Career highlights"><div><strong>06+</strong><span>years creating</span></div><div><strong>32</strong><span>sites shipped</span></div><div><strong>∞</strong><span>things to learn</span></div></section>
+        <section className="stats-row" aria-label="Career highlights"><div><strong>03+</strong><span>years experience</span></div><div><strong>05+</strong><span>websites handled</span></div><div><strong>∞</strong><span>things to learn</span></div></section>
 
         <section id="projects" className="section-block content-section"><SectionHeading number="02" title="Selected projects" link="Let&apos;s work" href="#contact" /><p className="section-intro">A few thoughtful websites, content systems, and search strategies built for real people and growing businesses.</p><div className="project-grid">{projects.map((project, i) => <button className={`project-card ${project.color}`} key={project.name} onClick={() => setActiveProject(project)} aria-label={`View ${project.name} project`}><div className="project-art">{project.imageUrl ? <Image src={project.imageUrl} alt={`${project.name} website preview`} fill sizes="(max-width: 800px) 100vw, 240px" /> : <><span>0{i + 1}</span><ArrowUpRight /></>}</div><div className="project-meta"><p>{project.type}</p><h3>{project.name}</h3><span>{project.description}</span></div></button>)}</div></section>
 
