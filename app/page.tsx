@@ -128,7 +128,6 @@ const experience = [
   { period: 'Nov 2024 — Jul 2026', title: 'Website Design and SEO', company: 'Avos Inc', location: 'Portland, Oregon, United States', details: 'Designed and updated the website with a focus on usability, responsiveness, visual consistency, service content, and on-page SEO.' },
   { period: 'Aug 2023 — Mar 2024', title: 'Web Designer', company: 'Prairie Giraffe', location: 'Wyoming, United States', website: 'https://prairiegiraffe.com', details: 'Tailored WordPress themes and plugins, developed 10+ websites with WordPress, Bricks, CSS, and Frames, and translated client requirements into functional web solutions.' },
   { period: 'Jan 2024 — Feb 2024', title: 'Junior Operations Manager', company: 'Prairie Giraffe', location: 'Wyoming, United States', details: 'Supported operations, client communication, and internal systems for a distributed web team.' },
-  { period: 'Dec 2019 — Mar 2020', title: 'Administrative Assistant', company: 'Local Government Unit of Angadanan', location: 'Isabela, Philippines', details: 'Supported administrative operations, records, and day-to-day office coordination.' },
 ]
 const stack = ['WordPress', 'Webflow', 'Figma', 'SEO', 'Google Analytics', 'HTML / CSS', 'Content strategy', 'Email marketing']
 
