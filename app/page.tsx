@@ -158,8 +158,18 @@ export default function HomePage() {
     }
   }, [activeProject, activeExperience])
 
+  useEffect(() => {
+    const moveCursor = (event: MouseEvent) => {
+      document.documentElement.style.setProperty('--cursor-x', `${event.clientX}px`)
+      document.documentElement.style.setProperty('--cursor-y', `${event.clientY}px`)
+    }
+    window.addEventListener('mousemove', moveCursor)
+    return () => window.removeEventListener('mousemove', moveCursor)
+  }, [])
+
   return (
     <div className="portfolio-shell">
+      <span className="pixel-cursor" aria-hidden="true" />
       <aside className="site-sidebar">
         <Link href="#about" className="brand-mark">Adeline Dela Cruz</Link>
         <p className="brand-caption">WordPress and SEO Specialist</p>
