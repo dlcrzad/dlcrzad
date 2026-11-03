@@ -37,8 +37,8 @@ em { color: hsl(var(--primary)); font-style: normal; }
 .text-link:hover, .section-heading a:hover, .contact-email:hover { color: hsl(var(--primary)); }
 .text-link svg, .section-heading a svg, .contact-email svg { width: 13px; height: 13px; }
 .muted-link { color: hsl(var(--muted-foreground)); }
-.portrait-frame { width: 272px; height: 272px; position: relative; overflow: hidden; background: hsl(var(--muted)); border: 1px solid hsl(var(--border)); }
-.portrait { object-fit: cover; object-position: center bottom; filter: grayscale(1) contrast(1.28) brightness(1.1); opacity: .94; }
+.portrait-frame { width: 272px; height: 272px; position: relative; overflow: hidden; background: transparent; border: 0; }
+.portrait { object-fit: cover; object-position: center bottom; opacity: 1; }
 
 .hero-note { position: absolute; bottom: -2px; right: 0; color: hsl(var(--muted-foreground)); font: 10px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; text-align: right; }
 .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid hsl(var(--border)); border-bottom: 1px solid hsl(var(--border)); margin: 58px 0 108px; }
