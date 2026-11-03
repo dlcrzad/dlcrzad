@@ -142,7 +142,6 @@ export default function HomePage() {
   const [activeProject, setActiveProject] = useState<(typeof projects)[number] | null>(null)
   const [activeExperience, setActiveExperience] = useState<(typeof experience)[number] | null>(null)
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
-  const [portraitSrc, setPortraitSrc] = useState('/images/adeline-portrait-source.jpeg')
 
   useEffect(() => {
     document.body.style.overflow = activeProject || activeExperience ? 'hidden' : ''
@@ -159,43 +158,9 @@ export default function HomePage() {
     }
   }, [activeProject, activeExperience])
 
-  useEffect(() => {
-    const source = new window.Image()
-    source.crossOrigin = 'anonymous'
-    source.onload = () => {
-      const canvas = document.createElement('canvas')
-      canvas.width = source.naturalWidth
-      canvas.height = source.naturalHeight
-      const context = canvas.getContext('2d')
-      if (!context) return
-      context.drawImage(source, 0, 0)
-      const image = context.getImageData(0, 0, canvas.width, canvas.height)
-      for (let index = 0; index < image.data.length; index += 4) {
-        const red = image.data[index]
-        const green = image.data[index + 1]
-        const blue = image.data[index + 2]
-        const whiteness = Math.min(red, green, blue)
-        if (whiteness > 220) image.data[index + 3] = Math.max(0, 255 - (whiteness - 220) * 7)
-      }
-      context.putImageData(image, 0, 0)
-      setPortraitSrc(canvas.toDataURL('image/png'))
-    }
-    source.src = '/images/adeline-portrait-source.jpeg'
-  }, [])
-
-  useEffect(() => {
-    const moveCursor = (event: MouseEvent) => {
-      document.documentElement.style.setProperty('--cursor-x', `${event.clientX}px`)
-      document.documentElement.style.setProperty('--cursor-y', `${event.clientY}px`)
-    }
-    window.addEventListener('mousemove', moveCursor)
-    return () => window.removeEventListener('mousemove', moveCursor)
-  }, [])
-
   return (
     <div className="portfolio-shell">
-      <span className="pixel-cursor" aria-hidden="true" />
-      <aside className="site-sidebar">
+            <aside className="site-sidebar">
         <Link href="#about" className="brand-mark">Adeline Dela Cruz</Link>
         <p className="brand-caption">WordPress and SEO Specialist</p>
         <nav className="sidebar-nav" aria-label="Main navigation">
@@ -227,7 +192,7 @@ export default function HomePage() {
             <p className="hero-intro">I&apos;m Adeline — a WordPress and SEO Specialist helping thoughtful businesses build polished websites and become easier to find, understand, and remember.</p>
             <div className="hero-actions"><a className="text-link" href="mailto:dlcrzad@gmail.com">Let&apos;s work together <ArrowUpRight /></a><a className="text-link muted-link" href="#projects">View the work <ArrowUpRight /></a></div>
           </div>
-          <div className="portrait-frame"><Image src={portraitSrc} alt="Portrait of Adeline Dela Cruz" fill sizes="(max-width: 768px) 80vw, 320px" className="portrait" priority unoptimized /></div>
+          <div className="portrait-frame"><Image src="/images/adeline-portrait-source.jpeg" alt="Portrait of Adeline Dela Cruz" fill sizes="(max-width: 768px) 80vw, 320px" className="portrait" priority unoptimized /></div>
           <div className="hero-note">A small independent practice<br />for a more considered web.</div>
         </section>
 
