@@ -20,7 +20,7 @@ const getTransporter = () => {
       requireTLS: true,
       auth: {
         user: emailFrom,
-        pass: emailPassword,
+        pass: emailPassword.replace(/\s+/g, ''),
       },
     })
   }
