@@ -128,7 +128,6 @@ const experience = [
   { period: 'Nov 2024 — Jul 2026', title: 'Website Design and SEO', company: 'Avos Inc', location: 'Portland, Oregon, United States', details: 'Designed and updated the website with a focus on usability, responsiveness, visual consistency, service content, and on-page SEO.' },
   { period: 'Aug 2023 — Mar 2024', title: 'Web Designer', company: 'Prairie Giraffe', location: 'Wyoming, United States', website: 'https://prairiegiraffe.com', details: 'Tailored WordPress themes and plugins, developed 10+ websites with WordPress, Bricks, CSS, and Frames, and translated client requirements into functional web solutions.' },
   { period: 'Jan 2024 — Feb 2024', title: 'Junior Operations Manager', company: 'Prairie Giraffe', location: 'Wyoming, United States', details: 'Supported operations, client communication, and internal systems for a distributed web team.' },
-  { period: 'Dec 2019 — Mar 2020', title: 'Administrative Assistant', company: 'Local Government Unit of Angadanan', location: 'Isabela, Philippines', details: 'Supported administrative operations, records, and day-to-day office coordination.' },
 ]
 const stack = ['WordPress', 'Webflow', 'Figma', 'SEO', 'Google Analytics', 'HTML / CSS', 'Content strategy', 'Email marketing']
 
@@ -161,7 +160,7 @@ export default function HomePage() {
 
   return (
     <div className="portfolio-shell">
-      <aside className="site-sidebar">
+            <aside className="site-sidebar">
         <Link href="#about" className="brand-mark">Adeline Dela Cruz</Link>
         <p className="brand-caption">WordPress and SEO Specialist</p>
         <nav className="sidebar-nav" aria-label="Main navigation">
@@ -193,7 +192,7 @@ export default function HomePage() {
             <p className="hero-intro">I&apos;m Adeline — a WordPress and SEO Specialist helping thoughtful businesses build polished websites and become easier to find, understand, and remember.</p>
             <div className="hero-actions"><a className="text-link" href="mailto:dlcrzad@gmail.com">Let&apos;s work together <ArrowUpRight /></a><a className="text-link muted-link" href="#projects">View the work <ArrowUpRight /></a></div>
           </div>
-          <div className="portrait-frame"><Image src="/images/profile-transparent.png" alt="Portrait of Adeline Dela Cruz" fill sizes="(max-width: 768px) 80vw, 320px" className="portrait" priority /></div>
+          <div className="portrait-frame"><Image src="/images/adeline-portrait-source.jpeg" alt="Portrait of Adeline Dela Cruz" fill sizes="(max-width: 768px) 80vw, 320px" className="portrait" priority unoptimized /></div>
           <div className="hero-note">A small independent practice<br />for a more considered web.</div>
         </section>
 
